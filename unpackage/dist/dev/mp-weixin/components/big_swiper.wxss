@@ -1,0 +1,20 @@
+
+.carousel.data-v-4fdb5bea {
+	width: 100%;
+	height: 750rpx;
+}
+.carousel .carousel-item.data-v-4fdb5bea {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.carousel image.data-v-4fdb5bea {
+	width: 100%;
+	height: 100%;
+	-webkit-border-radius: 10rpx;
+	        border-radius: 10rpx;
+}
+.group-section_carousel.data-v-4fdb5bea {
+	height: 200rpx;
+}
+
