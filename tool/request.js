@@ -1,4 +1,6 @@
 // var url_prefix = "https://meizi.manogue.com.cn";//线上环境
+// var url_prefix = "https://meizi.manogue.com.cn";//线上环境
+
 
 export default {
   async GET(data_obj) {
