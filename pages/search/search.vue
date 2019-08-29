@@ -67,7 +67,8 @@ export default {
 			},
 			private_search_info: [],
 			req_search_info_page: 1,
-			no_data: true
+			no_data: true,
+			search_input:""
 		};
 	},
 	components: {
@@ -96,8 +97,30 @@ export default {
 			return false;
 		}
 	},
+	onNavigationBarSearchInputChanged(search_text){this.search_button(search_text)},
+	onNavigationBarButtonTap(){this.search_dataInfo();},
 	methods: {
 		...mapActions(['SEARCH_INFO', 'BRAND_INFO', 'SORT_LIST']),
+		search_dataInfo() {
+			//点击搜索请求数据，方便做多端兼容
+			this.$request.POST({
+				url:"/v4/goods/goods_list",
+				data:{
+					tags_id: 0,
+					brand_id: this.brand.brand_id,
+					cate_id: this.sort.sort_brand_id,
+					goods_name: this.search_input,
+					page: 1,
+					num: 10
+				}
+			}).then(res => {
+				this.private_search_info = res.data
+			})
+		},
+		search_button(search_text) {
+			//点击搜索获取输入框内容
+			this.search_input = search_text.text
+		},
 		open(data) {
 			switch (data._name) {
 				case '品牌':
@@ -168,8 +191,9 @@ export default {
 					brand_id: this.brand.brand_id,
 					cate_id: this.sort.sort_brand_id,
 					num: 10,
-					page: this.req_search_info_page
-				}
+					page: this.req_search_info_page,
+					goods_name: this.search_input
+				},
 			}).then(res => {
 				if (res) {
 					// 如果你请求返回的数据长度不够10条就显示没有更多数据
