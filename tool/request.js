@@ -1,4 +1,6 @@
 const url_prefix = '/';// 开发环境
+const url_prefix = '/';// 开发环境
+
 // const url_prefix = '/aaa';// 开发环境
 // const url_prefix = '';//本地测试环境
 // var url_prefix = "https://meizi.manogue.com.cn";//线上环境
