@@ -161,4 +161,8 @@ export default {
 	.placeholder {
 		color: #999999;
 	}
+	.uni-input-input{
+		/* 这里是修改原生input搜索框样式 */
+		margin: 4px;
+	}
 </style>
