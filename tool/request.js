@@ -1,5 +1,3 @@
-
-
 export default {
   async GET(data_obj) {
     const [error, res] = await uni.request({
