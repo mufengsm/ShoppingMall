@@ -9,7 +9,7 @@
 			</view>
 			<view v-else class="empty-tips">
 				空空如也
-				<view class="navigator" @click="navToLogin">去登陆></view>
+				<view class="navigator" @tap="navToLogin">去登陆></view>
 			</view>
 		</view>
 		<view v-else>
@@ -31,7 +31,7 @@
 							<view
 								class="yticon icon-xuanzhong2 checkbox"
 								:class="{checked: item.checked}"
-								@click="check('item', index)"
+								@tap="check('item', index)"
 							></view>
 						</view>
 						<view class="item-right">
@@ -49,7 +49,7 @@
 								@eventChange="numberChange"
 							></uni-number-box>
 						</view>
-						<text class="del-btn yticon icon-fork" @click="deleteCartItem(index)"></text>
+						<text class="del-btn yticon icon-fork" @tap="deleteCartItem(index)"></text>
 					</view>
 				</block>
 			</view>
@@ -59,9 +59,9 @@
 					<image
 						:src="allChecked?'/static/selected.png':'/static/select.png'"
 						mode="aspectFit"
-						@click="check('all')"
+						@tap="check('all')"
 					></image>
-					<view class="clear-btn" :class="{show: allChecked}" @click="clearCart">
+					<view class="clear-btn" :class="{show: allChecked}" @tap="clearCart">
 						清空
 					</view>
 				</view>
@@ -73,7 +73,7 @@
 						元
 					</text>
 				</view>
-				<button type="primary" class="no-border confirm-btn" @click="createOrder">去结算</button>
+				<button type="primary" class="no-border confirm-btn" @tap="createOrder">去结算</button>
 			</view>
 		</view>
 	</view>

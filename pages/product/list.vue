@@ -1,26 +1,26 @@
 <template>
 	<view class="content">
 		<view class="navbar" :style="{position:headerPosition,top:headerTop}">
-			<view class="nav-item" :class="{current: filterIndex === 0}" @click="tabClick(0)">
+			<view class="nav-item" :class="{current: filterIndex === 0}" @tap="tabClick(0)">
 				综合排序
 			</view>
-			<view class="nav-item" :class="{current: filterIndex === 1}" @click="tabClick(1)">
+			<view class="nav-item" :class="{current: filterIndex === 1}" @tap="tabClick(1)">
 				销量优先
 			</view>
-			<view class="nav-item" :class="{current: filterIndex === 2}" @click="tabClick(2)">
+			<view class="nav-item" :class="{current: filterIndex === 2}" @tap="tabClick(2)">
 				<text>价格</text>
 				<view class="p-box">
 					<text :class="{active: priceOrder === 1 && filterIndex === 2}" class="yticon icon-shang"></text>
 					<text :class="{active: priceOrder === 2 && filterIndex === 2}" class="yticon icon-shang xia"></text>
 				</view>
 			</view>
-			<text class="cate-item yticon icon-fenlei1" @click="toggleCateMask('show')"></text>
+			<text class="cate-item yticon icon-fenlei1" @tap="toggleCateMask('show')"></text>
 		</view>
 		<view class="goods-list">
 			<view
 				v-for="(item, index) in goodsList" :key="index"
 				class="goods-item"
-				@click="navToDetailPage(item)"
+				@tap="navToDetailPage(item)"
 			>
 				<view class="image-wrapper">
 					<image :src="item.image" mode="aspectFill"></image>
@@ -34,8 +34,8 @@
 		</view>
 		<uni-load-more :status="loadingType"></uni-load-more>
 
-		<view class="cate-mask" :class="cateMaskState===0 ? 'none' : cateMaskState===1 ? 'show' : ''" @click="toggleCateMask">
-			<view class="cate-content" @click.stop.prevent="stopPrevent" @touchmove.stop.prevent="stopPrevent">
+		<view class="cate-mask" :class="cateMaskState===0 ? 'none' : cateMaskState===1 ? 'show' : ''" @tap="toggleCateMask">
+			<view class="cate-content" @tap.stop.prevent="stopPrevent" @touchmove.stop.prevent="stopPrevent">
 				<scroll-view scroll-y class="cate-list">
 					<view v-for="item in cateList" :key="item.id">
 						<view class="cate-item b-b two">{{item.name}}</view>
@@ -43,7 +43,7 @@
 							v-for="tItem in item.child" :key="tItem.id"
 							class="cate-item b-b"
 							:class="{active: tItem.id==cateId}"
-							@click="changeCate(tItem)">
+							@tap="changeCate(tItem)">
 							{{tItem.name}}
 						</view>
 					</view>

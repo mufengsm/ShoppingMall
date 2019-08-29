@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		<view class="back-btn yticon icon-zuojiantou-up" @click="navBack"></view>
+		<view class="back-btn yticon icon-zuojiantou-up" @tap="navBack"></view>
 		<!-- 设置白色背景防止软键盘把下部绝对定位元素顶上来盖住输入框等 -->
 		<view class="wrapper">
 			<image src="../../static/logo/ddmlogoicon.png" class="logo" mode="aspectFit"></image>
@@ -33,14 +33,14 @@
 					/>
 				</view>
 			</view>
-			<button class="confirm-btn" @click="toLogin" :disabled="logining">登录</button>
+			<button class="confirm-btn" @tap="toLogin" :disabled="logining">登录</button>
 			<view class="forget-section">
 				忘记密码?
 			</view>
 		</view>
 		<view class="register-section">
 			还没有账号?
-			<text @click="toRegist">马上注册</text>
+			<text @tap="toRegist">马上注册</text>
 		</view>
 	</view>
 </template>

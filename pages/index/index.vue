@@ -9,7 +9,7 @@
 		<view class="carousel-section"><BigSwiper :carouselList="carouselList" @swiper_navToDetailPage="navToDetailPage"></BigSwiper></view>
 		<!-- 分类 -->
 		<view class="cate-section">
-			<view class="cate-item" @click="btn">
+			<view class="cate-item" @tap="btn">
 				<image src="/static/temp/c3.png"></image>
 				<text>环球美食</text>
 			</view>
@@ -43,7 +43,7 @@
 			</view>
 			<scroll-view class="floor-list" scroll-x>
 				<view class="scoll-wrapper">
-					<view v-for="(item, index) in goodsList" :key="index" class="floor-item" @click="navToDetailPage(item)">
+					<view v-for="(item, index) in goodsList" :key="index" class="floor-item" @tap="navToDetailPage(item)">
 						<image :src="item.logo_img" mode="aspectFill"></image>
 						<text class="title clamp">{{ item.title }}</text>
 						<text class="price">￥{{ item.sales_price }}</text>
@@ -75,7 +75,7 @@
 		</view>
 
 		<view class="guess-section">
-			<view v-for="(item, index) in goodsList" :key="index" class="guess-item" @click="navToDetailPage(item)">
+			<view v-for="(item, index) in goodsList" :key="index" class="guess-item" @tap="navToDetailPage(item)">
 				<view class="image-wrapper"><image :src="item.logo_img" mode="aspectFill"></image></view>
 				<text class="title clamp">{{ item.title }}</text>
 				<view class="price">

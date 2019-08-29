@@ -24,7 +24,7 @@
 		</view>
 
 		<!--  分享 -->
-		<!-- <view class="share-section" @click="share">
+		<!-- <view class="share-section" @tap="share">
 			<view class="share-icon">
 				<text class="yticon icon-xingxing"></text>
 				返
@@ -38,7 +38,7 @@
 		</view>
  -->
 		<view class="c-list">
-			<view class="c-row b-b" @click="toggleSpec">
+			<view class="c-row b-b" @tap="toggleSpec">
 				<text class="tit">购买类型</text>
 				<view class="con">
 		<text class="selected-text" v-for="(sItem, sIndex) in specSelected" :key="sIndex">{{ sItem.name }}</text>
@@ -90,22 +90,22 @@
 				<text class="yticon icon-gouwuche"></text>
 				<text>购物车</text>
 			</navigator>
-			<view class="p-b-btn" :class="{ active: favorite }" @click="toFavorite">
+			<view class="p-b-btn" :class="{ active: favorite }" @tap="toFavorite">
 				<text class="yticon icon-shoucang"></text>
 				<text>收藏</text>
 			</view>
 
 			<view class="action-btn-group">
-				<button type="primary" class=" action-btn no-border buy-now-btn" @click="buy">立即购买</button>
+				<button type="primary" class=" action-btn no-border buy-now-btn" @tap="buy">立即购买</button>
 				<button type="primary" class=" action-btn no-border add-cart-btn">加入购物车</button>
 			</view>
 		</view>
 
 		<!-- 规格-模态层弹窗 -->
-		<view class="popup spec" :class="specClass" @touchmove.stop.prevent="stopPrevent" @click="toggleSpec">
+		<view class="popup spec" :class="specClass" @touchmove.stop.prevent="stopPrevent" @tap="toggleSpec">
 			<!-- 遮罩层 -->
 			<view class="mask"></view>
-			<view class="layer attr-content" @click.stop="stopPrevent">
+			<view class="layer attr-content" @tap.stop="stopPrevent">
 				<view class="a-t">
 					<image src="https://gd3.alicdn.com/imgextra/i3/0/O1CN01IiyFQI1UGShoFKt1O_!!0-item_pic.jpg_400x400.jpg"></image>
 					<view class="right">
@@ -126,13 +126,13 @@
 							:key="childIndex"
 							class="tit"
 							:class="{ selected: childItem.selected }"
-							@click="selectSpec(childIndex, childItem.pid)"
+							@tap="selectSpec(childIndex, childItem.pid)"
 						>
 							{{ childItem.name }}
 						</text>
 					</view>
 				</view>
-				<button class="btn" @click="toggleSpec">完成</button>
+				<button class="btn" @tap="toggleSpec">完成</button>
 			</view>
 		</view>
 		<Share ref="share" :contentHeight="580" :shareList="shareList"></Share>

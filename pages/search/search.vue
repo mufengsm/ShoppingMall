@@ -27,10 +27,10 @@
 					<view class="commodity_item_right_top">{{ item.name }}</view>
 					<view class="commodity_item_right_center">
 						<view class="commodity_item_right_center_top">
-							<text class="commodity_item_right_center_top_left">￥123.00</text>
-							<view class="commodity_item_right_center_top_right">1.2折</view>
+							<text class="commodity_item_right_center_top_left">￥{{item.first}}</text>
+							<view class="commodity_item_right_center_top_right">{{item.disacount}}折</view>
 						</view>
-						<view class="commodity_item_right_center_bottom">￥99.00</view>
+						<view class="commodity_item_right_center_bottom">￥{{item.third}}</view>
 					</view>
 					<view class="commodity_item_right_bottom">
 						<view class="commodity_item_right_bottom_left">精选</view>
