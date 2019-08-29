@@ -48,9 +48,8 @@
 							"backgroundColor":"rgb(238,238,238)",
 							"borderRadius": "16px",
 							"placeholder": "请输你想购买的商品",
-							"disabled": true,
-							"placeholderColor": "#606266",
-							"padding": "44px"
+							"disabled": false,
+							"placeholderColor": "#606266"
 						},
 						"buttons": [{
 							"text": "搜索",
