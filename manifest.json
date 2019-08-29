@@ -80,6 +80,11 @@
         "router" : {
             "base" : "aliyun"
         },
-        "title" : "uniapp"
+        "title" : "uniapp",
+		"optimization": {
+		    "treeShaking": {
+		        "enable": true
+		    }
+		}
     }
 }
