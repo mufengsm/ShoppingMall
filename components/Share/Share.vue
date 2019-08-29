@@ -1,10 +1,10 @@
 <template>
-	<view v-if="show" class="mask" @click="toggleMask" @touchmove.stop.prevent="stopPrevent"
+	<view v-if="show" class="mask" @tap="toggleMask" @touchmove.stop.prevent="stopPrevent"
 		:style="{backgroundColor: backgroundColor}"
 	>
 		<view
 			class="mask-content"
-			@click.stop.prevent="stopPrevent"
+			@tap.stop.prevent="stopPrevent"
 			:style="[{
 				height: config.height,
 				transform: transform
@@ -18,14 +18,14 @@
 					<view
 						v-for="(item, index) in shareList" :key="index"
 						class="share-item"
-						@click="shareToFriend(item.text)"
+						@tap="shareToFriend(item.text)"
 					>
 						<image :src="item.icon" mode=""></image>
 						<text>{{item.text}}</text>
 					</view>
 				</view>
 			</scroll-view>
-			<view class="bottom b-t" @click="toggleMask">取消</view>
+			<view class="bottom b-t" @tap="toggleMask">取消</view>
 		</view>
 	</view>
 </template>
