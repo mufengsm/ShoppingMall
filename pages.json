@@ -85,7 +85,6 @@
 		{
 			"path": "pages/user/user",
 			"style": {
-				"navigationBarTitleText": "个人中心",
 				"app-plus": {
 					"titleNView": {
 						"type": "transparent"
