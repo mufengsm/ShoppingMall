@@ -1,4 +1,4 @@
-var cinst = "123";
+var cinst = "456";
 function fn(){
     console.log(1)
 }
