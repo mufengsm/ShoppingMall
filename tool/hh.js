@@ -1,6 +1,5 @@
 var cinst = "456";
-var s = "102";
-
+var hh = "454564";
 function fn(){
     console.log(1)
 }
