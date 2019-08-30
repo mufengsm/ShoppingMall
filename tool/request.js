@@ -17,3 +17,4 @@ export default {
     return res.data;
   },
 };
+console.log("huoqingchi")
