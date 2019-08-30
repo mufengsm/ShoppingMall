@@ -1,6 +1,5 @@
 const url_prefix = '/api';// 开发环境
 // const url_prefix = "/";//线上环境
-// const url_prefix = "/";//线上环境
 
 
 export default {
