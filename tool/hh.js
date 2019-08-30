@@ -1,1 +1,2 @@
-var name = "huoqingchi"
+var name = "huoqingchi";
+var sex = "nan";
