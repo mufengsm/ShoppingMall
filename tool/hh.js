@@ -1,5 +1,5 @@
 var cinst = "456";
-var s = "102";
+var s = "1231";
 
 function fn(){
     console.log(1)
