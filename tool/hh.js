@@ -5,3 +5,7 @@ function fn(){
     console.log(1)
 }
 fn()
+function fn2(){
+    console.log(2)
+}
+fn2()
