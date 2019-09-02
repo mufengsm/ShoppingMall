@@ -1,4 +1,5 @@
-const url_prefix = "http://localhost";//线上环境
+// const url_prefix = "http://localhost";//线上环境
+const url_prefix = "http://localhost:8888";//线上环境
 
 export default {
   async GET(data_obj) {

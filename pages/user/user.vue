@@ -13,16 +13,18 @@
 			</view>
 		</view>
 
-		<view
-			class="cover-container"
-		>
-			
+		<view class="cover-container">
 			<!-- 订单 -->
 			<view class="order-section">
-				<view class="order-item" v-for="(item,index) in order_status" :key="index">
-					<image :src="item.img_url" mode="aspectFit"></image>
-					<text>{{item.text}}</text>
+				<view class="my_order">
+					<text class="left">我的订单</text>
+					
+					<text class="right">全部订单<i class="iconfont icon-youjiantou"></i></text>
 				</view>
+					<view class="order-item" v-for="(item,index) in order_status" :key="index">
+						<image :src="item.img_url" mode="aspectFit"></image>
+						<text>{{item.text}}</text>
+					</view>
 			</view>
 		</view>
 		<view class="tj-sction">
@@ -184,6 +186,15 @@ export default {
 		@extend %section;
 		padding: 28upx 0;
 		margin-top: 20upx;
+		height: 240upx;
+		flex-wrap:wrap;
+		.my_order{
+			width: 100%;
+			border: 1px solid red;
+			.right{
+				float: right;
+			}
+		}
 		.order-item{
 			@extend %flex-center;
 			width: 120upx;
