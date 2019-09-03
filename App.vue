@@ -24,7 +24,6 @@ export default {
   },
 };
 </script>
-
 <style lang='scss'>
 	@font-face {
 	  font-family: 'iconfont';
@@ -42,15 +41,18 @@ export default {
 	  -webkit-font-smoothing: antialiased;
 	  -moz-osx-font-smoothing: grayscale;
 	}
+
 	.icon-downarrow:before {
-	  content: "\e692";
+		content: "\e692";
+	}
+
+	.icon-youjiantou:before {
+		content: "\e630";
 	}
 
 	.icon-downarrow-copy:before {
-	  content: "\e693";
+		content: "\e693";
 	}
-
-
 	view,
 	scroll-view,
 	swiper,
