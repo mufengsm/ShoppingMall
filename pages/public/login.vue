@@ -22,7 +22,7 @@
 				<view class="input-item">
 					<input
 						type="mobile"
-						value=""
+						:value="password"
 						placeholder="密码"
 						placeholder-class="input-empty"
 						maxlength="20"
@@ -75,29 +75,40 @@ export default {
       this.$api.msg('去注册');
     },
     async toLogin() {
-      this.logining = true;
-      const { mobile, password } = this;
-      /* 数据验证模块
-				if(!this.$api.match({
-					mobile,
-					password
-				})){
-					this.logining = false;
-					return;
-				}
-				*/
-      const sendData = {
-        mobile,
-        password,
-      };
-      const result = await this.$api.json('userInfo');
-      if (result.status === 1) {
-        this.login(result.data);
-        uni.navigateBack();
-      } else {
-        this.$api.msg(result.msg);
-        this.logining = false;
-      }
+		uni.showLoading({
+			title: '正在登录中'
+		});
+		this.$request.POST({
+			url:"/v1/user/login",
+			data:{
+				username:this.mobile,
+				password:this.password
+			}
+		}).then(res => {
+			uni.hideLoading();
+			console.log(res.errcode)
+			if(res.errcode === 1){
+				uni.showToast({
+					title: res.errmsg
+				});
+				uni.navigateTo({
+					url: '/pages/user/user'
+				});
+			}else{
+				uni.showToast({
+					title:res.errmsg,
+					icon:none
+				});
+			}
+		})
+    
+    //   if (result.status === 1) {
+    //     this.login(result.data);
+    //     uni.navigateBack();
+    //   } else {
+    //     this.$api.msg(result.msg);
+    //     this.logining = false;
+    //   }
     },
     typeSwitch() {
       this.isActive = !this.isActive;

@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "uni-load-more": "/components/uLi-load-more/uLi-load-more",
-    "sort-list": "/components/sort_list"
-  }
-}
