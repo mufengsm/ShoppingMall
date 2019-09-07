@@ -67,7 +67,7 @@
 			"disableHostCheck": true,
 			"proxy": {
 				"/api": {
-					"target": "http://localhost:80/", // 需要跨域的域名
+					"target": "http://localhost:8888/", // 需要跨域的域名
 					"changeOrigin": true,
 					"secure": false,
 					"pathRewrite": {
