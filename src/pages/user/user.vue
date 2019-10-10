@@ -59,7 +59,7 @@
 import {
   mapState,
 } from 'vuex';
-import listCell from '@/components/mix-list-cell';
+import listCell from '@/components/MixListCell/MixListCell.vue';
 
 let startY = 0; let moveY = 0; const
   pageAtTop = true;

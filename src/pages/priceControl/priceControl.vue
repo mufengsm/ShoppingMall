@@ -43,7 +43,7 @@
 // eslint-disable-next-line import/no-unresolved
 import { createNamespacedHelpers } from 'vuex';
 
-const { mapActions } = createNamespacedHelpers('storeOne');
+const { mapActions } = createNamespacedHelpers('storeCommodity');
 export default {
   data() {
     return {
@@ -55,7 +55,7 @@ export default {
   },
   onLoad() {
     this.PRICE_CONTROL_INFO({
-      url: '/v4/Brands/index',
+      url: this.$api.apiUrl.POST_BRAND_LIST,
       data: {
         page: 1,
         num: 10,

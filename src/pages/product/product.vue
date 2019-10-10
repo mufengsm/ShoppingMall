@@ -143,7 +143,7 @@
 import { createNamespacedHelpers } from 'vuex';
 import { Share } from '@/components/index.js';
 
-const { mapState, mapActions } = createNamespacedHelpers('storeOne');
+const { mapState, mapActions } = createNamespacedHelpers('storeCommodity');
 export default {
   data() {
     return {

@@ -1,4 +1,6 @@
 import Json from '../Json'; // 测试时用的数据
+import * as url from '../config/apiConfig';
+
 // 调用消息提醒
 export const msg = (title, duration = 1500, mask = false, icon = 'none') => {
   if (Boolean(title) === false) {
@@ -26,3 +28,4 @@ export const prePage = () => {
   // #endif
   return prePage.$vm;
 };
+export const apiUrl = url;

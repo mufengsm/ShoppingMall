@@ -1,3 +1,4 @@
+// 静态接口
 /* 用户 */
 const userInfo = {
 	status: 1,

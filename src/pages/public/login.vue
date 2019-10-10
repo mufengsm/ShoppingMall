@@ -79,7 +79,7 @@ export default {
 			title: '正在登录中'
 		});
 		this.$request.POST({
-			url:"/v1/user/login",
+			url:this.$api.apiUrl.POST_USER_LOGIN,
 			data:{
 				username:this.mobile,
 				password:this.password

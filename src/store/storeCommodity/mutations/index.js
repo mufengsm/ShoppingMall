@@ -10,7 +10,6 @@ export default {
       key: 'userInfo',
       data: provider,
     });
-    // console.log(state.userInfo);
   },
   [LOGOUT](state) {
     state.hasLogin = false;

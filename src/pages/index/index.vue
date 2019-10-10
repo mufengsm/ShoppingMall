@@ -2,11 +2,16 @@
 	<view class="container">
 		<!-- 小程序头部兼容 -->
 		<!-- #ifdef MP -->
-		<view class="mp-search-box"><input class="ser-input" type="text" value="输入关键字搜索" disabled /></view>
+		<view class="mp-search-box" @tap="searching">
+			<input class="ser-input" type="text" value="输入关键字搜索" disabled />
+		</view>
 		<!-- #endif -->
 
 		<!-- 头部轮播 -->
-		<view class="carousel-section"><BigSwiper :carouselList="carouselList" @swiper_navToDetailPage="navToDetailPage"></BigSwiper></view>
+		<view class="carousel-section">
+			<BigSwiper :carouselList="carouselList" @swiper_navToDetailPage="navToDetailPage"
+			></BigSwiper>
+		</view>
 		<!-- 分类 -->
 		<view class="cate-section">
 			<view class="cate-item" @tap="btn">
@@ -90,7 +95,7 @@
 <script>
 import { createNamespacedHelpers } from 'vuex';
 
-const { mapState, mapActions } = createNamespacedHelpers('storeOne');
+const { mapState, mapActions } = createNamespacedHelpers('storeCommodity');
 export default {
 	data() {
 		return {
@@ -118,7 +123,7 @@ export default {
 		// 请求为您推荐数据
 		this.$request
 			.GET({
-				url: '/v1/goods/recommend',
+				url: this.$api.apiUrl.GET_MERCHANDISE_RECOMMENDATION,
 				data: {
 					page: 1
 				}
@@ -148,6 +153,11 @@ export default {
 			const id = item.title;
 			uni.navigateTo({
 				url: `/pages/product/product?id=${id}`
+			});
+		},
+		searching(){
+			uni.navigateTo({
+				url: '../search/search'
 			});
 		}
 	},

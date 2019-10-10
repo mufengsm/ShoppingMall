@@ -1,7 +1,7 @@
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const ADD = 'ADD';
-// 搜索页面下面的商品信息
+// 搜索页面商品列表信息
 export const SEARCH_INFO = 'SEARCH_INFO';
 // 品牌信息
 export const BRAND_INFO = 'BRAND_INFO';

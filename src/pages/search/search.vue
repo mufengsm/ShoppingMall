@@ -44,9 +44,9 @@
 </template>
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import { SortList } from '@/components/index.js';
+import SortList  from '@/components/SortList/SortList.vue';
 
-const { mapState, mapActions } = createNamespacedHelpers('storeOne');
+const { mapState, mapActions } = createNamespacedHelpers('storeCommodity');
 export default {
 	data() {
 		return {
@@ -77,7 +77,7 @@ export default {
 	onLoad() {
 		this.req_search_info(); // 第一次加载页面数据
 		this.BRAND_INFO({
-			url: '/v4/goods/brand_list',
+			url: this.$api.apiUrl.POST_QUERY_BRAND,
 			data: {
 				tags_id: 0,
 				num: 200
@@ -104,7 +104,7 @@ export default {
 		search_dataInfo() {
 			//点击搜索请求数据，方便做多端兼容
 			this.$request.POST({
-				url:"/v4/goods/goods_list",
+				url:this.$api.apiUrl.POST_BRAND_LIBRARY_QUERY,
 				data:{
 					tags_id: 0,
 					brand_id: this.brand.brand_id,
@@ -185,7 +185,7 @@ export default {
 		req_search_info() {
 			// 加载页面数据函数
 			this.SEARCH_INFO({
-				url: '/v4/goods/goods_list',
+				url: this.$api.apiUrl.POST_BRAND_LIBRARY_QUERY,
 				data: {
 					tags_id: 0,
 					brand_id: this.brand.brand_id,
@@ -209,7 +209,7 @@ export default {
 		sort_list() {
 			// 获取分类列表数据
 			this.SORT_LIST({
-				url: '/v4/goods/cate_list',
+				url: this.$api.apiUrl.POST_QUERY_CLASSIFICATION,
 				data: {
 					tags_id: 0,
 					brand_id: this.brand.brand_id,

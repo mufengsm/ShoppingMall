@@ -38,7 +38,7 @@
 							<text class="clamp title">{{item.title}}</text>
 							<text class="attr">{{item.attr_val}}</text>
 							<text class="price">¥{{item.price}}</text>
-							<uni-number-box
+							<UniNumberBox
 								class="step"
 								:min="1"
 								:max="item.stock"
@@ -47,7 +47,7 @@
 								:isMin="item.number===1"
 								:index="index"
 								@eventChange="numberChange"
-							></uni-number-box>
+							></UniNumberBox>
 						</view>
 						<text class="del-btn yticon icon-fork" @tap="deleteCartItem(index)"></text>
 					</view>
@@ -83,11 +83,11 @@
 import {
   mapState,
 } from 'vuex';
-import uniNumberBox from '@/components/uni-number-box.vue';
+import UniNumberBox from '@/components/UniNumberBox/UniNumberBox.vue';
 
 export default {
   components: {
-    uniNumberBox,
+    UniNumberBox,
   },
   data() {
     return {
