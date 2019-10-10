@@ -4,7 +4,7 @@
 			<view class="header_bg"></view>
 			<view class="user-info-box">
 				<view class="portrait-box">
-					<image class="portrait" :src="'@/static/missing-face.png'"></image>
+					<image class="portrait" :src="'/static/missing-face.png'"></image>
 				</view>
 				<view class="info-box">
 					<view class="username">{{'游客'}}</view>
@@ -26,7 +26,7 @@
 			</view>
 		</view>
 		<view class="tj-sction">
-			<image class="recommend_img" src="../../static/images/my_icon2_red.png" mode="aspectFit"></image>
+			<image class="recommend_img" src="/static/images/my_icon2_red.png" mode="aspectFit"></image>
 			<text class="recommend_txt">推广有礼</text>
 		</view>
 		<view class="my_wallet">
@@ -73,11 +73,11 @@ export default {
       coverTransition: '0s',
       moving: false,
 	  order_status:[
-		  {img_url:"../../static/images/myct_indentl_grey__01.png",text:"待付款"},
-		  {img_url:"../../static/images/myct_indentl_grey__03.png",text:"待发货"},
-		  {img_url:"../../static/images/myct_indentl_grey__05.png",text:"待收货"},
-		  {img_url:"../../static/images/myct_indentl_grey__07.png",text:"带评价"},
-		  {img_url:"../../static/images/myct_indentl_grey__09.png",text:"退换货"}
+		  {img_url:"/static/images/myct_indentl_grey__01.png",text:"待付款"},
+		  {img_url:"/static/images/myct_indentl_grey__03.png",text:"待发货"},
+		  {img_url:"/static/images/myct_indentl_grey__05.png",text:"待收货"},
+		  {img_url:"/static/images/myct_indentl_grey__07.png",text:"带评价"},
+		  {img_url:"/static/images/myct_indentl_grey__09.png",text:"退换货"}
 	  ],
 	  my_wallet_item:[
 		  {num:"--",text:"余额"},
@@ -86,11 +86,11 @@ export default {
 		  {num:0,text:"银行卡管理"},
 	  ],
 	  other_functions:[
-		  {img_url:"../../static/images/myct_others_i_red_01.png"},
-		  {img_url:"../../static/images/myct_others_i_red_13.png"},
-		  {img_url:"../../static/images/myct_others_i_red_19.png"},
-		  {img_url:"../../static/images/myct_others_i_red_06.png"},
-		  {img_url:"../../static/images/myct_others_i_red_21.png?v=1"}
+		  {img_url:"/static/images/myct_others_i_red_01.png"},
+		  {img_url:"/static/images/myct_others_i_red_13.png"},
+		  {img_url:"/static/images/myct_others_i_red_19.png"},
+		  {img_url:"/static/images/myct_others_i_red_06.png"},
+		  {img_url:"/static/images/myct_others_i_red_21.png?v=1"}
 	  ]
     };
   },

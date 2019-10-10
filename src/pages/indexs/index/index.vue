@@ -157,7 +157,7 @@ export default {
 		},
 		searching(){
 			uni.navigateTo({
-				url: '../search/search'
+				url: '../../goodss/search/search'
 			});
 		}
 	},

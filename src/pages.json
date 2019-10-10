@@ -1,7 +1,7 @@
 {
 	"pages": [
 		{
-			"path": "pages/index/index",
+			"path": "pages/indexs/index/index",
 			"style": {
 				// #ifdef MP 
 				"navigationBarTitleText": "Dloud商城",
@@ -39,7 +39,7 @@
 			}
 		},
 		{
-			"path": "pages/search/search",
+			"path": "pages/goodss/search/search",
 			"style": {
 				"app-plus": {
 					"titleNView": {
@@ -63,7 +63,7 @@
 			}
 		},
 		{
-			"path": "pages/product/product",
+			"path": "pages/goodss/product/product",
 			"style": {
 				"navigationBarTitleText": "详情展示",
 				"app-plus": {
@@ -74,7 +74,7 @@
 			}
 		},
 		{
-			"path": "pages/cart/cart",
+			"path": "pages/carts/cart/cart",
 			"style": {
 				"navigationBarTitleText": "购物车",
 				"app-plus": {
@@ -85,7 +85,7 @@
 			}
 		},
 		{
-			"path": "pages/user/user",
+			"path": "pages/mys/user/user",
 			"style": {
 				"app-plus": {
 					"titleNView": {
@@ -95,7 +95,7 @@
 			}
 		},
 		{
-			"path": "pages/public/login",
+			"path": "pages/mys/login/login",
 			"style": {
 				"navigationBarTitleText": "用户登录",
 				"app-plus": {
@@ -106,7 +106,7 @@
 			}
 		},
 		{
-			"path": "pages/priceControl/priceControl",
+			"path": "pages/mys/priceControl/priceControl",
 			"style": {
 				"navigationBarTitleText": "控制价格",
 				"app-plus": {
@@ -130,25 +130,25 @@
 		"backgroundColor": "#ffffff",
 		"list": [
 			{
-				"pagePath": "pages/index/index",
+				"pagePath": "pages/indexs/index/index",
 				"iconPath": "static/tab-home.png",
 				"selectedIconPath": "static/tab-home-current.png",
 				"text": "首页"
 			},
 			{
-				"pagePath": "pages/cart/cart",
+				"pagePath": "pages/carts/cart/cart",
 				"iconPath": "static/tab-cart.png",
 				"selectedIconPath": "static/tab-cart-current.png",
 				"text": "购物车"
 			},
 			{
-				"pagePath": "pages/priceControl/priceControl",
+				"pagePath": "pages/mys/priceControl/priceControl",
 				"iconPath": "static/tab-my.png",
 				"selectedIconPath": "static/tab-my-current.png",
 				"text": "商品控价"
 			},
 			{
-				"pagePath": "pages/user/user",
+				"pagePath": "pages/mys/user/user",
 				"iconPath": "static/tab-my.png",
 				"selectedIconPath": "static/tab-my-current.png",
 				"text": "我的"

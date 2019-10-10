@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="top_wraper">
-			<image class="head_img" src="../../static/logo/controlled_prices_banner.jpg" mode="widthFix"></image>
+			<image class="head_img" src="/static/logo/controlled_prices_banner.jpg" mode="widthFix"></image>
 			<swiper class="swiper" autoplay="ture" vertical="true" style="fontSize:15px;color: rgb(236, 99, 80);">
 				<swiper-item><view class="swiper-item uni-bg-red">【秋季护肤】肌肤为什么干燥、过敏、脆弱？看了吓一跳</view></swiper-item>
 				<swiper-item><view class="swiper-item uni-bg-red">【秋季护肤】肌肤为什么干燥、过敏、脆弱？看了吓一跳</view></swiper-item>
