@@ -21,7 +21,7 @@ Vue.config.productionTip = false;
 Vue.prototype.$store = store;
 // 公共方法
 Vue.prototype.$api = { msg, json, prePage, apiUrl };
-console.log(Vue.prototype.$api);
+
 
 // 挂在全局请求方式
 Vue.prototype.$request = request;

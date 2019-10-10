@@ -7,6 +7,9 @@ $master_bgc:black;
 	.swiper {
 		height: 70upx;
 	}
+	.rotary_text{
+		font-size: 14px;
+	}
 }
 .bottom_wraper {
 	.wraper_item{
@@ -16,7 +19,7 @@ $master_bgc:black;
 			.head_info_img {
 				width: 200upx;
 				height: 180upx;
-				margin-left: 15upx;
+				margin: 10upx 0 0 15upx;
 			}
 			.head_info_text {
 				padding:30upx 0 0 20upx;
