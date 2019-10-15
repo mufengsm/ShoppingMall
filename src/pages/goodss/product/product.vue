@@ -141,9 +141,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import Share from '@/components/Share/Share.vue';
 import *as components from '@/components/index.js';
-console.log(components.Share)
 const { mapState, mapActions } = createNamespacedHelpers('storeCommodity');
 export default {
   data() {

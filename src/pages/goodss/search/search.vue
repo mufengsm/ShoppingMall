@@ -44,7 +44,7 @@
 </template>
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import SortList  from '@/components/SortList/SortList.vue';
+import *as components from '@/components/index.js';
 
 const { mapState, mapActions } = createNamespacedHelpers('storeCommodity');
 export default {
@@ -72,7 +72,7 @@ export default {
 		};
 	},
 	components: {
-		SortList
+		SortList:components.SortList
 	},
 	onLoad() {
 		this.req_search_info(); // 第一次加载页面数据

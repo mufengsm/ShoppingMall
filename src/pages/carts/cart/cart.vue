@@ -83,11 +83,10 @@
 import {
   mapState,
 } from 'vuex';
-import UniNumberBox from '@/components/UniNumberBox/UniNumberBox.vue';
-
+import *as components from '@/components/index.js';
 export default {
   components: {
-    UniNumberBox,
+    UniNumberBox:components.UniNumberBox,
   },
   data() {
     return {

@@ -4,12 +4,10 @@ import SortList from './SortList/SortList.vue';
 import BigSwiper from './BigSwiper/BigSwiper.vue';
 import Share from './Share/Share.vue';
 
-console.log(1213);
 
-export {
+export{
   SortList,
   BigSwiper,
   Share,
   UniLoadMore,
 }
-
