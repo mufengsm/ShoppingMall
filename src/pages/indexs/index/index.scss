@@ -246,10 +246,14 @@ page {
 		float: right;
 		background-color: rgb(236, 99, 80);
 		color: #fff;
-		width: 70upx;
+		padding:0 5px;
 		height: 35upx;
 		text-align: center;
 		line-height: 35upx;
 		border-radius: 20px;
+		.icon-ai64{
+			font-size: 16px;
+			display: inline;
+		}
 	}
 }

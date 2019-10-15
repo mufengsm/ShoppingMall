@@ -85,7 +85,10 @@
 				<text class="title clamp">{{ item.title }}</text>
 				<view class="price">
 					￥{{ item.sales_price }}
-					<view class="find">发现</view>
+					<view class="find">
+						<view class="iconfont icon-ai64"></view>
+						发现
+					</view>
 				</view>
 			</view>
 		</view>

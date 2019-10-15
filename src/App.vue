@@ -24,35 +24,8 @@ export default {
   },
 };
 </script>
+<style>@import './static/aliFont/iconfont.css';</style>
 <style lang='scss'>
-	@font-face {
-	  font-family: 'iconfont';
-	  src: url('./static/aliFont/iconfont.eot');
-	  src: url('./static/aliFont/iconfont.eot?#iefix') format('embedded-opentype'),
-	      url('./static/aliFont/iconfont.woff2') format('woff2'),
-	      url('./static/aliFont/iconfont.woff') format('woff'),
-	      url('./static/aliFont/iconfont.ttf') format('truetype'),
-	      url('./static/aliFont/iconfont.svg#iconfont') format('svg');
-	}
-	.iconfont {
-	  font-family: "iconfont" !important;
-	  font-size: 16px;
-	  font-style: normal;
-	  -webkit-font-smoothing: antialiased;
-	  -moz-osx-font-smoothing: grayscale;
-	}
-
-	.icon-downarrow:before {
-		content: "\e692";
-	}
-
-	.icon-youjiantou:before {
-		content: "\e630";
-	}
-
-	.icon-downarrow-copy:before {
-		content: "\e693";
-	}
 	view,
 	scroll-view,
 	swiper,

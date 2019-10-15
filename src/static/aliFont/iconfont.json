@@ -1,0 +1,37 @@
+{
+  "id": "1361137",
+  "name": "uniApp",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "766834",
+      "name": "下箭头",
+      "font_class": "downarrow",
+      "unicode": "e692",
+      "unicode_decimal": 59026
+    },
+    {
+      "icon_id": "886993",
+      "name": "右箭头",
+      "font_class": "youjiantou",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "998481",
+      "name": "五角星",
+      "font_class": "ai64",
+      "unicode": "e6b6",
+      "unicode_decimal": 59062
+    },
+    {
+      "icon_id": "10457890",
+      "name": "下箭头",
+      "font_class": "downarrow-copy",
+      "unicode": "e693",
+      "unicode_decimal": 59027
+    }
+  ]
+}

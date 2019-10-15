@@ -4,7 +4,7 @@
 			"path": "pages/indexs/index/index",
 			"style": {
 				// #ifdef MP 
-				"navigationBarTitleText": "Dloud商城",
+				"navigationBarTitleText": "多多美商城",
 				//"navigationStyle": "custom",
 				// #endif 
 				"app-plus": {
