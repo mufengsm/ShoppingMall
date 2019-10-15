@@ -5,7 +5,7 @@
 			<image src="/static/emptyCart.jpg" mode="aspectFit"></image>
 			<view v-if="hasLogin" class="empty-tips">
 				空空如也
-				<navigator class="navigator" v-if="hasLogin" url="../../indexs/index" open-type="switchTab">随便逛逛></navigator>
+				<navigator class="navigator" v-if="hasLogin" url="/pages/indexs/index/index" open-type="switchTab">随便逛逛></navigator>
 			</view>
 			<view v-else class="empty-tips">
 				空空如也

@@ -49,7 +49,7 @@
 			<scroll-view class="floor-list" scroll-x>
 				<view class="scoll-wrapper">
 					<view v-for="(item, index) in goodsList" :key="index" class="floor-item" @tap="navToDetailPage(item)">
-						<image :src="item.logo_img" mode="aspectFill"></image>
+						<image lazy-load="true" :src="item.logo_img" mode="aspectFill"></image>
 						<text class="title clamp">{{ item.title }}</text>
 						<text class="price">￥{{ item.sales_price }}</text>
 					</view>
@@ -152,12 +152,12 @@ export default {
 			// 测试数据没有写id，用title代替
 			const id = item.title;
 			uni.navigateTo({
-				url: `/pages/product/product?id=${id}`
+				url: `/pages/goodss/product/product?id=${id}`
 			});
 		},
 		searching(){
 			uni.navigateTo({
-				url: '../../goodss/search/search'
+				url: '/pages/goodss/search/search'
 			});
 		}
 	},
