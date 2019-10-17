@@ -2,8 +2,13 @@
 	<view class="container">
 		<!-- 小程序头部兼容 -->
 		<!-- #ifdef MP -->
-		<view class="mp-search-box" @tap="searching">
-			<input class="ser-input" type="text" value="输入关键字搜索" disabled />
+		<view class="mp-search-box">
+			<view class="location">定位></view>
+			<input @tap="searching" class="ser-input" type="text" value="输入关键字搜索" disabled />
+			<view class="info_img">
+				<view class="iconfont icon-xiaoxi"></view>
+				<view>消息</view>
+			</view>
 		</view>
 		<!-- #endif -->
 

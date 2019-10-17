@@ -59,14 +59,15 @@
 import {
   mapState,
 } from 'vuex';
-import *as components from '@/components/index.js';
+
+
 
 let startY = 0; let moveY = 0; const
   pageAtTop = true;
 export default {
   components: {
-    listCell:components.listCell,
-  },
+
+},
   data() {
     return {
       coverTransform: 'translateY(0px)',

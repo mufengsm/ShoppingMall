@@ -141,7 +141,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import *as components from '@/components/index.js';
+import Share from  "@/components/Share/Share";
 const { mapState, mapActions } = createNamespacedHelpers('storeCommodity');
 export default {
   data() {
@@ -231,7 +231,7 @@ export default {
     };
   },
   components: {
-    Share:components.Share,
+    Share,
   },
   async onLoad(options) {
     // 接收传值,id里面放的是标题，因为测试数据并没写id
