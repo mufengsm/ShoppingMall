@@ -2,7 +2,11 @@
 	<view>
 		<!-- 小程序头部兼容 -->
 		<!-- #ifdef MP -->
-		<view class="mp-search-box"><input class="ser-input" type="text" value="输入关键字搜索" disabled /></view>
+		<view class="mp-search-box">
+			<text class="search_back" @tap="backIndex"></text>
+			<input class="ser-input" type="text" value="输入关键字搜索" />
+			<text class="search_btn">搜索</text>
+		</view>
 		<!-- #endif -->
 		<SortList
 			title="品牌"
@@ -231,9 +235,10 @@ export default {
 /* #ifdef MP */
 .mp-search-box {
 	width: 100%;
-	padding: 0 80upx;
+	display: flex;
+	padding-bottom: 5px;
 	.ser-input {
-		flex: 1;
+		flex:8;
 		height: 56upx;
 		line-height: 56upx;
 		text-align: center;
@@ -241,6 +246,18 @@ export default {
 		color: $font-color-base;
 		border-radius: 20px;
 		background-color: #eee;
+	}
+	.search_back{
+		flex: 1;
+		text-align: center;
+		font-size: 24px;
+	}
+	.search_btn{
+		flex: 2;
+		padding-top: 2px;
+		font-weight: 400;
+		font-size: 17px;
+		text-align: center;
 	}
 }
 /* #endif */

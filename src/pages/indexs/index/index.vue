@@ -3,11 +3,11 @@
 		<!-- 小程序头部兼容 -->
 		<!-- #ifdef MP -->
 		<view class="mp-search-box">
-			<view class="location">定位></view>
+			<view class="location">定位<text class="iconfont icon-downarrow"></text></view>
 			<input @tap="searching" class="ser-input" type="text" value="输入关键字搜索" disabled />
 			<view class="info_img">
-				<view class="iconfont icon-xiaoxi"></view>
-				<view>消息</view>
+				<text class="info_icon iconfont icon-xiaoxi"></text>
+				<view class="black_info_txt">消息</view>
 			</view>
 		</view>
 		<!-- #endif -->
