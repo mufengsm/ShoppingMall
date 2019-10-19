@@ -225,7 +225,7 @@ export default {
 		},
 		goodsInfo(id) {
 			uni.navigateTo({
-				url: `/pages/product/product?id=${id}`
+				url: `/pages/goodss/product/product?id=${id}`
 			});
 		}
 	}
