@@ -2,7 +2,7 @@
 	<view class="container">
 		<!-- 小程序头部兼容 -->
 		<!-- #ifdef MP -->
-		<view class="mp-search-box">
+		<view class="mp-search-box" :style="{backgroundColor: isRed}">
 			<view class="location">定位<text class="iconfont icon-downarrow"></text></view>
 			<input @tap="searching" class="ser-input" type="text" value="输入关键字搜索" disabled />
 			<view class="info_img">
@@ -123,7 +123,8 @@ export default {
 				{ img: '/static/temp/c7.png', mag: '123546854' }
 			],
 			huadongs1: [{ img: '/static/temp/c3.png', mag: '123546854' }, { img: '/static/temp/c5.png', mag: '123546854' }, { img: '/static/temp/c6.png', mag: '123546854' }],
-			...mapState(['num'])
+			...mapState(['num']),
+			isRed:false,
 		};
 	},
 	onLoad() {
@@ -140,6 +141,7 @@ export default {
 				this.goodsList = res;
 			});
 	},
+	onPageScroll(e){e.scrollTop > 100 ?  this.isRed = "rgb(233, 12, 29)" : this.isRed = false;},
 	methods: {
 		...mapActions(['ADD', 'GOODS_RECOMMEND']),
 		/**

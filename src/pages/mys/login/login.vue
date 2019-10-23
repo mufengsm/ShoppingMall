@@ -46,9 +46,8 @@
 </template>
 
 <script>
-import {
-  mapMutations,
-} from 'vuex';
+import { createNamespacedHelpers } from 'vuex';
+const { mapState, mapMutations } = createNamespacedHelpers('storeCommodity');
 
 export default {
   data() {
@@ -56,14 +55,15 @@ export default {
       mobile: '',
       password: '',
       logining: false,
-      isActive: true,
+	  isActive: true,
+	  ...mapState(['isLogin'])
     };
   },
   onLoad() {
 
   },
   methods: {
-    ...mapMutations(['login']),
+    ...mapMutations(['LOGIN']),
     inputChange(e) {
       const { key } = e.currentTarget.dataset;
       this[key] = e.detail.value;
@@ -86,18 +86,19 @@ export default {
 			}
 		}).then(res => {
 			uni.hideLoading();
-			console.log(res.errcode)
 			if(res.errcode === 1){
-				uni.showToast({
-					title: res.errmsg
-				});
-				uni.navigateTo({
-					url: '/pages/user/user'
-				});
+				Promise.all([this.LOGIN({"isLogin":!this.isLogin()})]).then(() =>{
+					uni.showToast({
+						title: res.errmsg
+					});
+					uni.navigateBack({
+						delta: 1
+					});
+				});				
 			}else{
 				uni.showToast({
 					title:res.errmsg,
-					icon:none
+					icon:"none"
 				});
 			}
 		})
@@ -176,7 +177,7 @@ export default {
 		background:$page-color-light;
 		height: 100upx;
 		border-radius: 70upx;
-		margin-bottom: 50upx;
+		margin-bottom: 30upx;
 		text-align:center;
 		&:last-child{
 			margin-bottom: 0;

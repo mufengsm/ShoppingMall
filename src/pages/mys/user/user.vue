@@ -33,7 +33,7 @@
 			<view class="order-section">
 				<view class="my_order">
 					<text class="left">我的钱包 <text class="is_opening">未开通,去开通</text></text>
-					<text class="right">资金管理<span class="iconfont icon-youjiantou"></span></text>
+					<text class="right">资金管理<text class="iconfont icon-youjiantou"></text></text>
 				</view>
 			</view>
 			<view class="my_wallet_items">
@@ -227,6 +227,7 @@ export default {
 				float: right;
 				color: #999;
 				font-size:16px;
+				margin-right: 10px;
 				.icon-youjiantou{
 					font-weight: 700;
 					font-size: 20px;

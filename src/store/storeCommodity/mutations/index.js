@@ -30,4 +30,7 @@ export default {
   [SORT_LIST](state, payload) {
     state.sort_info = payload.data;
   },
+  [LOGIN](state, payload) {
+    state.isLogin = payload.isLogin;
+  }
 };

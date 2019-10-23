@@ -9,7 +9,7 @@
 			</view>
 			<view v-else class="empty-tips">
 				空空如也
-				<view class="navigator" @tap="navToLogin">去登陆></view>
+				<view v-if="!isLogin" class="navigator" @tap="navToLogin">去登陆></view>
 			</view>
 		</view>
 		<view v-else>
@@ -80,9 +80,8 @@
 </template>
 
 <script>
-import {
-  mapState,
-} from 'vuex';
+import { createNamespacedHelpers } from 'vuex';
+const { mapState } = createNamespacedHelpers('storeCommodity');
 import UniNumberBox from "@/components/UniNumberBox/UniNumberBox"
 export default {
   components: {
@@ -93,12 +92,12 @@ export default {
       total: 0, // 总价格
       allChecked: false, // 全选状态  true|false
       empty: false, // 空白页现实  true|false
-      cartList: [],
+			cartList: [],
     };
   },
   onLoad() {
-    this.loadData();
-  },
+		this.loadData();		
+	},
   watch: {
     // 显示空白页
     cartList(e) {
@@ -109,7 +108,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(['hasLogin']),
+    ...mapState(['hasLogin',"isLogin"]),
   },
   methods: {
     // 请求数据
@@ -132,7 +131,7 @@ export default {
     },
     navToLogin() {
       uni.navigateTo({
-        url: '/pages/public/login',
+        url: '/pages/mys/login/login',
       });
     },
 			 // 选中状态处理
