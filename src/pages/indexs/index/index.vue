@@ -20,19 +20,19 @@
 		<!-- 分类 -->
 		<view class="cate-section">
 			<view class="cate-item" @tap="btn">
-				<image src="/static/temp/c3.png"></image>
+				<image :src="imgUrl+'/images/jgeicon1.png'"></image>
 				<text>环球美食</text>
 			</view>
 			<view class="cate-item">
-				<image src="/static/temp/c5.png"></image>
+				<image :src="imgUrl+'/images/jgeicon2.png'"></image>
 				<text>个护美妆</text>
 			</view>
 			<view class="cate-item">
-				<image src="/static/temp/c6.png"></image>
+				<image :src="imgUrl+'/images/jgeicon3.png'"></image>
 				<text>营养保健</text>
 			</view>
 			<view class="cate-item">
-				<image src="/static/temp/c7.png"></image>
+				<image :src="imgUrl+'/images/jgeicon4.png'"></image>
 				<text>家居厨卫</text>
 			</view>
 		</view>
@@ -113,18 +113,23 @@ export default {
 			carouselList: [],
 			goodsList: [],
 			huadongs: [
-				{ img: '/static/temp/c3.png', mag: '123546854' },
-				{ img: '/static/temp/c5.png', mag: '123546854' },
-				{ img: '/static/temp/c6.png', mag: '123546854' },
-				{ img: '/static/temp/c7.png', mag: '123546854' },
-				{ img: '/static/temp/c3.png', mag: '123546854' },
-				{ img: '/static/temp/c5.png', mag: '123546854' },
-				{ img: '/static/temp/c6.png', mag: '123546854' },
-				{ img: '/static/temp/c7.png', mag: '123546854' }
+				{ img: `${this.$imgUrl}/images/jgeicon1.png`, mag: '123546854' },
+				{ img: `${this.$imgUrl}/images/jgeicon2.png`, mag: '123546854' },
+				{ img: `${this.$imgUrl}/images/jgeicon3.png`, mag: '123546854' },
+				{ img: `${this.$imgUrl}/images/jgeicon4.png`, mag: '123546854' },
+				{ img: `${this.$imgUrl}/images/jgeicon5.png`, mag: '123546854' },
+				{ img: `${this.$imgUrl}/images/jgeicon6.png`, mag: '123546854' },
+				{ img: `${this.$imgUrl}/images/jgeicon7.png`, mag: '123546854' },
+				{ img: `${this.$imgUrl}/images/jgeicon8.png`, mag: '123546854' }
 			],
-			huadongs1: [{ img: '/static/temp/c3.png', mag: '123546854' }, { img: '/static/temp/c5.png', mag: '123546854' }, { img: '/static/temp/c6.png', mag: '123546854' }],
+			huadongs1: [
+				{ img: `http://meizi.manogue.com.cn/static/wap/images/jgeicon1.png`, mag: '123546854' }, 
+				{ img: `http://meizi.manogue.com.cn/static/wap/images/jgeicon2.png`, mag: '123546854' }, 
+				{ img: `http://meizi.manogue.com.cn/static/wap/images/jgeicon3.png`, mag: '123546854' }
+			],
 			...mapState(['num']),
 			isRed:false,
+			imgUrl:this.$imgUrl
 		};
 	},
 	onLoad() {

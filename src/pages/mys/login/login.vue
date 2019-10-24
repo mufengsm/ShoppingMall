@@ -3,7 +3,7 @@
 		<view class="back-btn yticon icon-zuojiantou-up" @tap="navBack"></view>
 		<!-- 设置白色背景防止软键盘把下部绝对定位元素顶上来盖住输入框等 -->
 		<view class="wrapper">
-			<image src="/static/logo/ddmlogoicon.png" class="logo" mode="aspectFit"></image>
+			<image src="https://meizi.manogue.com.cn/static/wap/images/ddmlogoicon.png" class="logo" mode="aspectFit"></image>
 			<view class="input-content">
 				<view class="userType">
 					<view :class="{left:true,active:isActive}" @tap="typeSwitch">会员登录</view>
@@ -85,6 +85,8 @@ export default {
 				password:this.password
 			}
 		}).then(res => {
+			console.log(res); return false
+			
 			uni.hideLoading();
 			if(res.errcode === 1){
 				Promise.all([this.LOGIN({"isLogin":!this.isLogin()})]).then(() =>{

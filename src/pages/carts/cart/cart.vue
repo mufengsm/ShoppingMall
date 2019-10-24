@@ -2,7 +2,7 @@
 	<view class="container">
 		<!-- 空白页 -->
 		<view v-if="!hasLogin || empty===true" class="empty">
-			<image src="/static/emptyCart.jpg" mode="aspectFit"></image>
+			<image src="https://meizi.manogue.com.cn/static/wap/images/emptycart.png" mode="aspectFit"></image>
 			<view v-if="hasLogin" class="empty-tips">
 				空空如也
 				<navigator class="navigator" v-if="hasLogin" url="/pages/indexs/index/index" open-type="switchTab">随便逛逛></navigator>
@@ -57,7 +57,9 @@
 			<view class="action-section">
 				<view class="checkbox">
 					<image
-						:src="allChecked?'/static/selected.png':'/static/select.png'"
+						:src="allChecked
+						?'https://meizi.manogue.com.cn/static/wap/images/icon-partner-pic2.png'
+						:'https://meizi.manogue.com.cn/static/wap/images/register_success_01.png'"
 						mode="aspectFit"
 						@tap="check('all')"
 					></image>

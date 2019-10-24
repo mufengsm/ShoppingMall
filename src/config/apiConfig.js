@@ -1,4 +1,6 @@
 // 定义api接口方便接口更改
+// 定义图片地址
+export const imgUrl = "https://meizi.manogue.com.cn/static/wap";
 // 本地接口
 const locaApi = "http://localhost:8888";
 // 线上测试接口

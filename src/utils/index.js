@@ -29,3 +29,4 @@ export const prePage = () => {
   return prePage.$vm;
 };
 export const apiUrl = url;
+export const imgUrl = url.imgUrl;

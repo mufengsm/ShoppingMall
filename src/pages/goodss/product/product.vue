@@ -6,6 +6,9 @@
 					<view class="image-wrapper"><image :src="item.src" class="loaded" mode="aspectFill"></image></view>
 				</swiper-item>
 			</swiper>
+			<view class="forward" @tap="forward">
+				<text class="iconfont icon-zhuanfa-xian"></text>
+			</view>
 		</view>
 
 		<view class="introduce-section">
@@ -300,7 +303,18 @@ export default {
         url: '/pages/order/createOrder',
       });
     },
-    stopPrevent() {},
+		stopPrevent() {},
+		forward(){
+			uni.showShareMenu({
+				title:"商品",
+				content:"内容",
+				path:"/pages/gooodss/product/product",
+				success:function () {
+					console.log("分享成功");
+					
+				}
+			})
+		}
   },
 };
 </script>
@@ -333,6 +347,20 @@ page {
 		image {
 			width: 100%;
 			height: 100%;
+		}
+	}
+	.forward{
+		position:absolute;
+		top: 5px;
+		right: 5px;
+		width: 60upx;
+		height: 60upx;
+		text-align: center;
+		line-height: 30px;
+		border-radius: 50%;
+		background-color: rgba(0,0,0,0.3);
+		text{
+			font-size: 20px;
 		}
 	}
 }
