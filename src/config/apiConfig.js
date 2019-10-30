@@ -12,7 +12,7 @@ const lanApi = "http://192.168.2.130/meizi";
 // 首页商品推荐
 export const GET_MERCHANDISE_RECOMMENDATION = locaApi+'/v1/goods/recommend';
 // 用户登录
-export const POST_USER_LOGIN = locaApi+'/v1/user/login';
+export const POST_USER_LOGIN = lanApi+'/v5/login';
 // 搜索页面产品信息
 export const POST_BRAND_LIBRARY_QUERY = locaApi+'/v4/goods/goods_list';
 // 控区控价信息列表

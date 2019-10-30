@@ -1,0 +1,73 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+    background-color: #efeff4;
+    position: relative;
+    .empty{
+      width: 100%;
+      text-align: center;
+      padding-top: 25%;
+      image{
+        width: 100px;
+        height: 100px;
+      }
+      .empty_tips{
+        font-size: 14px;
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: #8f8f94;
+      }
+    }
+    .bottomSettlement{
+      $tabBar:60px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: $tabBar;
+      display: flex;
+      background-color: white;
+      .choice{
+        flex:2.5;
+        line-height: $tabBar;
+        text-align: center;
+        position: relative;
+        checkbox{
+          position: absolute;
+          bottom: 0;
+          left: 25upx;
+        }
+        .txt{
+          position: absolute;
+          bottom: -4upx;
+          right: 25upx;
+        }
+      }
+      .price{
+        flex:5;
+        padding:5px 0 0 15px;
+        .commodity{
+          font-size: 14px;
+          margin-top: 5px;
+          text{
+            color: #CF2D28;
+            font-style: normal;
+          }
+        }
+        .freight{
+          font-size: 14px;
+          margin-top: 2px;
+          margin-bottom: 10px;
+          color: #8f8f94;
+        }
+      }
+      .settlement{
+        flex:2.5;
+        color: white;
+        font-size: 15px;
+        line-height: $tabBar;
+        text-align: center;
+        background-color: #CF2D28;
+      } 
+    }
+  }

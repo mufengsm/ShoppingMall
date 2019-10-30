@@ -86,18 +86,29 @@ export default {
 			}
 		}).then(res => {
 			uni.hideLoading();
-			if(res.errcode === 1){
-				Promise.all([this.LOGIN({"isLogin":!this.isLogin()})]).then(() =>{
-					uni.showToast({
-						title: res.errmsg
-					});
-					uni.navigateBack({
-						delta: 1
-					});
-				});				
+			if(res.code === 200){
+				uni.setStorage({
+					key: 'access_token',
+					data: res.data,
+					success:()=>{
+						Promise.all([this.LOGIN({"isLogin":!this.isLogin()})]).then(() =>{
+							uni.showToast({
+								title: res.msg
+							});
+							uni.navigateBack({
+								delta: 1
+							});
+						});		
+					},
+					fail:()=>{
+						uni.showToast({
+							title: "Token设置失败，请重新操作"
+						});
+					}
+				});
 			}else{
 				uni.showToast({
-					title:res.errmsg,
+					title:res.msg,
 					icon:"none"
 				});
 			}
