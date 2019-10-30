@@ -308,10 +308,12 @@ export default {
 			uni.showShareMenu({
 				title:"商品",
 				content:"内容",
+				imageUrl:"https://meizi.manogue.com.cn/static/wap/images/ddmlogoicon.png",
 				path:"/pages/gooodss/product/product",
 				success:function () {
-					console.log("分享成功");
-					
+					uni.showToast({
+						title:"分享成功"
+					})
 				}
 			})
 		}

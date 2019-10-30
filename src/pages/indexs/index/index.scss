@@ -86,12 +86,14 @@ page {
 	justify-content: space-around;
 	align-items: center;
 	flex-wrap: wrap;
-	padding: 30upx 22upx;
+	padding: 30upx 22upx 0upx 22upx;
 	background: #fff;
 	.cate-item {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		flex-basis:19vw;
+		margin-bottom: 10px;
 		font-size: $font-sm + 2upx;
 		color: $font-color-dark;
 	}
@@ -166,12 +168,7 @@ page {
 	height: 110upx;
 	padding: 0upx 30upx 8upx;
 	background: #fff;
-	image {
-		flex-shrink: 0;
-		width: 80upx;
-		height: 80upx;
-		margin-right: 20upx;
-	}
+
 	.tit {
 		font-size: $font-lg + 2upx;
 		color: $font-color-dark;
@@ -189,11 +186,16 @@ page {
 }
 
 .f-header_warp {
-	height: 200upx;
+	height: 300upx;
 	.warp {
 		width: 33%;
+		margin-top: 6px;
 		image{
-			margin-left: 25%;
+			width: 230upx;
+			height: 230upx;
+		}
+		text{
+			font-size: 12px;
 		}
 	}
 }

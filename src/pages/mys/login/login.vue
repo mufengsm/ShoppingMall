@@ -85,8 +85,6 @@ export default {
 				password:this.password
 			}
 		}).then(res => {
-			console.log(res); return false
-			
 			uni.hideLoading();
 			if(res.errcode === 1){
 				Promise.all([this.LOGIN({"isLogin":!this.isLogin()})]).then(() =>{

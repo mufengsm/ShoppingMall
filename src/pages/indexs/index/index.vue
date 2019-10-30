@@ -19,23 +19,13 @@
 		</view>
 		<!-- 分类 -->
 		<view class="cate-section">
-			<view class="cate-item" @tap="btn">
-				<image :src="imgUrl+'/images/jgeicon1.png'"></image>
-				<text>环球美食</text>
+			<view class="cate-item" v-for="(item,index) in commodityMuseum" :key="index">
+				<image :src="item.img"></image>
+				<text>{{item.txt}}</text>
 			</view>
-			<view class="cate-item">
-				<image :src="imgUrl+'/images/jgeicon2.png'"></image>
-				<text>个护美妆</text>
-			</view>
-			<view class="cate-item">
-				<image :src="imgUrl+'/images/jgeicon3.png'"></image>
-				<text>营养保健</text>
-			</view>
-			<view class="cate-item">
-				<image :src="imgUrl+'/images/jgeicon4.png'"></image>
-				<text>家居厨卫</text>
-			</view>
+			
 		</view>
+
 		<!-- 秒杀楼层 -->
 		<view class="seckill-section seckill">
 			<view class="s-header">
@@ -72,7 +62,7 @@
 			<!-- 分类推荐楼层 -->
 			<view class="f-header f-header_warp">
 				<view class="warp" v-for="(item, index) in huadongs1" :key="index">
-					<image :src="item.img" mode=""></image>
+					<image :src="item.img" mode="scaleToFill"></image>
 					<text>{{ item.mag }}</text>
 				</view>
 			</view>
@@ -123,9 +113,19 @@ export default {
 				{ img: `${this.$imgUrl}/images/jgeicon8.png`, mag: '123546854' }
 			],
 			huadongs1: [
-				{ img: `http://meizi.manogue.com.cn/static/wap/images/jgeicon1.png`, mag: '123546854' }, 
-				{ img: `http://meizi.manogue.com.cn/static/wap/images/jgeicon2.png`, mag: '123546854' }, 
-				{ img: `http://meizi.manogue.com.cn/static/wap/images/jgeicon3.png`, mag: '123546854' }
+				{ img: "http://meizi.oss.manogue.com.cn/a94409fb5622a90d/c63fadb70df5c6a3.jpg?x-oss-process=image/resize,m_mfit,h_400,w_400", mag: 'JAYJUN 维他雪花面膜(5片）10盒' }, 
+				{ img: "http://meizi.oss.manogue.com.cn/a94409fb5622a90d/c63fadb70df5c6a3.jpg?x-oss-process=image/resize,m_mfit,h_400,w_400", mag: 'JAYJUN 维他雪花面膜(5片）10盒' }, 
+				{ img: "http://meizi.oss.manogue.com.cn/a94409fb5622a90d/c63fadb70df5c6a3.jpg?x-oss-process=image/resize,m_mfit,h_400,w_400", mag: 'JAYJUN 维他雪花面膜(5片）10盒' }
+			],
+			commodityMuseum:[
+				{img:`${this.$imgUrl}/images/jgeicon10.png`,txt:"注册抢购"},
+				{img:`${this.$imgUrl}/images/jgeicon4.png`,txt:"爆品馆"},
+				{img:`${this.$imgUrl}/images/jgeicon9.png`,txt:"国际馆"},
+				{img:`${this.$imgUrl}/images/jgeicon1.png`,txt:"护肤馆"},
+				{img:`${this.$imgUrl}/images/jgeicon11.png`,txt:"面膜馆"},
+				{img:`${this.$imgUrl}/images/jgeicon2.png`,txt:"院装馆"},
+				{img:`${this.$imgUrl}/images/jgeicon6.png`,txt:"仪器馆"},
+				{img:`${this.$imgUrl}/images/jgeicon8.png`,txt:"优惠卷"}
 			],
 			...mapState(['num']),
 			isRed:false,
@@ -174,6 +174,9 @@ export default {
 			uni.navigateTo({
 				url: '/pages/goodss/search/search'
 			});
+		},
+		btn(e){
+			console.log(e)
 		}
 	},
 	// #ifndef MP
