@@ -52,6 +52,6 @@ export default {
 	border-radius: 10upx;
 }
 .group-section_carousel {
-	height: 200upx;
+	height: 220upx;
 }
 </style>
