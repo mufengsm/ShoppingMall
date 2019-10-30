@@ -4,12 +4,12 @@ export const imgUrl = "https://meizi.manogue.com.cn/static/wap";
 // 本地接口
 const locaApi = "http://localhost:8888";
 // 线上测试接口
-const networkApi = "http://meizi.dnat.link";
+const networkApi = "http://meizi.pingbbs.com";
 // 线上正式接口
 const formalNetworkApi = "https://meizi.manogue.com.cn";
 // 局域网接口
-const lanApi = "http://192.168.2.129";
-// 商品推荐
+const lanApi = "http://192.168.2.130/meizi";
+// 首页商品推荐
 export const GET_MERCHANDISE_RECOMMENDATION = locaApi+'/v1/goods/recommend';
 // 用户登录
 export const POST_USER_LOGIN = locaApi+'/v1/user/login';
