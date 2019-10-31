@@ -37,7 +37,7 @@
 						<view class="commodity_item_right_center_bottom">￥{{item.third}}</view>
 					</view>
 					<view class="commodity_item_right_bottom">
-						<view class="commodity_item_right_bottom_left">精选</view>
+						<view class="commodity_item_right_bottom_left" v-if="item.is_best">精选</view>
 						<view class="commodity_item_right_bottom_right">{{ item.supply_type }}</view>
 					</view>
 				</view>
