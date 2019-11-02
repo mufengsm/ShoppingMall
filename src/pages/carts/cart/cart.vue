@@ -9,7 +9,7 @@
 			<view class="bottomSettlement">
         <view class="choice">
           <label>
-            <checkbox />
+            <checkbox style="transform:scale(0.8)" color="red" />
           <view class="txt">全选</view>
           </label>
         </view>

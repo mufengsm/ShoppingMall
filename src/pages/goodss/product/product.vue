@@ -21,42 +21,30 @@
 				<view class="bot-row sell">已卖出: {{123}}件</view>
 			</view>
 			<view class="bot-row">市场价：<text class="third">¥{{commodityInfo.third}}</text></view>
-			<view class="title">{{commodityInfo.title}}</view>
+				<view class="goods_info">
+					<view class="from">自营</view>
+					<view class="title">{{commodityInfo.title}}</view>
+				</view>
 			<text class="supply_type">{{commodityInfo.supplyType}}</text>
 		</view>
-		<!--  分享 -->
-			<!-- <view class="share-section" @tap="share">
-				<view class="share-icon">
-					<text class="yticon icon-xingxing"></text>
-					返
-				</view>
-				<text class="tit">该商品分享可领49减10红包</text>
-				<text class="yticon icon-bangzhu1"></text>
-				<view class="share-btn">
-					立即分享
-					<text class="yticon icon-you"></text>
-				</view>
-			</view>
- 			-->
+
 		<view class="c-list">
 			<!-- 规格选择 -->
-			<view class="c-row b-b" @tap="toggleSpec">
+			<view class="c-row b-b" @tap="toggleSpec('specs')">
 				<text class="tit">选择</text>
 				<view class="con">
 					<text 
 					class="selected-text" 
-					v-for="(sItem, sIndex) in specSelected" 
-					:key="sIndex"
-					>已选：{{ sItem.name }}</text>
+					>{{selected}}{{popup.haveChosen}}</text>
 				</view>
 				<text class="iconfont icon-youjiantou"></text>
 			</view>
 			<!-- 购物保障 -->
-			<view class="c-row b-b">
+			<view class="c-row b-b" @tap="toggleSpec('service')">
 				<text class="tit">服务</text>
 				<view class="bz-list con">
-					<text>7天无理由退换货 ·</text>
-					<text>假一赔十 ·</text>
+					<text style="color: #df0e1d;">多多美优购</text>
+					<text>全程保障，购物无忧</text>
 				</view>
 				<text class="iconfont icon-youjiantou"></text>
 			</view>
@@ -113,35 +101,57 @@
 		<view class="popup spec" :class="specClass" @touchmove.stop.prevent="stopPrevent" @tap="toggleSpec">
 			<!-- 遮罩层 -->
 			<view class="mask"></view>
-			<view class="layer attr-content" @tap.stop="stopPrevent">
+			<!-- 购买商品弹窗 -->
+			<view v-if="isPopup==='specs'" class="layer attr-content guarantee_layer" @tap.stop="stopPrevent">
 				<view class="a-t">
 					<image :src="popup.logoImg"></image>
 					<view class="right">
-						<text class="price">商品单价：¥{{commodityInfo.first}}</text>
-						<text class="stock">零售价：</text>
-						<text class="stock">起订价：</text>
+						<text class="price">商品单价：¥{{popup.marketPrice}}</text>
+						<text class="stock">零售价：{{popup.purchasePrice}}</text>
+						<text class="stock">起订价：{{popup.salesPrice}}</text>
 						<view class="selected">
-							已选：
-							<text class="selected-text" v-for="(sItem, sIndex) in specSelected" :key="sIndex">{{ sItem.name }}</text>
+							<text class="selected-text">{{selected}}：{{popup.haveChosen ? popup.haveChosen : popup.name}}</text>
 						</view>
 					</view>
 				</view>
-				<view v-for="(item, index) in specList" :key="index" class="attr-list">
-					<text>{{ item.name }}</text>
+				<view class="attr-list">
+					<text>{{ popup.name }}</text>
 					<view class="item-list">
 						<text
-							v-for="(childItem, childIndex) in specChildList"
-							v-if="childItem.pid === item.id"
+							v-for="(childItem, childIndex) in popup.specChildList"
 							:key="childIndex"
 							class="tit"
 							:class="{ selected: childItem.selected }"
-							@tap="selectSpec(childIndex, childItem.pid)"
+							@tap="selectSpec(childItem, childIndex)"
 						>
 							{{ childItem.name }}
 						</text>
 					</view>
 				</view>
-				<button class="btn" @tap="toggleSpec">完成</button>
+				<view class="attr-list">
+					<view class="quantity_adjusted">
+						<text class="selected_quantity">已选</text>
+						<button @tap="changeQuantity('-')">-</button>
+						<input type="number" :value="purchaseQuantity" @input="detectionValue">
+						<button @tap="changeQuantity('+')">+</button>
+					</view>
+				</view>
+				<button class="btn" @tap="toggleSpec">确定</button>
+			</view>
+			<!-- 服务弹窗 -->
+			<view v-if="isPopup==='service'" class="layer attr-content guarantee_layer" @tap.stop="stopPrevent">
+					<view class="guarantee">基础保障</view>
+					<view class="guarantee_item">
+							<view class="mark">保</view>
+							<view class="title">正品保障</view>
+							<view class="info">商品支持正品保障服务</view>
+					</view>
+					<view class="guarantee_item">
+							<view class="mark">七</view>
+							<view class="title">七天无理由退货</view>
+							<view class="info">消费者在满足7天无理由退换货申请条件的前提下，可以提出“7天无理由退换货”的申请</view>
+					</view>
+					<button class="btn" @tap="toggleSpec">确定</button>
 			</view>
 		</view>
 		<!-- <Share ref="share" :contentHeight="580" :shareList="shareList"></Share> -->
@@ -155,13 +165,19 @@ const { mapState, mapActions } = createNamespacedHelpers('storeCommodity');
 export default {
   data() {
     return {
-      specClass: 'none',
+      specClass: 'show',
       specSelected: [],
       favorite: true,
       shareList: [],
 			imgList: [],
+			selected:"请选择规格",
 			popup:{
 				logoImg:"",
+				name:"",
+				salesPrice:"",
+				specChildList: [],
+				haveChosen:"",
+				marketPrice:""
 			},
 			commodityInfo:{
 				title:"",
@@ -170,45 +186,9 @@ export default {
 				third:"",
 				supplyType:""
 			},
-      desc: "",
-      specList: [
-        {
-          id: 1,
-          name: '尺寸',
-        },
-      ],
-      specChildList: [
-        {
-          id: 1,
-          pid: 1,
-          name: 'XS',
-        },
-        {
-          id: 2,
-          pid: 1,
-          name: 'S',
-        },
-        {
-          id: 3,
-          pid: 1,
-          name: 'M',
-        },
-        {
-          id: 4,
-          pid: 1,
-          name: 'L',
-        },
-        {
-          id: 5,
-          pid: 1,
-          name: 'XL',
-        },
-        {
-          id: 6,
-          pid: 1,
-          name: 'XXL',
-        }
-      ],
+			desc: "",
+			isPopup:"specs",
+			purchaseQuantity:1
     };
   },
   components: {
@@ -240,7 +220,18 @@ export default {
 				this.specSelected = result.spec
 				// 弹出层信息
 				this.popup={
-					logoImg:result.logo_img
+					logoImg:result.logo_img,
+					name:result.spec[0].name.split(":")[0],
+					marketPrice:result.spec[0].market_price,
+					purchasePrice:result.spec[0].purchase_price,
+					salesPrice:result.spec[0].sales_price,
+					specChildList: result.spec.map((item,index)=>{
+						return {
+								id:index,
+								name:result.spec[index].name.split(":")[1],
+							}
+					}),
+					haveChosen:""
 				}
 				// 图文介绍
 				this.desc = `<div style="width:100%">${result.content.replace(/<img/g,"<img class='imgWidth'")}</div>`;
@@ -256,21 +247,11 @@ export default {
 		}).then((res)=>{
 			console.log(res,"商品评论");
 		})
-    // // 规格 默认选中第一条
-    // this.specList.forEach((item) => {
-    //   for (const cItem of this.specChildList) {
-    //     if (cItem.pid === item.id) {
-    //       this.$set(cItem, 'selected', true);
-    //       this.specSelected.push(cItem);
-    //       break; // forEach不能使用break
-    //     }
-    //   }
-    // });
-    this.shareList = await this.$api.json('shareList');
   },
   methods: {
     // 规格弹窗开关
-    toggleSpec() {
+    toggleSpec(popup) {
+			this.isPopup = popup;
       if (this.specClass === 'show') {
         this.specClass = 'hide';
         setTimeout(() => {
@@ -281,27 +262,26 @@ export default {
       }
     },
     // 选择规格
-    selectSpec(index, pid) {
-      const list = this.specChildList;
-      list.forEach((item) => {
-        if (item.pid === pid) {
-          this.$set(item, 'selected', false);
-        }
-      });
-
-      this.$set(list[index], 'selected', true);
-      // 存储已选择
-      /**
-			 * 修复选择规格存储错误
-			 * 将这几行代码替换即可
-			 * 选择的规格存放在specSelected中
-			 */
-      this.specSelected = [];
-      list.forEach((item) => {
-        if (item.selected === true) {
-          this.specSelected.push(item);
-        }
-      });
+    selectSpec(item, index) {
+			// 设置两个显示文本状态
+			this.selected = "已选：";
+			this.popup.haveChosen = item.name;
+			// 选中颜色
+			const list = this.popup.specChildList;
+      list.forEach((item,listIndex) => {
+        if (index === listIndex) {
+					this.$set(item, 'selected', true);
+					const selectedProductInfo = this.specSelected[listIndex];
+					// 商品单价
+					this.popup.marketPrice = selectedProductInfo.market_price;
+					// 零售价
+					this.popup.purchasePrice = selectedProductInfo.purchase_price;
+					// 起订价
+					this.popup.salesPrice = selectedProductInfo.sales_price;
+        }else{
+					this.$set(list[listIndex], 'selected', false);
+				}
+			});
     },
     // 分享
     share() {
@@ -329,8 +309,35 @@ export default {
 					})
 				}
 			})
-		}
-  },
+		},
+		changeQuantity(mathematicalSymbols){
+			// 增加于删除按钮
+			if(mathematicalSymbols === "+"){
+				this.purchaseQuantity++
+			}else if(this.purchaseQuantity>1){
+				this.purchaseQuantity--
+			}
+		},
+		detectionValue(e){
+			const num = e.detail.value;
+			if (num === "") {
+				// 如果输入为空
+				this.purchaseQuantity = 1;
+				return 1
+			} else {
+				// 判断值是否小于0或者是小数
+				var r = /^\+?[1-9][0-9]*$/;
+				if (r.test(num)) {
+					this.purchaseQuantity = num;
+					return num
+				} else {
+					// 如果数值不符合:大于0,并且是正整数
+					this.purchaseQuantity = 1;
+					return 1
+				}
+			}
+		},
+	},
 };
 </script>
 
