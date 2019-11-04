@@ -59,7 +59,11 @@
 				<text class="yticon icon-you"></text>
 			</view>
 			<view class="eva-box">
-	<image class="portrait" src="http://img3.imgtn.bdimg.com/it/u=1150341365,1327279810&fm=26&gp=0.jpg" mode="aspectFill"></image>
+				<image 
+				class="portrait" 
+				src="http://img3.imgtn.bdimg.com/it/u=1150341365,1327279810&fm=26&gp=0.jpg" 
+				mode="aspectFill"
+				></image>
 				<view class="right">
 					<text class="name">Leo yo</text>
 					<text class="con">商品收到了，79元两件，质量不错，试了一下有点瘦，但是加个外罩很漂亮，我很喜欢</text>
@@ -71,6 +75,7 @@
 			</view>
 		</view>
 
+		<!-- 商品介绍 -->
 		<view class="detail-desc">
 			<view class="d-header"><text>图文详情</text></view>
 			<rich-text :nodes="desc"></rich-text>
@@ -82,7 +87,7 @@
 				<text class="yticon icon-xiatubiao--copy"></text>
 				<text>首页</text>
 			</navigator>
-			<navigator url="/pages/cart/cart" open-type="switchTab" class="p-b-btn">
+			<navigator url="/pages/carts/cart/cart" open-type="switchTab" class="p-b-btn">
 				<text class="yticon icon-gouwuche"></text>
 				<text>购物车</text>
 			</navigator>
@@ -110,10 +115,13 @@
 						<text class="stock">零售价：{{popup.purchasePrice}}</text>
 						<text class="stock">起订价：{{popup.salesPrice}}</text>
 						<view class="selected">
-							<text class="selected-text">{{selected}}：{{popup.haveChosen ? popup.haveChosen : popup.name}}</text>
+							<text class="selected-text">
+								{{selected}}：{{popup.haveChosen ? popup.haveChosen : popup.name}}
+							</text>
 						</view>
 					</view>
 				</view>
+				<!-- 规格列表 -->
 				<view class="attr-list">
 					<text>{{ popup.name }}</text>
 					<view class="item-list">
@@ -128,6 +136,7 @@
 						</text>
 					</view>
 				</view>
+				<!-- 增加商品数量 -->
 				<view class="attr-list">
 					<view class="quantity_adjusted">
 						<text class="selected_quantity">已选</text>
@@ -136,7 +145,7 @@
 						<button @tap="changeQuantity('+')">+</button>
 					</view>
 				</view>
-				<button class="btn" @tap="toggleSpec">确定</button>
+				<button class="btn" @tap="toggleSpecSpecial">确定</button>
 			</view>
 			<!-- 服务弹窗 -->
 			<view v-if="isPopup==='service'" class="layer attr-content guarantee_layer" @tap.stop="stopPrevent">
@@ -154,7 +163,7 @@
 					<button class="btn" @tap="toggleSpec">确定</button>
 			</view>
 		</view>
-		<!-- <Share ref="share" :contentHeight="580" :shareList="shareList"></Share> -->
+<!-- <Share ref="share" :contentHeight="580" :shareList="shareList"></Share> -->
 	</view>
 </template>
 
@@ -165,7 +174,7 @@ const { mapState, mapActions } = createNamespacedHelpers('storeCommodity');
 export default {
   data() {
     return {
-      specClass: 'show',
+      specClass: 'none',
       specSelected: [],
       favorite: true,
       shareList: [],
@@ -260,7 +269,19 @@ export default {
       } else if (this.specClass === 'none') {
         this.specClass = 'show';
       }
-    },
+		},
+		toggleSpecSpecial(){
+			// 如果选规格的时候没有选
+				if(this.selected === "请选择规格"){
+					uni.showToast({
+						title:"请选择规格",
+						icon:"none"
+					})
+					return false;
+				}else{
+					this.toggleSpec();
+				}
+		},
     // 选择规格
     selectSpec(item, index) {
 			// 设置两个显示文本状态
