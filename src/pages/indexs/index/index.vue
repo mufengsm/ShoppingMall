@@ -43,7 +43,11 @@
 			</view>
 			<scroll-view class="floor-list" scroll-x>
 				<view class="scoll-wrapper">
-					<view v-for="(item, index) in goodsList" :key="index" class="floor-item" @tap="navToDetailPage(item)">
+					<view 
+					v-for="(item, index) in indexData.recommend" 
+					:key="index" 
+					class="floor-item" 
+					@tap="navToDetailPage(item)">
 						<image lazy-load="true" :src="item.logo_img" mode="aspectFill"></image>
 						<text class="title clamp">{{ item.title }}</text>
 						<text class="price">￥{{ item.sales_price }}</text>
@@ -52,21 +56,43 @@
 			</scroll-view>
 		</view>
 
-		<!-- 团购楼层 -->
-		<view v-for="(item,index) in huadongs1" :key="index">
-			<view class="f-header seckill">
-				<view class="scroll_title">爆品馆</view>
-				<text class="Assemble_text_2">更多</text>
-			</view>
-			<view class="group-section"><BigSwiper :carouselList="carouselList" height="ai" msg="自定义" @swiper_navToDetailPage="navToDetailPage"></BigSwiper></view>
-			<!-- 分类推荐楼层 -->
-			<view class="f-header f-header_warp">
-				<view class="warp" v-for="(item, index) in huadongs1" :key="index">
-					<image :src="item.img" mode="scaleToFill"></image>
-					<text>{{ item.mag }}</text>
-				</view>
-			</view>
-		</view>
+	<CommodityMuseum 
+	v-if="isIndexData" 
+	title="爆品馆"
+	:banner="indexData.bao" 
+	:itemCommodity="indexData.bao_product" />
+	<CommodityMuseum 
+	v-if="isIndexData"
+	title="国际馆" 
+	:banner="indexData.guo" 
+	:itemCommodity="indexData.guo_product" />
+	<CommodityMuseum 
+	v-if="isIndexData"
+	title="护理馆" 
+	:banner="indexData.hu_li" 
+	:itemCommodity="indexData.hu_li_product" />
+	<CommodityMuseum 
+	v-if="isIndexData"
+	title="面膜馆" 
+	:banner="indexData.mian" 
+	:itemCommodity="indexData.mian_product" />
+	<CommodityMuseum 
+	v-if="isIndexData"
+	title="仪器馆" 
+	:banner="indexData.yi_qi" 
+	:itemCommodity="indexData.yi_qi_product" />
+	<CommodityMuseum 
+	v-if="isIndexData"
+	title="院装馆" 
+	:banner="indexData.yuan" 
+	:itemCommodity="indexData.yuan_product" />
+	<CommodityMuseum 
+	v-if="isIndexData"
+	title="注册抢购" 
+	:banner="indexData.zhuce" 
+	:itemCommodity="indexData.zhuce_product" />
+
+
 
 		<!-- 为您推荐 -->
 		<view class="f-header seckill">
@@ -75,7 +101,11 @@
 		</view>
 
 		<view class="guess-section">
-			<view v-for="(item, index) in goodsList" :key="index" class="guess-item" @tap="navToDetailPage(item)">
+			<view 
+			v-for="(item, index) in indexData.recommend" 
+			:key="index" 
+			class="guess-item" 
+			@tap="navToDetailPage(item)">
 				<view class="image-wrapper"><image :src="item.logo_img" mode="aspectFill"></image></view>
 				<text class="title clamp">{{ item.title }}</text>
 				<view class="price">
@@ -92,16 +122,17 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-
+import CommodityMuseum from '@/components/CommodityMuseum/CommodityMuseum';
 const { mapState, mapActions } = createNamespacedHelpers('storeCommodity');
 export default {
 	data() {
 		return {
+			isIndexData:false,
 			titleNViewBackground: '',
 			swiperCurrent: 0,
 			swiperLength: 0,
 			carouselList: [],
-			goodsList: [],
+			indexData:{},
 			huadongs: [
 				{ img: `${this.$imgUrl}/images/jgeicon1.png`, mag: '123546854' },
 				{ img: `${this.$imgUrl}/images/jgeicon2.png`, mag: '123546854' },
@@ -132,19 +163,26 @@ export default {
 			imgUrl:this.$imgUrl
 		};
 	},
-	onLoad() {
+	components:{
+		CommodityMuseum
+	},
+	created() {
 		this.loadData();
 		// 请求为您推荐数据
-		this.$request
-			.GET({
-				url: this.$api.apiUrl.GET_MERCHANDISE_RECOMMENDATION,
-				data: {
-					page: 1
-				}
-			})
-			.then(res => {
-				this.goodsList = res;
-			});
+		this.$request.GET({
+			url:this.$api.apiUrl.GET_INDEX
+		}).then(res => {
+			if(res.code === 200){
+				console.log(res.data);
+				
+				// 获取首页各种数据
+				this.indexData = res.data;
+				this.isIndexData = true;
+			}else{
+				this.$api.msg("数据请求失败")
+			}
+		})
+		
 	},
 	onPageScroll(e){e.scrollTop > 100 ?  this.isRed = "rgb(233, 12, 29)" : this.isRed = false;},
 	methods: {

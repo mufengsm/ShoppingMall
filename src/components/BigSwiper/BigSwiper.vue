@@ -10,7 +10,11 @@
 			msg自定义属性:可以当你触发点击事件到达目标页面后提示语句
 		 -->
 		<swiper :class="{ 'carousel': true, 'group-section_carousel':height == 'ai'}" circular @change="swiperChange" indicator-dots="indicatorDots" autoplay="true">
-			<swiper-item v-for="(item, index) in carouselList" :key="index" class="carousel-item" @tap="swiper_navToDetailPage">
+			<swiper-item 
+			v-for="(item, index) in carouselList" 
+			:key="index" 
+			class="carousel-item" 
+			@tap="swiper_navToDetailPage">
 				<image :src="item.src" lazy-load="true"/>
 			</swiper-item>
 		</swiper>
@@ -26,7 +30,6 @@ export default {
     swiperChange(e) {
       const index = e.detail.current;
       this.swiperCurrent = index;
-      this.titleNViewBackground = this.carouselList[index].background;
     },
     swiper_navToDetailPage() {
       this.$emit('swiper_navToDetailPage', { title: this.msg ? this.msg : '大轮播图' });
