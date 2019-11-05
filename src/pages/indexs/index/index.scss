@@ -285,3 +285,24 @@ page {
 		}
 	}
 }
+.order_wrap{
+	width: 100vw;
+	height: 30px;
+	margin-bottom: 10px;
+	.swiper{
+		width: 80%;
+		height: 100%;
+		padding-top:3px;
+		display: inline-block;
+		.swiper-item{
+			color: rgb(236, 99, 80);
+			text-decoration: underline;
+			font-size: 16px;
+		}
+	}
+	image{
+		height: 100%;
+		width: 15%;
+		display: inline-block;
+	}
+}

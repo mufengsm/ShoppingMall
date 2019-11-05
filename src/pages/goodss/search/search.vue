@@ -64,6 +64,7 @@ export default {
 				current: null,
 				brand: 0
 			},
+			tags_id:0,
 			sort: {
 				is_sort_open: false,
 				sort_current: null,
@@ -78,12 +79,13 @@ export default {
 	components: {
 		SortList
 	},
-	onLoad() {
+	onLoad(e) {
+		this.tags_id = e.tags_id ? Number(e.tags_id) : 0;
 		this.req_search_info(); // 第一次加载页面数据
 		this.BRAND_INFO({
 			url: this.$api.apiUrl.POST_QUERY_BRAND,
 			data: {
-				tags_id: 0,
+				tags_id: this.tags_id,
 				num: 200
 			}
 		}).then(res => {
@@ -110,7 +112,7 @@ export default {
 			this.$request.POST({
 				url:this.$api.apiUrl.POST_BRAND_LIBRARY_QUERY,
 				data:{
-					tags_id: 0,
+					tags_id: this.tags_id,
 					brand_id: this.brand.brand_id,
 					cate_id: this.sort.sort_brand_id,
 					goods_name: this.search_input,
@@ -191,7 +193,7 @@ export default {
 			this.SEARCH_INFO({
 				url: this.$api.apiUrl.POST_BRAND_LIBRARY_QUERY,
 				data: {
-					tags_id: 0,
+					tags_id: this.tags_id,
 					brand_id: this.brand.brand_id,
 					cate_id: this.sort.sort_brand_id,
 					num: 10,
@@ -215,7 +217,7 @@ export default {
 			this.SORT_LIST({
 				url: this.$api.apiUrl.POST_QUERY_CLASSIFICATION,
 				data: {
-					tags_id: 0,
+					tags_id: this.tags_id,
 					brand_id: this.brand.brand_id,
 					num: 200
 				}

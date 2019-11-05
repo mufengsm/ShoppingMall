@@ -14,12 +14,39 @@
 
 		<!-- 头部轮播 -->
 		<view class="carousel-section">
-			<BigSwiper :carouselList="carouselList" @swiper_navToDetailPage="navToDetailPage"
+			<BigSwiper 
+			:carouselList="carouselList" 
+			@swiper_navToDetailPage="navToDetailPage"
 			></BigSwiper>
 		</view>
+		<!-- 订单通知 -->
+		<view class="order_wrap">
+			<image 
+			mode="aspectFit" 
+			src="https://meizi.manogue.com.cn/static/wap/images/tongzhi-icon.png" />
+			 <swiper 
+			 class="swiper" 
+			 :indicator-dots="false"
+			 :autoplay="true"
+			 interval="2000" 
+			 :vertical="true"
+			 :circular="true"
+			 duration="500">
+				<swiper-item v-for="(item,index) in indexData.order_notice" :key="index">
+					<view class="swiper-item uni-bg-red">
+						{{item}}
+					</view>
+				</swiper-item>
+            </swiper>
+        </view>
 		<!-- 分类 -->
 		<view class="cate-section">
-			<view class="cate-item" v-for="(item,index) in commodityMuseum" :key="index">
+			<view 
+			class="cate-item" 
+			v-for="(item,index) in commodityMuseum" 
+			:key="index"
+			@tap="classification(item)"
+			>
 				<image :src="item.img"></image>
 				<text>{{item.txt}}</text>
 			</view>
@@ -27,7 +54,7 @@
 		</view>
 
 		<!-- 秒杀楼层 -->
-		<view class="seckill-section seckill">
+		<!-- <view class="seckill-section seckill">
 			<view class="s-header">
 				<text class="Assemble_text">本周拼团</text>
 				<text class="Assemble_time">
@@ -54,41 +81,48 @@
 					</view>
 				</view>
 			</scroll-view>
-		</view>
+		</view> -->
 
 	<CommodityMuseum 
 	v-if="isIndexData" 
 	title="爆品馆"
+	tagsId="48"
 	:banner="indexData.bao" 
 	:itemCommodity="indexData.bao_product" />
 	<CommodityMuseum 
 	v-if="isIndexData"
-	title="国际馆" 
+	title="国际馆"
+	tagsId="51" 
 	:banner="indexData.guo" 
 	:itemCommodity="indexData.guo_product" />
 	<CommodityMuseum 
 	v-if="isIndexData"
-	title="护理馆" 
+	title="护肤馆"
+	tagsId="45" 
 	:banner="indexData.hu_li" 
 	:itemCommodity="indexData.hu_li_product" />
 	<CommodityMuseum 
 	v-if="isIndexData"
-	title="面膜馆" 
+	title="面膜馆"
+	tagsId="46" 
 	:banner="indexData.mian" 
 	:itemCommodity="indexData.mian_product" />
 	<CommodityMuseum 
 	v-if="isIndexData"
-	title="仪器馆" 
+	title="仪器馆"
+	tagsId="49" 
 	:banner="indexData.yi_qi" 
 	:itemCommodity="indexData.yi_qi_product" />
 	<CommodityMuseum 
 	v-if="isIndexData"
-	title="院装馆" 
+	title="院装馆"
+	tagsId="47" 
 	:banner="indexData.yuan" 
 	:itemCommodity="indexData.yuan_product" />
 	<CommodityMuseum 
 	v-if="isIndexData"
-	title="注册抢购" 
+	title="注册抢购"
+	tagsId="50" 
 	:banner="indexData.zhuce" 
 	:itemCommodity="indexData.zhuce_product" />
 
@@ -127,36 +161,19 @@ const { mapState, mapActions } = createNamespacedHelpers('storeCommodity');
 export default {
 	data() {
 		return {
+			indicatorDots:false,
 			isIndexData:false,
-			titleNViewBackground: '',
-			swiperCurrent: 0,
-			swiperLength: 0,
 			carouselList: [],
 			indexData:{},
-			huadongs: [
-				{ img: `${this.$imgUrl}/images/jgeicon1.png`, mag: '123546854' },
-				{ img: `${this.$imgUrl}/images/jgeicon2.png`, mag: '123546854' },
-				{ img: `${this.$imgUrl}/images/jgeicon3.png`, mag: '123546854' },
-				{ img: `${this.$imgUrl}/images/jgeicon4.png`, mag: '123546854' },
-				{ img: `${this.$imgUrl}/images/jgeicon5.png`, mag: '123546854' },
-				{ img: `${this.$imgUrl}/images/jgeicon6.png`, mag: '123546854' },
-				{ img: `${this.$imgUrl}/images/jgeicon7.png`, mag: '123546854' },
-				{ img: `${this.$imgUrl}/images/jgeicon8.png`, mag: '123546854' }
-			],
-			huadongs1: [
-				{ img: "http://meizi.oss.manogue.com.cn/a94409fb5622a90d/c63fadb70df5c6a3.jpg?x-oss-process=image/resize,m_mfit,h_400,w_400", mag: 'JAYJUN 维他雪花面膜(5片）10盒' }, 
-				{ img: "http://meizi.oss.manogue.com.cn/a94409fb5622a90d/c63fadb70df5c6a3.jpg?x-oss-process=image/resize,m_mfit,h_400,w_400", mag: 'JAYJUN 维他雪花面膜(5片）10盒' }, 
-				{ img: "http://meizi.oss.manogue.com.cn/a94409fb5622a90d/c63fadb70df5c6a3.jpg?x-oss-process=image/resize,m_mfit,h_400,w_400", mag: 'JAYJUN 维他雪花面膜(5片）10盒' }
-			],
 			commodityMuseum:[
-				{img:`${this.$imgUrl}/images/jgeicon10.png`,txt:"注册抢购"},
-				{img:`${this.$imgUrl}/images/jgeicon4.png`,txt:"爆品馆"},
-				{img:`${this.$imgUrl}/images/jgeicon9.png`,txt:"国际馆"},
-				{img:`${this.$imgUrl}/images/jgeicon1.png`,txt:"护肤馆"},
-				{img:`${this.$imgUrl}/images/jgeicon11.png`,txt:"面膜馆"},
-				{img:`${this.$imgUrl}/images/jgeicon2.png`,txt:"院装馆"},
-				{img:`${this.$imgUrl}/images/jgeicon6.png`,txt:"仪器馆"},
-				{img:`${this.$imgUrl}/images/jgeicon8.png`,txt:"优惠卷"}
+				{img:`${this.$imgUrl}/images/jgeicon10.png`,txt:"注册抢购",id:50},
+				{img:`${this.$imgUrl}/images/jgeicon4.png`,txt:"爆品馆",id:48},
+				{img:`${this.$imgUrl}/images/jgeicon9.png`,txt:"国际馆",id:51},
+				{img:`${this.$imgUrl}/images/jgeicon1.png`,txt:"护肤馆",id:45},
+				{img:`${this.$imgUrl}/images/jgeicon11.png`,txt:"面膜馆",id:46},
+				{img:`${this.$imgUrl}/images/jgeicon2.png`,txt:"院装馆",id:47},
+				{img:`${this.$imgUrl}/images/jgeicon6.png`,txt:"仪器馆",id:49},
+				{img:`${this.$imgUrl}/images/jgeicon8.png`,txt:"优惠卷",id:"coupon"}
 			],
 			...mapState(['num']),
 			isRed:false,
@@ -167,7 +184,6 @@ export default {
 		CommodityMuseum
 	},
 	created() {
-		this.loadData();
 		// 请求为您推荐数据
 		this.$request.GET({
 			url:this.$api.apiUrl.GET_INDEX
@@ -177,6 +193,11 @@ export default {
 				
 				// 获取首页各种数据
 				this.indexData = res.data;
+				// 首页轮播图
+				this.carouselList = res.data.banner.map(item => ({
+					src:item.img,
+					id:item.link.split("?")[1].split("=")[1]
+				}));
 				this.isIndexData = true;
 			}else{
 				this.$api.msg("数据请求失败")
@@ -194,16 +215,9 @@ export default {
 		scroll(e) {
 			this.old.scrollTop = e.detail.scrollTop;
 		},
-		async loadData() {
-			const carouselList = await this.$api.json('carouselList');
-			this.titleNViewBackground = carouselList[0].background;
-			this.swiperLength = carouselList.length;
-			this.carouselList = carouselList;
-		},
 		// 详情页
 		navToDetailPage(item) {
-			// 测试数据没有写id，用title代替
-			const id = item.title;
+			const id = item.id;
 			uni.navigateTo({
 				url: `/pages/goodss/product/product?id=${id}`
 			});
@@ -215,6 +229,16 @@ export default {
 		},
 		btn(e){
 			console.log(e)
+		},
+		classification(e){
+			const tags_id = e.id
+			if(typeof tags_id != Number){
+				this.$api.msg("正在开发中")
+			}else{
+				uni.navigateTo({
+					url: `/pages/goodss/search/search?tags_id=${tags_id}`
+				});
+			}
 		}
 	},
 	// #ifndef MP

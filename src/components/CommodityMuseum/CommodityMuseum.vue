@@ -4,7 +4,9 @@
 		<!-- 团购楼层 -->
 			<view class="f-header seckill">
 				<view class="scroll_title">{{title}}</view>
-				<text class="Assemble_text_2">更多</text>
+				<text class="Assemble_text_2"
+				@tap="classification"
+				>更多</text>
 			</view>
 			<view class="group-section">
 				<BigSwiper 
@@ -16,7 +18,12 @@
 			</view>
 			<!-- 分类推荐楼层 -->
 			<view class="f-header_warp">
-				<view class="warp" v-for="(item, index) in huadongs1" :key="index">
+				<view 
+				class="warp" 
+				v-for="(item, index) in huadongs1" 
+				:key="index"
+				@tap="IndependentCommodity(item)"
+				>
 					<image :src="item.img" mode="scaleToFill"></image>
 					<view>{{ item.msg }}</view>
 				</view>
@@ -27,7 +34,7 @@
 <script>
 export default{
 		name: 'CommodityMuseum',
-		props:["banner","itemCommodity","title"],
+		props:["banner","itemCommodity","title","tagsId"],
 		data(){
 			return {
 				huadongs1: [],
@@ -36,22 +43,42 @@ export default{
 		},
 		async beforeMount(){
 			// 设置轮播图
-			this.carouselList = this.banner.map(item => ({src:item.img}));
+			this.carouselList = this.banner.map(item => ({
+				src:item.img,
+				id:item.link
+			}));
+			
 			// 三个商品图片
 			this.huadongs1 = this.itemCommodity.map(item => ({
 				img:item.goods_pic,
-				msg:item.goods_name
+				msg:item.goods_name,
+				id:item.goods_id
 			}))
 		},
 		methods:{
 			// 详情页
 			navToDetailPage(item) {
 				// 测试数据没有写id，用title代替
-				const id = item.title;
+				const id = item.id;
+				if(id !== "#"){
+					const newId = id.split("?")[1].split("=")[1]					
+					uni.navigateTo({
+						url: `/pages/goodss/product/product?id=${newId}`
+					});
+				}else{
+					this.$api.msg("没有找到该商品")
+				}
+			},
+			IndependentCommodity(item){
 				uni.navigateTo({
-					url: `/pages/goodss/product/product?id=${id}`
+					url: `/pages/goodss/product/product?id=${item.id}`
 				});
 			},
+			classification(){
+				uni.navigateTo({
+					url: `/pages/goodss/search/search?tags_id=${this.tagsId}`
+				});
+			}
 		}
 	}
 </script>
