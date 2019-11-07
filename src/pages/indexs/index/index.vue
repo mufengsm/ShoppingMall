@@ -232,7 +232,7 @@ export default {
 		},
 		classification(e){
 			const tags_id = e.id
-			if(typeof tags_id != Number){
+			if(typeof tags_id != "number"){
 				this.$api.msg("正在开发中")
 			}else{
 				uni.navigateTo({

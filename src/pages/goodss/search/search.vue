@@ -282,7 +282,7 @@ export default {
 				width: 100%;
 				height: 80upx;
 				/* #ifdef MP */
-				height: 90upx;
+				height: 85upx;
 				/* #endif */
 				font-size: 14px;
 				overflow: hidden;

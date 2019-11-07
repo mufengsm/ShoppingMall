@@ -98,7 +98,9 @@
 
 			<view class="action-btn-group">
 				<button type="primary" class=" action-btn no-border buy-now-btn" @tap="buy">立即购买</button>
-				<button type="primary" class=" action-btn no-border add-cart-btn">加入购物车</button>
+				<button type="primary" class=" action-btn no-border add-cart-btn"
+				@tap="addCart"
+				>加入购物车</button>
 			</view>
 		</view>
 
@@ -197,7 +199,8 @@ export default {
 			},
 			desc: "",
 			isPopup:"specs",
-			purchaseQuantity:1
+			purchaseQuantity:1,
+			specIndex:0
     };
   },
   components: {
@@ -205,6 +208,7 @@ export default {
 	},
   async onLoad(options) {
 		// 商品信息
+		this.goodsId = options.id;
 		this.$request.GET({
 				url:this.$api.apiUrl.GET_GOODS_INFO,
 				data:{
@@ -280,10 +284,12 @@ export default {
 					return false;
 				}else{
 					this.toggleSpec();
+					this.addCart();
 				}
 		},
     // 选择规格
     selectSpec(item, index) {
+			this.specIndex = index;			
 			// 设置两个显示文本状态
 			this.selected = "已选：";
 			this.popup.haveChosen = item.name;
@@ -358,6 +364,25 @@ export default {
 				}
 			}
 		},
+		addCart(){
+			if(this.selected === "请选择规格"){
+				this.toggleSpec('specs')
+			}else{
+				this.$request.POST({
+					url:this.$api.apiUrl.SAVE_CART,
+					data:{
+						goods_id:this.goodsId,
+						spec_id:this.specSelected[this.specIndex].id,
+						goods_num:this.purchaseQuantity,
+					}
+				}).then(res=>{
+						uni.showToast({
+							title:res.msg,
+							icon:"none"
+						})					
+				})
+			}
+		}
 	},
 };
 </script>

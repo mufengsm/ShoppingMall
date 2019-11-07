@@ -4,7 +4,11 @@
 			<view class="header_bg"></view>
 			<view class="user-info-box">
 				<view class="portrait-box">
-					<image class="portrait" :src="'https://meizi.manogue.com.cn/static/upload/avatar/10000.jpg?1571897191'"></image>
+					<image 
+					class="portrait" 
+					:src="'https://meizi.manogue.com.cn/static/upload/avatar/10000.jpg?1571897191'"
+					@tap="jumpLogin"
+					></image>
 				</view>
 				<view class="info-box">
 					<view class="username">{{'游客'}}</view>
@@ -133,7 +137,12 @@ export default {
       uni.navigateTo({
         url,
       });
-    },
+		},
+		jumpLogin(){
+			uni.navigateTo({
+				url:'/pages/mys/login/login',
+			})
+		}
   },
 };
 </script>
