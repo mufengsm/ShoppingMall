@@ -60,9 +60,11 @@
         <view class="price">
           <view class="commodity">商品合计：
             <text>{{resultPrice}}</text></view>
-          <view class="freight">运费：<text>{{resultPrice>300 ? 0 : 6}}元</text></view>
+          <view class="freight">运费：<text>{{
+            resultPrice>300 ? "免运费" : resultPrice == 0 ? "无运费" : "6元"
+            }}</text></view>
         </view>
-        <view class="settlement">结算({{totalCommodity}})</view>
+        <view class="settlement" @tap="shoppingSettlement">结算({{totalCommodity}})</view>
 			</view>
 		</view>
 </template>
@@ -266,6 +268,14 @@ export default {
       }
       this.resultPrice = resultPrice.toFixed(2);
       this.totalCommodity = totalCommodity;
+    },
+    // 结算商品
+    shoppingSettlement(){
+      if(!this.totalCommodity == 0){
+        uni.navigateTo({
+          url:'/pages/carts/buy/buy'
+        })
+      }
     }
   },
 };

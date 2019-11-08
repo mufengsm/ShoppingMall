@@ -43,3 +43,7 @@ export const GOODS_CART = localApi + '/v5/goods_cart';
 export const CART_DEL = localApi + '/v5/cart_del';
 // 购物车选中状态
 export const CART_CHECK = localApi + '/v5/cart_check';
+// 订单提交
+export const ORDER_COMMIT = localApi + '/v5/order_commit';
+// 订单页面信息
+export const SHOW_ORDER_COMMIT = localApi + '/v5/show_order_commit';
