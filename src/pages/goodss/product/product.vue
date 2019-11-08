@@ -66,10 +66,10 @@
 				></image>
 				<view class="right">
 					<text class="name">Leo yo</text>
-					<text class="con">商品收到了，79元两件，质量不错，试了一下有点瘦，但是加个外罩很漂亮，我很喜欢</text>
+					<text class="con">商品收到了，我很喜欢,推荐大家前来购买</text>
 					<view class="bot">
 						<text class="attr">购买类型：XL 红色</text>
-						<text class="time">2019-04-01 19:21</text>
+						<text class="time">2019-11-08 12:21</text>
 					</view>
 				</view>
 			</view>
@@ -374,6 +374,7 @@ export default {
 						goods_id:this.goodsId,
 						spec_id:this.specSelected[this.specIndex].id,
 						goods_num:this.purchaseQuantity,
+						is_page:"product"
 					}
 				}).then(res=>{
 						uni.showToast({

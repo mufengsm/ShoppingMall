@@ -59,10 +59,10 @@
         </view>
         <view class="price">
           <view class="commodity">商品合计：
-            <text>¥0.00</text></view>
-          <view class="freight">运费：<text>6元</text></view>
+            <text>{{resultPrice}}</text></view>
+          <view class="freight">运费：<text>{{resultPrice>300 ? 0 : 6}}元</text></view>
         </view>
-        <view class="settlement">结算(0)</view>
+        <view class="settlement">结算({{totalCommodity}})</view>
 			</view>
 		</view>
 </template>
@@ -81,7 +81,9 @@ export default {
       isRadio:false,
       isLoding:false,
       purchaseQuantity:1,
-      isProhibit:true
+      isProhibit:true,
+      resultPrice:0,
+      totalCommodity:0
     };
   },
   onShow(){
@@ -95,23 +97,33 @@ export default {
       // 把数据数量告诉全选按钮,自动控制是否禁用
       this.isProhibit = this.cartData.length;
       // 查看列表内容是否全选
-      this.slectAll()
+      this.slectAll();
+      // 计算总价
+      const result = this.totalPrice();
+      // console.log(result);
     })
    
   },
   methods: {
     // 店铺和全选按钮点击
     radioTap(){
-      this.isRadio = !this.isRadio;
-      // 修改列表中所有字段
-      for (let i = 0; i < this.cartData.length; i++) {
-        const element = this.cartData[i];
-        if(this.isRadio){
-          element.is_check = 1;
-        }else{
-          element.is_check = 0;
+      // 请求后端全选/全不选接口
+      this.$request.POST({
+        url:this.$api.apiUrl.CART_CHECK
+      }).then(res=>{
+        this.isRadio = !this.isRadio;
+        // 修改列表中所有显示字段
+        for (let i = 0; i < this.cartData.length; i++) {
+          const element = this.cartData[i];
+          if(this.isRadio){
+            element.is_check = 1;
+          }else{
+            element.is_check = 0;
+          }
         }
-      }      
+        // 修改商品显示价格;
+        this.totalPrice();      
+      })
     },
     jumpProduct(e){
       // 跳到商品页面
@@ -124,18 +136,48 @@ export default {
       let index = this.cartData.findIndex(function(item){
           return item.id === e;
       })
-      this.cartData[index].is_check = !this.cartData[index].is_check;
-      // 执行查看是否全选了
-      this.slectAll();
+      // 更改后端单个商品选中状态
+      this.$request.POST({
+        url:this.$api.apiUrl.CART_CHECK,
+        data:{
+          id:this.cartData[index].id
+        }
+      }).then(res=>{
+        this.cartData[index].is_check = !this.cartData[index].is_check;
+        // 修改商品显示价格
+        this.totalPrice();
+        // 执行查看是否全选了
+        this.slectAll();
+      })
     },
     // 加减按钮执行
     changeQuantity(mathematicalSymbols,index){
 			// 增加于删除按钮
 			if(mathematicalSymbols === "+"){
         this.cartData[index].goods_num++
+        this.changeNumber(this.cartData[index])
 			}else if(this.cartData[index].goods_num>1){
-				this.cartData[index].goods_num--
-			}
+        this.cartData[index].goods_num--
+        this.changeNumber(this.cartData[index])
+      }
+    },
+    // 更改数量接口
+    changeNumber(item){
+      this.$request.POST({
+					url:this.$api.apiUrl.SAVE_CART,
+					data:{
+						goods_id:item.goods_id,
+						spec_id:item.spec_id,
+						goods_num:item.goods_num,
+					}
+				}).then(res=>{
+						uni.showToast({
+							title:"更改数量成功",
+							icon:"none"
+            })
+            // 更改数量修改显示价格;
+            this.totalPrice();					
+				})
     },
     // 直接修改input值，执行函数
     detectionValue(e){
@@ -143,17 +185,20 @@ export default {
 			const num = e.detail.value;
 			if (num === "") {
 				// 如果输入为空
-				this.cartData[index].goods_num = 1;
+        this.cartData[index].goods_num = 1;
+        this.changeNumber(this.cartData[index])
 				return 1
 			} else {
 				// 判断值是否小于0或者是小数
 				var r = /^\+?[1-9][0-9]*$/;
 				if (r.test(num)) {
-					this.cartData[index].goods_num = num;
+          this.cartData[index].goods_num = num;
+          this.changeNumber(this.cartData[index])          
 					return num
 				} else {
 					// 如果数值不符合:大于0,并且是正整数
-					this.cartData[index].goods_num = 1;
+          this.cartData[index].goods_num = 1;
+          this.changeNumber(this.cartData[index])          
 					return 1
 				}
 			}
@@ -180,6 +225,8 @@ export default {
                   this.isProhibit = this.cartData.length;
                   // 检测选中多少函数,可页面不刷新更改全选状态
                   this.slectAll();
+                  // 更改总价和数量
+                  this.totalPrice();
                 })
             } else if (res.cancel) {
               return false;
@@ -187,22 +234,38 @@ export default {
         }
     });
     },
-    // 查看购物车列表选中情况
+    // 查看购物车列表选中情况，是否禁用全选按钮
     slectAll(){
       let index = this.cartData.find((item,index)=>{
         // 看看有没有,没选中的
         return item.is_check === false || item.is_check === 0;
       })
-      if(!index){
+      if(index){
+        this.isRadio = false; 
+      }else{
         // 如果列表内容不为空
         if(this.cartData.length){
           this.isRadio = true;
         }else{
           this.isRadio = false;
         }
-      }else{
-       this.isRadio = false; 
       }
+    },
+    totalPrice(){
+      // 得到选中的商品
+      // 总价格
+      let resultPrice = 0;
+      // 总数量
+      let totalCommodity = 0;
+      const resultArr = this.cartData.filter(item =>{
+        return item.is_check === 1 || item.is_check === true
+      })
+      for (let i = 0; i < resultArr.length; i++) {
+       resultPrice += Number(resultArr[i].goods_price) * resultArr[i].goods_num;
+       totalCommodity += resultArr[i].goods_num;
+      }
+      this.resultPrice = resultPrice.toFixed(2);
+      this.totalCommodity = totalCommodity;
     }
   },
 };

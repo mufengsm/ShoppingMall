@@ -4,8 +4,8 @@
 		<!-- #ifdef MP -->
 		<view class="mp-search-box">
 			<text class="search_back" @tap="backIndex"></text>
-			<input class="ser-input" type="text" value="输入关键字搜索" />
-			<text class="search_btn">搜索</text>
+			<input class="ser-input" placeholder="搜索商品/品牌" type="text" v-model="search_input" />
+			<text class="search_btn" @tap="search_btn">搜索</text>
 		</view>
 		<!-- #endif -->
 		<SortList
@@ -24,6 +24,11 @@
 			:is_brand_open="sort.is_sort_open"
 			@brand_choice="brand_choice"
 		></SortList>
+		<!-- 没有找到符合商品 -->
+		<image 
+		id="no_data_img"
+		v-if="isImg" src="https://meizi.manogue.com.cn/static/wap/images/search-no-results@2.png"></image>
+		<!-- 商品内容 -->
 		<view class="commodity">
 			<view class="commodity_item" v-for="(item, index) in private_search_info" :key="index" :data-id="item.id" @tap="goodsInfo(item.id)">
 				<image :src="item.logo_img" class="commodity_item_left" />
@@ -43,7 +48,7 @@
 				</view>
 			</view>
 		</view>
-		<UniLoadMore :status="no_data ? 'loading' : 'noMore'"></UniLoadMore>
+		<UniLoadMore v-if="!isImg" :status="no_data ? 'loading' : 'noMore'"></UniLoadMore>
 	</view>
 </template>
 <script>
@@ -73,7 +78,8 @@ export default {
 			private_search_info: [],
 			req_search_info_page: 1,
 			no_data: true,
-			search_input:""
+			search_input:"",
+			isImg:false,
 		};
 	},
 	components: {
@@ -208,7 +214,9 @@ export default {
 					}
 					this.private_search_info = this.private_search_info.concat(res.data);
 				} else {
-					this.no_data = false;
+					// 如果返回为空就是没有任何数据，显示指定图片
+					this.isImg = true;
+					// this.no_data = false;
 				}
 			});
 		},
@@ -229,6 +237,10 @@ export default {
 			uni.navigateTo({
 				url: `/pages/goodss/product/product?id=${id}`
 			});
+		},
+		search_btn(){
+			this.private_search_info.splice(0,this.private_search_info.length);
+			this.req_search_info();
 		}
 	}
 };
@@ -338,5 +350,8 @@ export default {
 			}
 		}
 	}
+}
+#no_data_img{
+	width: 100vw;
 }
 </style>

@@ -41,3 +41,5 @@ export const SAVE_CART = localApi + '/v5/save_cart';
 export const GOODS_CART = localApi + '/v5/goods_cart';
 // 删除购物车产品
 export const CART_DEL = localApi + '/v5/cart_del';
+// 购物车选中状态
+export const CART_CHECK = localApi + '/v5/cart_check';
