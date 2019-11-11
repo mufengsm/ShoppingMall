@@ -118,6 +118,28 @@
 			}
 		},
 		{
+			"path": "pages/mys/address/address",
+			"style": {
+				"navigationBarTitleText": "管理收获地址",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/addressForm/addressForm",
+			"style": {
+				"navigationBarTitleText": "添加收获地址",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
 			"path": "pages/carts/buy/buy",
 			"style": {
 				"navigationBarTitleText": "确认订单",

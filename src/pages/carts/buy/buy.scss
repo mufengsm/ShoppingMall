@@ -1,0 +1,59 @@
+.top_bar{
+	  width: 100vw;
+	  display: flex;
+	  padding-left:5px;
+	  padding-top:10px;
+	  align-items: center;/*垂直居中*/
+      background-color: white;
+      border-top:0.1em solid #e1e1e1;
+      position: relative;
+      &:before{
+        position: absolute;
+        right: 0;
+        left: 0;
+        height: 4px;
+        content: '';
+        -webkit-transform: scaleY(.5);
+        transform: scaleY(.5);
+        background-color: #efeff4;
+        box-shadow:1px 1px 7px 4px #efeff4;
+        top: -1px;
+	  }
+	.top_bar_info{
+		flex:9;
+		padding: 5px 0 0 14px;
+		.name_tel{
+			display: flex;
+			font-size: 17px;
+			.name{
+				font-weight: 700;
+				margin-right: 20px;
+			}
+			.tel{
+				font-weight: 700;
+				margin-right: 10px;
+			}
+			.btn{
+				font-size: 12px;
+				color: #CF2D28;
+				border: 1px solid #CF2D28;
+				padding: 2px 3px 0;
+				margin-top: 3px;
+				border-radius: 0.3em;
+			}
+		}
+		.addrss{
+			width: 70vw;
+			margin-top: 5px;
+			font-size: 12px;
+		}
+	}
+	.top_bar_arrow{
+		flex:1;
+		text-align: center;
+	}
+}
+.division{
+	width: 100vw;
+	height: 3px;
+}

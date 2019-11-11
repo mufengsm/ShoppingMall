@@ -10,16 +10,22 @@ const formalNetworkApi = 'https://meizi.manogue.com.cn';
 // 局域网接口
 const lanApi = 'http://192.168.2.130/meizi';
 
+/******************* v1 ******************* */
+// 添加收货地址
+export const ADDRESS_FORM = localApi + '/v1/address/address_form';
 // 首页商品推荐
 export const GET_MERCHANDISE_RECOMMENDATION = localApi+'/v1/goods/recommend';
+// 商品评价
+export const GET_GOODS_COMMENT = localApi + '/v1/goods/comment_list';
+
+/******************* v4 ******************* */
 // 控区控价信息列表
 export const POST_BRAND_LIST = localApi+'/v4/Brands/index';
 // 查询品牌
 export const POST_QUERY_BRAND = localApi+'/v4/goods/brand_list';
 // 查询分类
 export const POST_QUERY_CLASSIFICATION = localApi+'/v4/goods/cate_list';
-// 商品评价
-export const GET_GOODS_COMMENT = localApi +'/v1/goods/comment_list';
+
 /******************* v5 ******************* */
 // 用户登录
 export const POST_USER_LOGIN = localApi + '/v5/login';
