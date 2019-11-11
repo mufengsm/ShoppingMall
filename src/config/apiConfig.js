@@ -53,3 +53,5 @@ export const CART_CHECK = localApi + '/v5/cart_check';
 export const ORDER_COMMIT = localApi + '/v5/order_commit';
 // 订单页面信息
 export const SHOW_ORDER_COMMIT = localApi + '/v5/show_order_commit';
+// 获取城市列表
+export const GET_CITY = localApi +  '/v5/get_city';
