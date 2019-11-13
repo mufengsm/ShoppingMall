@@ -11,12 +11,13 @@ const formalNetworkApi = 'https://meizi.manogue.com.cn';
 const lanApi = 'http://192.168.2.130/meizi';
 
 /******************* v1 ******************* */
-// 添加收货地址
-export const ADDRESS_FORM = localApi + '/v1/address/address_form';
+
 // 首页商品推荐
 export const GET_MERCHANDISE_RECOMMENDATION = localApi+'/v1/goods/recommend';
 // 商品评价
 export const GET_GOODS_COMMENT = localApi + '/v1/goods/comment_list';
+// 添加收货地址
+export const POST_ADDRESS_FORM = localApi + '/v1/address/address_form';
 
 /******************* v4 ******************* */
 // 控区控价信息列表
@@ -42,16 +43,16 @@ export const LOGIN_OUT = localApi + '/v5/loginout';
 // 订单状态
 export const ORDER_STATUS = localApi + '/v5/order_status';
 // 保存到购物车
-export const SAVE_CART = localApi + '/v5/save_cart';
+export const POST_SAVE_CART = localApi + '/v5/save_cart';
 // 获取购物车数据
-export const GOODS_CART = localApi + '/v5/goods_cart';
+export const GET_GOODS_CART = localApi + '/v5/goods_cart';
 // 删除购物车产品
-export const CART_DEL = localApi + '/v5/cart_del';
+export const GET_CART_DEL = localApi + '/v5/cart_del';
 // 购物车选中状态
-export const CART_CHECK = localApi + '/v5/cart_check';
+export const POST_CART_CHECK = localApi + '/v5/cart_check';
 // 订单提交
 export const ORDER_COMMIT = localApi + '/v5/order_commit';
 // 订单页面信息
-export const SHOW_ORDER_COMMIT = localApi + '/v5/show_order_commit';
+export const GET_SHOW_ORDER_COMMIT = localApi + '/v5/show_order_commit';
 // 获取城市列表
-export const GET_CITY = localApi +  '/v5/get_city';
+export const POST_GET_CITY = localApi +  '/v5/get_city';

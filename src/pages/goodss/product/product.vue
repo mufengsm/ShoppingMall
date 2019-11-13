@@ -369,7 +369,7 @@ export default {
 				this.toggleSpec('specs')
 			}else{
 				this.$request.POST({
-					url:this.$api.apiUrl.SAVE_CART,
+					url:this.$api.apiUrl.POST_SAVE_CART,
 					data:{
 						goods_id:this.goodsId,
 						spec_id:this.specSelected[this.specIndex].id,

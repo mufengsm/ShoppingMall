@@ -38,7 +38,7 @@ export default {
 	},
 	onLoad(){
 		this.$request.GET({
-			url:this.$api.apiUrl.SHOW_ORDER_COMMIT
+			url:this.$api.apiUrl.GET_SHOW_ORDER_COMMIT
 		}).then(res=>{
 			if(!res.address === null){
 				this.address = res.address;

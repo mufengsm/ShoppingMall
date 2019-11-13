@@ -90,7 +90,7 @@ export default {
   },
   onShow(){
     this.$request.GET({
-      url: this.$api.apiUrl.GOODS_CART
+      url: this.$api.apiUrl.GET_GOODS_CART
     }).then(res=>{
       // 请求数据成功后控制页面显示状态
       this.isLoding = true;
@@ -111,7 +111,7 @@ export default {
     radioTap(){
       // 请求后端全选/全不选接口
       this.$request.POST({
-        url:this.$api.apiUrl.CART_CHECK
+        url:this.$api.apiUrl.POST_CART_CHECK
       }).then(res=>{
         this.isRadio = !this.isRadio;
         // 修改列表中所有显示字段
@@ -140,7 +140,7 @@ export default {
       })
       // 更改后端单个商品选中状态
       this.$request.POST({
-        url:this.$api.apiUrl.CART_CHECK,
+        url:this.$api.apiUrl.POST_CART_CHECK,
         data:{
           id:this.cartData[index].id
         }
@@ -166,7 +166,7 @@ export default {
     // 更改数量接口
     changeNumber(item){
       this.$request.POST({
-					url:this.$api.apiUrl.SAVE_CART,
+					url:this.$api.apiUrl.POST_SAVE_CART,
 					data:{
 						goods_id:item.goods_id,
 						spec_id:item.spec_id,
@@ -213,7 +213,7 @@ export default {
         success:  (res) => {
             if (res.confirm) {
                 this.$request.GET({
-                  url:this.$api.apiUrl.CART_DEL,
+                  url:this.$api.apiUrl.GET_CART_DEL,
                   data:{
                     id:item.id
                   }

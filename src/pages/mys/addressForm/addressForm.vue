@@ -1,116 +1,237 @@
 <template>
-    <view class="content">
-        <picker-view
-            v-if="visible"
-            :indicator-style="indicatorStyle"
-            @change="bindChange"
-			class="picker"
-        >
-            <picker-view-column>
-                <view 
-				class="item" v-for="(item,index) in largeArea" :key="index" 
-				>{{item.name}}</view>
-            </picker-view-column>
-            <picker-view-column>
-                <view 
-                class="item" v-for="(item,index) in cityClass" :key="index"
-                >{{item.name}}</view>
-            </picker-view-column>
-            <picker-view-column>
-                <view class="item" v-for="(item,index) in area" :key="index"
-                >{{item.name}}</view>
-            </picker-view-column>
-            <picker-view-column v-if="street.length">
-                <view class="item" v-for="(item,index) in street" :key="index"
-                >{{item.name}}</view>
-            </picker-view-column>
-        </picker-view>
-    </view>
+	<view class="wrap">
+        <view class="content">
+            <view class="consignee">
+				<input class="uni-input" v-model="username" maxlength="6" placeholder="请输入收件人姓名" />
+            </view>
+            <view class="consignee">
+				<input class="uni-input" v-model="tel" maxlength="11" type="number" placeholder="请输入收件人手机号码" />
+            </view>
+            <view class="uni-list-cell-db">
+                <!-- <picker mode="region" @change="addressDetermination">
+                    <view class="uni-input">
+                        <text class="txt">所在地区</text>
+                        <text class="folat_rigth">{{address}} <text class="iconfont icon-youjiantou"></text></text>
+                    </view>
+                </picker> -->
+                <picker 
+                mode="multiSelector" 
+                @columnchange="bindMultiPickerColumnChange"
+                @change="regionalChoice" 
+                :value="multiIndex" 
+                :range="multiArray"
+                range-key="name"
+                >
+						<view class="uni-input">
+                           <text class="txt">所在地区</text>
+                        <text class="folat_rigth">{{address}} <text class="iconfont icon-youjiantou"></text></text>
+                        </view>
+					</picker>
+            </view>
+            <view class="detailed_address">
+                 <textarea v-model="detailedAddress" placeholder="街道、门牌号等详细地址"/>
+            </view>
+        </view>
+        <view class="footer" @tap="addAddress">
+       		<button class="cw">保存收获地址</button>
+		</view>
+	</view>
 </template>
-
 <script>
-export default {
-    data: function() {
-        return {
-            title: "picker-view",
-            visible: true,
-            indicatorStyle: `height: ${Math.round(
-                uni.getSystemInfoSync().screenWidth / (750 / 100)
-			)}px;`,
-            largeArea:[],
-            cityClass:[],
-            area:[],
-            street:[],
-        };
-	},
-	onLoad(){
-       this.lodingCity(1,37,567)
-	},
-    methods: {
-        bindChange: function(e) {
-            const val = e.detail.value;
-            const province = this.largeArea[val[0]];
-            const city = this.cityClass[val[1]];
-            const area = this.area[val[2]];
-            const street = this.street[val[3]];
-            if(this.street){
-                this.lodingCity()
-			console.log(this.largeArea[val[0]]);
-            console.log(this.cityClass[val[1]]);
-            console.log(this.area[val[2]]);
-            console.log(this.street[val[3]]);
-            }else{
-            console.log(this.largeArea[val[0]]);
-            console.log(this.cityClass[val[1]]);
-            console.log(this.area[val[2]]);
-            }
-		},
-		watchCity(id="",level=""){
-			// 过去城市数据，只需要传id
-			return this.$request.POST({
-				url:this.$api.apiUrl.GET_CITY,
-				data:{
-                    id:id,
-					level:level
-				}
-			}).then(res=>{
-				if(res.data.length){
-					return res.data
-				}
-			})
+	export default {
+		data() {
+			return {
+                address:"请选择地址",
+                username:"",
+                tel:"",
+                detailedAddress:"",
+                city:[],
+                multiIndex: [0,0,0,0],
+                multiArray: [[],[],[],[]],
+			}
         },
-        lodingCity(city,area,street){
-             // 获取默认省
+        onLoad(){
+            // 获取默认省
             this.watchCity("",1).then(res=>{
-                this.largeArea = res;
+                this.multiArray.splice(0,1,res);
+                this.multiArray[0].unshift({name:"请选择"});
             })
-            // 获取默认市
-            this.watchCity(city).then(res=>{
-                this.cityClass = res;
-            })
-            // 获取默认区
-            this.watchCity(area).then(res=>{
-                this.area = res;
-            })
-            // 获取街道
-            this.watchCity(street).then(res=>{
-                this.street = res;
-            })
-        }
-    }
-};
+        },
+		methods: {
+            addressDetermination(e){
+                let addressArr = [...new Set(e.detail.value)];
+                let cityAddress = "";                
+                for (const key of addressArr) {
+                    cityAddress+=key
+                }
+                // 等待拼接详细地址
+                this.address=cityAddress
+                this.city = cityAddress
+            },
+            addAddress(){
+                if(!this.username){
+                    this.$api.msg("请填输入收件人姓名");                    
+                }
+                if(!this.tel){
+                    this.$api.msg("请输入联系电话");                    
+                }
+                if(!this.city){
+                    this.$api.msg("请选择所在城市");
+                }
+                if(!this.detailedAddress){
+                    this.$api.msg("请填写详细地址");                    
+                }
+                this.$request.POST({
+                    url:this.$api.apiUrl.POST_ADDRESS_FORM,
+                    data:{
+                        truename:this.username,
+                        phone:this.tel,
+                        area_ids:this.city.join(","),
+                        address:this.detailedAddress
+                    }
+                }).then(res=>{
+                    uni.showToast({
+                        title:res.errmsg,
+                        success:()=>{
+                            if(res.errcode===1){
+                                uni.navigateTo({url:"/pages/mys/address/address"})
+                            }
+                        }
+                    })
+                })
+            },
+            bindMultiPickerColumnChange: function(e) {
+                switch (e.detail.column) {
+                    case 0:
+                        // 获取默认市
+                        if(e.detail.value>0){
+                            this.watchCity(this.multiArray[0][e.detail.value].id).then(res=>{
+                                if(res){
+                                    this.multiArray.splice(1,1,res);
+                                    this.multiArray[1].unshift({name:"请选择"});
+                                }
+                            })  
+                        }
+                        this.multiArray[2]=[];
+                        this.multiArray[3]=[];
+                        this.multiIndex=[e.detail.value,0,0,0];
+                        break;
+                    case 1:
+                         // 获取默认区
+                        if(e.detail.value>0){
+                            this.watchCity(this.multiArray[1][e.detail.value].id).then(res=>{
+                                if(res){
+                                    this.multiArray.splice(2,1,res);
+                                    this.multiArray[2].unshift({name:"请选择"});
+                                }
+                            })
+                        }
+                        this.multiArray[3]=[];
+                        this.multiIndex=[this.multiIndex[0],e.detail.value,0,0];                        
+                        break;
+                    case 2:
+                         // 获取默认区
+                        if(e.detail.value>0){
+                            this.watchCity(this.multiArray[2][e.detail.value].id).then(res=>{
+                                if(res){
+                                    this.multiArray.splice(3,1,res);
+                                    this.multiArray[3].unshift({name:"请选择"});
+                                    this.multiIndex=[this.multiIndex[0],this.multiIndex[1],e.detail.value,0];       
+                                }
+                            })
+                        }
+                        break;
+                    default:
+                        break;
+                }
+				
+            },
+            watchCity(id="",level=""){
+                // 过去城市数据，只需要传id
+                return this.$request.POST({
+                    url:this.$api.apiUrl.POST_GET_CITY,
+                    data:{
+                        id:id,
+                        level:level
+                    }
+                }).then(res=>{
+                    if(res.data.length){
+                        return res.data
+                    }
+                })
+            },
+            regionalChoice(e){
+                const val = e.detail.value;
+                let cityAddress = ""; 
+                this.city=[];
+                for (let i = 0; i < val.length; i++) {
+                    const element = val[i];
+                    if(element){
+                        cityAddress+=this.multiArray[i][element].name;
+                        this.city.push(this.multiArray[i][element].id)
+                    }
+                }
+                this.address=cityAddress;
+                console.log(this.address,this.city);
+                
+            }
+		}
+	}
 </script>
 
-<style>
+<style lang="scss">
+.wrap{
+    width: 100vw;
+    height: 100vh;
+    padding-top: 15px;
+    background-color: #efeff4;
+}
 .content{
-	height: 100vh;
-	width: 100vw;
+    width: 100%;
+    border-radius: 5px;
+    background-color: white;
+    .consignee{
+        margin-top:10px;
+        padding: 8px;
+        border-bottom: 1px solid #c8c7cc;
+    }
+    .detailed_address{
+        textarea{
+            padding: 10px 0 0 10px;
+            border-top:1px solid #c8c7cc;
+            width: 100vw;
+        }
+    }
+    .uni-list-cell-db{
+        font-size: 15px;
+        .uni-input{
+            height: 100upx;
+            line-height: 100upx;
+            .folat_rigth{
+                float: right;
+                color: #888;
+            }
+            .txt{
+                margin-left:5px;
+            }
+        }
+    }
 }
-.picker{
-	position: absolute;
+.footer{
+	height: 40px;
+	background-color: orange;
+	width: 100vw;
+	position: fixed;
 	bottom: 0;
-	left: 0;
-	height: 30vh;
-	width: 100vw;
+	text-align: center;
+	line-height: 40px;
+	.cw{
+		color:white;
+		width: 100%;
+		display: block;
+		line-height: 40px;
+		background-color: orange;
+	}
 }
+	
 </style>
