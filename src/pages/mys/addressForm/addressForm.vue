@@ -33,7 +33,7 @@
             </view>
         </view>
         <view class="footer" @tap="addAddress">
-       		<button class="cw">保存收获地址</button>
+       		<button class="cw">保存地址</button>
 		</view>
 	</view>
 </template>
@@ -41,16 +41,32 @@
 	export default {
 		data() {
 			return {
+                id:"",
                 address:"请选择地址",
                 username:"",
                 tel:"",
                 detailedAddress:"",
                 city:[],
                 multiIndex: [0,0,0,0],
-                multiArray: [[],[],[],[]],
+                multiArray: [[],[],[]],
 			}
         },
-        onLoad(){
+        onLoad(e){
+            if(e.id){
+                this.id = e.id;
+                this.$request.GET({
+                    url:this.$api.apiUrl.GET_FIND_ADRESS,
+                    data:{
+                        id:e.id
+                    }
+                }).then(res=>{
+                    const result = res.data;
+                    this.username = result.truename;
+                    this.detailedAddress = result.address;
+                    this.address = result.province+result.city+result.area;
+                    this.tel = result.phone;
+                })
+            }
             // 获取默认省
             this.watchCity("",1).then(res=>{
                 this.multiArray.splice(0,1,res);
@@ -84,6 +100,7 @@
                 this.$request.POST({
                     url:this.$api.apiUrl.POST_ADDRESS_FORM,
                     data:{
+                        id:this.id,
                         truename:this.username,
                         phone:this.tel,
                         area_ids:this.city.join(","),
@@ -113,7 +130,7 @@
                             })  
                         }
                         this.multiArray[2]=[];
-                        this.multiArray[3]=[];
+                        // this.multiArray[3]=[];
                         this.multiIndex=[e.detail.value,0,0,0];
                         break;
                     case 1:
@@ -126,7 +143,7 @@
                                 }
                             })
                         }
-                        this.multiArray[3]=[];
+                        // this.multiArray[3]=[];
                         this.multiIndex=[this.multiIndex[0],e.detail.value,0,0];                        
                         break;
                     case 2:
@@ -134,9 +151,9 @@
                         if(e.detail.value>0){
                             this.watchCity(this.multiArray[2][e.detail.value].id).then(res=>{
                                 if(res){
-                                    this.multiArray.splice(3,1,res);
-                                    this.multiArray[3].unshift({name:"请选择"});
-                                    this.multiIndex=[this.multiIndex[0],this.multiIndex[1],e.detail.value,0];       
+                                    // this.multiArray.splice(3,1,res);
+                                    // this.multiArray[3].unshift({name:"请选择"});
+                                    // this.multiIndex=[this.multiIndex[0],this.multiIndex[1],e.detail.value,0];       
                                 }
                             })
                         }
@@ -172,9 +189,9 @@
                     }
                 }
                 this.address=cityAddress;
-                console.log(this.address,this.city);
-                
-            }
+
+
+}
 		}
 	}
 </script>

@@ -18,7 +18,9 @@
 				<text class="price-tip">¥</text>
 				<text class="price">{{commodityInfo.first}}</text>
 				<text class="coupon-tip">{{commodityInfo.disacount}}折</text>
-				<view class="bot-row sell">已卖出: {{123}}件</view>
+				<view class="bot-row sell">
+					<!-- 已卖出: {{123}}件 -->
+				</view>
 			</view>
 			<view class="bot-row">市场价：<text class="third">¥{{commodityInfo.third}}</text></view>
 				<view class="goods_info">
