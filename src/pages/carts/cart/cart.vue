@@ -1,5 +1,5 @@
 <template>
-	<view v-if="isLoding" class="container" :style="{height:'100vh'}">
+	<view v-if="isLoding" class="container">
 		<!-- 空白页 -->
 		<view class="empty" v-if="!cartData.length">
 			<image src="https://meizi.manogue.com.cn/static/wap/images/emptycart.png" mode="scaleToFill"></image>
