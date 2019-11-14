@@ -21,9 +21,16 @@
 			<view class="order-section">
 				<view class="my_order">
 					<text class="left">我的订单</text>
-					<text class="right">全部订单<span class="iconfont icon-youjiantou"></span></text>
+					<text class="right"
+					@tap="navTo({state:0})"
+					>全部订单<text class="iconfont icon-youjiantou linH"></text></text>
 				</view>
-					<view class="order-item" v-for="(item,index) in order_status" :key="index">
+					<view 
+					class="order-item" 
+					v-for="(item,index) in order_status" 
+					:key="index"
+					@tap="navTo(item)"
+					>
 						<image :src="item.img_url" mode="aspectFit"></image>
 						<text>{{item.text}}</text>
 					</view>
@@ -78,11 +85,11 @@ export default {
       coverTransition: '0s',
       moving: false,
 	  order_status:[
-		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__01.png`,text:"待付款"},
-		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__03.png`,text:"待发货"},
-		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__05.png`,text:"待收货"},
-		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__07.png`,text:"带评价"},
-		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__09.png`,text:"退换货"}
+		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__01.png`,text:"待付款",state:1},
+		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__03.png`,text:"待发货",state:5},
+		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__05.png`,text:"待收货",state:2},
+		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__07.png`,text:"带评价",state:3},
+		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__09.png`,text:"退换货",state:4}
 	  ],
 	  my_wallet_item:[
 		  {num:"--",text:"余额"},
@@ -127,15 +134,12 @@ export default {
   methods: {
 
     /**
-			 * 统一跳转接口,拦截未登录路由
-			 * navigator标签现在默认没有转场动画，所以用view
-			 */
-    navTo(url) {
-      if (!this.hasLogin) {
-        url = '/pages/public/login';
-      }
+			* 统一跳转接口,拦截未登录路由
+			* navigator标签现在默认没有转场动画，所以用view
+			*/
+    navTo(obj) {
       uni.navigateTo({
-        url,
+        url:`/pages/mys/order/order?state=${obj.state}`
       });
 		},
 		jumpLogin(){
@@ -311,5 +315,8 @@ export default {
 			height: 200upx;
 			float: left;
 		}
+	}
+	.linH{
+		line-height: 10px;
 	}
 </style>

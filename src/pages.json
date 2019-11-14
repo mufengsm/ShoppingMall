@@ -149,6 +149,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/mys/order/order",
+			"style": {
+				"navigationBarTitleText": "订单状态",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {

@@ -57,26 +57,27 @@ src="https://meizi.manogue.com.cn/static/wap/images/setindent_border_02.jpg" cla
 				</view>
 			</view>
 			<view class="bottom">
-				<input type="text" 
+				<input type="text"
+				v-model="remarks" 
 				placeholder="选填：对本次购物交易的说明(50字)">
 			</view>
 		</view>
 		<view class="settlement">
 			<view class="settlement_item">
 				<text class="txt">订单金额:</text>
-				<text class="price">¥ 199</text>
+				<text class="price">¥ {{totalPrice}}</text>
 			</view>
 			<view class="settlement_item">
 				<text class="txt">运费:</text>
-				<text class="price">¥ 6</text>
+				<text class="price">¥ {{freight}}</text>
 			</view>
 		</view>
 		<view class="bottom_settlement">
 			<view class="txt">
 				<text class="info">支付金额:</text>
-				<text class="price">¥199</text>
+				<text class="price">¥{{totalPrice+freight}}</text>
 			</view>
-			<button class="btn">提交订单</button>
+			<button class="btn" @tap='placeOrder'>提交订单</button>
 		</view>
 	</view>
 </template>
@@ -85,11 +86,18 @@ export default {
 	data(){
 		return{
 			address:null,
-			goods:[]
+			goods:[],
+			freight:6,
+			totalPrice:0,
+			remarks:""
 		}
 	},
 	onShow(){
 		this.loadingData();
+	},
+	onUnload(e){
+		console.log(e);
+		
 	},
 	methods:{
 		addAddress(){
@@ -106,6 +114,21 @@ export default {
 				}
 				this.goods = res.data.goods;
 				console.log(this.goods);
+				for (const key of this.goods) {
+					this.totalPrice += Number(key.goods_price) * key.goods_num
+					this.freight = this.totalPrice>300 ? 0 : 6;
+				}
+			})
+		},
+		placeOrder(){
+			this.$request.POST({
+				url:this.$api.apiUrl.ORDER_COMMIT,
+				data:{
+					message:this.remarks
+				}
+			}).then(res=>{
+				console.log(res);
+				
 			})
 		}
 	}
