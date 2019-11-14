@@ -120,18 +120,19 @@
 						<text class="stock">起订价：{{popup.salesPrice}}</text>
 						<view class="selected">
 							<text class="selected-text">
-								{{selected}}：{{popup.haveChosen ? popup.haveChosen : popup.name}}
+								{{selected}}：{{popup.haveChosen ? popup.haveChosen : popup.specChildList[0].names}}
 							</text>
 						</view>
 					</view>
 				</view>
 				<!-- 规格列表 -->
-				<view class="attr-list">
-					<text>{{ popup.name }}</text>
+				<view class="attr-list"
+					v-for="(childItem, childIndex) in popup.specChildList"
+					:key="childIndex"
+				>
+					<text>{{ childItem.names }}</text>
 					<view class="item-list">
 						<text
-							v-for="(childItem, childIndex) in popup.specChildList"
-							:key="childIndex"
 							class="tit"
 							:class="{ selected: childItem.selected }"
 							@tap="selectSpec(childItem, childIndex)"
@@ -149,7 +150,10 @@
 						<button @tap="changeQuantity('+')">+</button>
 					</view>
 				</view>
-				<button class="btn" @tap="toggleSpecSpecial">确定</button>
+				<button 
+				:disabled="isGoods" class="btn" 
+				:style="{backgroundColor:isGoods ? 'gray' : '#fa436a' }" 
+				@tap="toggleSpecSpecial">{{isGoodsTxt}}</button>
 			</view>
 			<!-- 服务弹窗 -->
 			<view v-if="isPopup==='service'" class="layer attr-content guarantee_layer" @tap.stop="stopPrevent">
@@ -202,7 +206,9 @@ export default {
 			desc: "",
 			isPopup:"specs",
 			purchaseQuantity:1,
-			specIndex:0
+			specIndex:0,
+			isGoods:false,
+			isGoodsTxt:"确定"
     };
   },
   components: {
@@ -236,18 +242,22 @@ export default {
 				// 弹出层信息
 				this.popup={
 					logoImg:result.logo_img,
-					name:result.spec[0].name.split(":")[0],
+					
 					marketPrice:result.spec[0].market_price,
 					purchasePrice:result.spec[0].purchase_price,
 					salesPrice:result.spec[0].sales_price,
 					specChildList: result.spec.map((item,index)=>{
 						return {
 								id:index,
+								names:result.spec[index].name.split(":")[0],
 								name:result.spec[index].name.split(":")[1],
+								allName:item.name,
+								itemId:item.goods_id
 							}
-					}),
+					}),					
 					haveChosen:""
 				}
+				console.log(this.popup.specChildList);
 				// 图文介绍
 				this.desc = `<div style="width:100%">${result.content.replace(/<img/g,"<img class='imgWidth'")}</div>`;
 			}else{uni.showToast({title:res.msg,"icon":"none"})}
@@ -291,26 +301,42 @@ export default {
 		},
     // 选择规格
     selectSpec(item, index) {
-			this.specIndex = index;			
-			// 设置两个显示文本状态
-			this.selected = "已选：";
-			this.popup.haveChosen = item.name;
-			// 选中颜色
-			const list = this.popup.specChildList;
-      list.forEach((item,listIndex) => {
-        if (index === listIndex) {
-					this.$set(item, 'selected', true);
-					const selectedProductInfo = this.specSelected[listIndex];
-					// 商品单价
-					this.popup.marketPrice = selectedProductInfo.market_price;
-					// 零售价
-					this.popup.purchasePrice = selectedProductInfo.purchase_price;
-					// 起订价
-					this.popup.salesPrice = selectedProductInfo.sales_price;
-        }else{
-					this.$set(list[listIndex], 'selected', false);
+			this.$request.POST({
+				url:this.$api.apiUrl.POST_GOODS_STOCK,
+				data:{
+					id:item.itemId,
+					spec:item.allName
 				}
-			});
+			}).then(res=>{
+				console.log(res);
+				if(res.code === -1){
+					this.isGoods = true;
+					this.isGoodsTxt = "暂无库存";
+				}else{
+					this.isGoods = false;
+					this.isGoodsTxt = "确定";
+				}
+					this.specIndex = index;			
+					// 设置两个显示文本状态
+					this.selected = "已选：";
+					this.popup.haveChosen = item.name;
+					// 选中颜色
+					const list = this.popup.specChildList;
+					list.forEach((item,listIndex) => {
+						if (index === listIndex) {
+							this.$set(item, 'selected', true);
+							const selectedProductInfo = this.specSelected[listIndex];
+							// 商品单价
+							this.popup.marketPrice = selectedProductInfo.market_price;
+							// 零售价
+							this.popup.purchasePrice = selectedProductInfo.purchase_price;
+							// 起订价
+							this.popup.salesPrice = selectedProductInfo.sales_price;
+						}else{
+							this.$set(list[listIndex], 'selected', false);
+						}
+					});
+			})
     },
     // 分享
     share() {

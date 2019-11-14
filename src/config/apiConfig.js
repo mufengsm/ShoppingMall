@@ -29,6 +29,8 @@ export const POST_BRAND_LIST = localApi+'/v4/Brands/index';
 export const POST_QUERY_BRAND = localApi+'/v4/goods/brand_list';
 // 查询分类
 export const POST_QUERY_CLASSIFICATION = localApi+'/v4/goods/cate_list';
+// 查看是否有货
+export const POST_GOODS_STOCK = localApi + '/v4/goods/stock';
 
 /******************* v5 ******************* */
 // 用户登录
