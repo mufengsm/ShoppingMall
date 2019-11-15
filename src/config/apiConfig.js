@@ -65,3 +65,5 @@ export const POST_GET_CITY = localApi +  '/v5/get_city';
 export const GET_SHOW_ADDRESS = localApi + '/v5/show_address';
 // 编辑地址
 export const GET_FIND_ADRESS = localApi + '/v5/find_adress';
+// 订单详情
+export const GET_ORDER_FIND = localApi + '/v5/order_find';

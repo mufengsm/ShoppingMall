@@ -127,8 +127,14 @@ export default {
 					message:this.remarks
 				}
 			}).then(res=>{
-				console.log(res);
-				
+				uni.showToast({
+					title:res.msg
+				})
+				if(res.code === 200){
+					uni.navigateTo({
+						url:`/pages/mys/orderInfo/orderInfo?id=${res.data}`
+					})	
+				}
 			})
 		}
 	}
