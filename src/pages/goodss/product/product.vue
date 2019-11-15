@@ -382,6 +382,10 @@ export default {
                         spec: this.findIsSelected().join(",")
                     }
                 }).then(res => {
+                    // 设置商品价格
+                    this.$set(this.popup,"marketPrice",res.data.market_price)     
+                    this.$set(this.popup,"purchasePrice",res.data.purchase_price)         
+                    this.$set(this.popup,"salesPrice",res.data.sales_price)         
                     if(res.code === -1 || res.data.stock <= 0){
                     	this.isGoods = true;
                     	this.isGoodsTxt = "暂无库存";

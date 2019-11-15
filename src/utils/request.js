@@ -16,7 +16,7 @@ export default {
     }
     const [error, res] = await uni.request({
       header:{
-        'Token': this.storage.access_token,
+        'Token': uni.getStorageSync('access_token') ? uni.getStorageSync('access_token') : " ",
       },
       url: dataObj.url += '?' + parseQuery(dataObj.data),
       method: 'GET',
@@ -26,7 +26,7 @@ export default {
   async POST(dataObj) {
     const [error, res] = await uni.request({
       header:{
-        'Token': this.storage.access_token,
+        'Token': uni.getStorageSync('access_token') ? uni.getStorageSync('access_token') : " ",
       },
       url: dataObj.url,
       method: 'POST',
