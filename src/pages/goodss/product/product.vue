@@ -73,7 +73,9 @@
                     <text class="name">Leo yo</text>
                     <text class="con">商品收到了，我很喜欢,推荐大家前来购买</text>
                     <view class="bot">
-                        <text class="attr">购买类型：XL 红色</text>
+                        <text class="attr">
+                            <!-- 购买类型：XL 红色 -->
+                        </text>
                         <text class="time">2019-11-08 12:21</text>
                     </view>
                 </view>
@@ -209,7 +211,7 @@ const { mapState, mapActions } = createNamespacedHelpers("storeCommodity");
 export default {
     data() {
         return {
-            specClass: "show",
+            specClass: "none",
             specSelected: {},
             favorite: true,
             shareList: [],
@@ -454,7 +456,10 @@ export default {
             }
         },
         addCart() {
-						// 查找选择到的id
+				if(this.selected === "请选择规格: "){
+                    this.toggleSpec("specs")
+                }else{
+                    // 查找选择到的id
 						const result = this.popup.spec.find(item => {
 							return item.name === this.findIsSelected().join(",")
 						})
@@ -467,6 +472,7 @@ export default {
 										is_page: "product"
 								}
 						}).then(res => {this.$api.msg(res.msg)});
+                }
 				},
 				// 查找哪些被选中了
 				findIsSelected(){
