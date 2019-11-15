@@ -146,6 +146,39 @@ export default {
 	methods: {
 		callback(e){
 			this.$set(this.someObject,"info",e)
+		},
+		payment(){
+			this.$request.POST({
+				url:this.$api.apiUrl.POST_PAY_INDEX,
+				data:{
+					order_sn:this.orderInfo.order_sn
+				}
+			}).then(res=>{
+				console.log(res);
+				uni.requestPayment({
+					provider: 'wxpay',
+					timeStamp: String(res.data.timestamp),
+					nonceStr: res.data.noncestr,
+					package: res.data.package,
+					signType: 'MD5',
+					paySign: res.data.sign,
+					success: (res)=> {
+						console.log('success:' + JSON.stringify(res));
+						uni.showToast({
+							title:"支付成功",
+							success:()=>{
+								uni.navigateTo({
+									url:"/pages/mys/order/order"
+								})
+							}
+						})
+					},
+					fail: (err)=>{
+						this.$api.msg('支付失败' + JSON.stringify(err))
+						console.log('支付失败' + JSON.stringify(err));
+					}
+				});
+			})
 		}
 	}
 }

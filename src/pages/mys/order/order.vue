@@ -137,7 +137,21 @@
 				this.loadData()
 			}
 			// #endif
-			
+			this.$request.GET({
+				url:this.$api.apiUrl.GET_USER_ORDER
+			}).then(res=>{
+				console.log(res);
+			})
+			this.$request.GET({
+				url:this.$api.apiUrl.GET_LOGIN_OUT
+			}).then(res=>{
+				console.log(res);
+			})
+			this.$request.GET({
+				url:this.$api.apiUrl.GET_ORDER_STATUS
+			}).then(res=>{
+				console.log(res);
+			})
 		},
 		 
 		methods: {

@@ -21,6 +21,8 @@ export const POST_ADDRESS_FORM = localApi + '/v1/address/address_form';
 export const POST_ADDRESS_DELETE = localApi + '/v1/address/delete';
 // 设置默认地址
 export const POST_SET_DEFAULT = localApi + '/v1/address/set_default';
+// 微信支付
+export const POST_PAY_INDEX = localApi + '/v1/pay/index';
 
 /******************* v4 ******************* */
 // 控区控价信息列表
@@ -41,12 +43,6 @@ export const POST_BRAND_LIBRARY_QUERY = localApi + '/v5/goods_list';
 export const GET_GOODS_INFO = localApi + '/v5/goods_info';
 // 首页数据
 export const GET_INDEX = localApi + '/v5/index';
-// 用户订单
-export const USER_ORDER = localApi + '/v5/user_order';
-// 退出登录
-export const LOGIN_OUT = localApi + '/v5/loginout';
-// 订单状态
-export const ORDER_STATUS = localApi + '/v5/order_status';
 // 保存到购物车
 export const POST_SAVE_CART = localApi + '/v5/save_cart';
 // 获取购物车数据
@@ -56,7 +52,7 @@ export const GET_CART_DEL = localApi + '/v5/cart_del';
 // 购物车选中状态
 export const POST_CART_CHECK = localApi + '/v5/cart_check';
 // 订单提交
-export const ORDER_COMMIT = localApi + '/v5/order_commit';
+export const POST_ORDER_COMMIT = localApi + '/v5/order_commit';
 // 订单页面信息
 export const GET_SHOW_ORDER_COMMIT = localApi + '/v5/show_order_commit';
 // 获取城市列表
@@ -67,3 +63,12 @@ export const GET_SHOW_ADDRESS = localApi + '/v5/show_address';
 export const GET_FIND_ADRESS = localApi + '/v5/find_adress';
 // 订单详情
 export const GET_ORDER_FIND = localApi + '/v5/order_find';
+/*********************还未使用 */
+// 用户订单
+export const GET_USER_ORDER = localApi + '/v5/user_order';
+// 退出登录
+export const GET_LOGIN_OUT = localApi + '/v5/loginout';
+// 订单状态
+// ['已取消','待付款','待发货','待收货','待评价','已完成']
+// [0,1,2,3,4,5]
+export const GET_ORDER_STATUS = localApi + '/v5/order_status';

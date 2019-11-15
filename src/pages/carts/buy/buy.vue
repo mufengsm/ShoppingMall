@@ -122,7 +122,7 @@ export default {
 		},
 		placeOrder(){
 			this.$request.POST({
-				url:this.$api.apiUrl.ORDER_COMMIT,
+				url:this.$api.apiUrl.POST_ORDER_COMMIT,
 				data:{
 					message:this.remarks
 				}
