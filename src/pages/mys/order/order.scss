@@ -60,6 +60,11 @@ page, .content{
 			font-size: $font-base;
 			color: $font-color-dark;
 			position: relative;
+			.img{
+				width: 16px;
+				height: 16px;
+				margin-right: 2px;
+			}
 			.time{
 				flex: 1;
 			}
@@ -123,11 +128,11 @@ page, .content{
 				.attr-box{
 					font-size: $font-sm + 2upx;
 					color: $font-color-light;
-					padding: 10upx 12upx;
+					padding: 10upx 12upx 10upx 0;
 				}
 				.price{
 					font-size: $font-base + 2upx;
-					color: $font-color-dark;
+					color: #CF2D28;
 					&:before{
 						content: '￥';
 						font-size: $font-sm;
@@ -150,7 +155,7 @@ page, .content{
 			}
 			.price{
 				font-size: $font-lg;
-				color: $font-color-dark;
+				color: #CF2D28;
 				&:before{
 					content: '￥';
 					font-size: $font-sm;
@@ -322,4 +327,8 @@ page, .content{
 		100% {
 			opacity: .2
 		}
+	}
+	#freight{
+		display: inline-block;
+		margin: 0 10px;
 	}

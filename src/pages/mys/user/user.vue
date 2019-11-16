@@ -99,7 +99,7 @@ export default {
 		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__01.png`,text:"待付款",state:1,num:0},
 		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__03.png`,text:"待发货",state:2,num:0},
 		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__05.png`,text:"待收货",state:3,num:0},
-		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__07.png`,text:"带评价",state:4,num:0},
+		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__07.png`,text:"待评价",state:4,num:0},
 		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__09.png`,text:"退换货",state:5,num:0}
 	  ],
 	  my_wallet_item:[

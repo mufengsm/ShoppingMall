@@ -23,6 +23,12 @@ export const POST_ADDRESS_DELETE = localApi + '/v1/address/delete';
 export const POST_SET_DEFAULT = localApi + '/v1/address/set_default';
 // 微信支付
 export const POST_PAY_INDEX = localApi + '/v1/pay/index';
+/** 
+ * 获取我的订单数据
+ * @param {number}	status 	-状态码和v5接口对应
+ * @param {number}	page 	-页码
+ * */
+export const GET_ORDER_GET_LIST = localApi + '/v1/order/get_list';
 
 /******************* v4 ******************* */
 // 控区控价信息列表
@@ -63,9 +69,9 @@ export const GET_SHOW_ADDRESS = localApi + '/v5/show_address';
 export const GET_FIND_ADRESS = localApi + '/v5/find_adress';
 // 订单详情
 export const GET_ORDER_FIND = localApi + '/v5/order_find';
-/*********************还未使用 */
 // 用户订单
 export const GET_USER_ORDER = localApi + '/v5/user_order';
+/*********************还未使用 */
 // 退出登录
 export const GET_LOGIN_OUT = localApi + '/v5/loginout';
 // 订单状态

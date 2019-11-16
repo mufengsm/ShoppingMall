@@ -1,5 +1,6 @@
 <template>
 	<view class="content">
+		<!-- 头部分类 -->
 		<view class="navbar">
 			<view 
 				v-for="(item, index) in navList" :key="index" 
@@ -26,56 +27,72 @@
 						v-for="(item,index) in tabItem.orderList" :key="index"
 						class="order-item"
 					>
+						<!-- 每个订单的头部店铺 -->
 						<view class="i-top b-b">
-							<text class="time">{{item.time}}</text>
-							<text class="state" :style="{color: item.stateTipColor}">{{item.stateTip}}</text>
+							<image 
+							class="img"
+							src="https://meizi.manogue.com.cn/static/wap/images/cart_store_03.png"></image>
+							<text class="time">美资自营</text>
+							<text class="state" :style="{color: item.stateTipColor}">
+								{{item.stateTip}}
+								</text>
 							<text 
 								v-if="item.state===9" 
 								class="del-btn yticon icon-iconfontshanchu1"
 								@click="deleteOrder(index)"
 							></text>
 						</view>
-						
-						<scroll-view v-if="item.goodsList.length > 1" class="goods-box" scroll-x>
+						<!-- 如果是多个商品,显示横向滚动模块 -->
+						<!-- <scroll-view 
+						v-if="item.goodsList.length > 1" class="goods-box" scroll-x>
 							<view
 								v-for="(goodsItem, goodsIndex) in item.goodsList" :key="goodsIndex"
 								class="goods-item"
 							>
 								<image class="goods-img" :src="goodsItem.image" mode="aspectFill"></image>
 							</view>
-						</scroll-view>
+						</scroll-view> -->
+						<!-- 商品列表 -->
 						<view 
-							v-if="item.goodsList.length === 1" 
 							class="goods-box-single"
 							v-for="(goodsItem, goodsIndex) in item.goodsList" :key="goodsIndex"
 						>
 							<image class="goods-img" :src="goodsItem.image" mode="aspectFill"></image>
 							<view class="right">
-								<text class="title clamp">{{goodsItem.title}}</text>
-								<text class="attr-box">{{goodsItem.attr}}  x {{goodsItem.number}}</text>
-								<text class="price">{{goodsItem.price}}</text>
+								<text class="title clamp">{{goodsItem.goods_name}}</text>
+								<text class="attr-box">产品规格：{{goodsItem.name}} x {{goodsItem.goods_num}}</text>
+								<text class="price">{{goodsItem.goods_price}}</text>
 							</view>
 						</view>
-						
+						<!-- 总订单描述 -->
 						<view class="price-box">
-							共
-							<text class="num">7</text>
-							件商品 实付款
-							<text class="price">143.7</text>
+							共<text class="num">{{item.goodsList.length}}</text>
+							件商品 
+							<view id="freight">运费<text class="price">{{item.freight}}</text></view>
+							合计<text class="price">{{item.order_amount}}</text>
 						</view>
-						<view class="action-box b-t" v-if="item.state != 9">
-							<button class="action-btn" @click="cancelOrder(item)">取消订单</button>
-							<button class="action-btn recom">立即支付</button>
+						<!-- 订单操作按钮 -->
+						<view class="action-box b-t">
+							<button 
+							class="action-btn recom"
+							v-for="(item2,index) in item.btnArr"
+							:key="index"
+							:data-id="item.order_id"
+							:data-txt="item2"
+							@tap="operationOrder"
+							>
+								{{item2}}
+							</button>
 						</view>
 					</view>
-					 
+					 <!-- 正在加载组件 -->
 					<uni-load-more :status="tabItem.loadingType"></uni-load-more>
 					
 				</scroll-view>
 			</swiper-item>
 		</swiper>
 	</view>
-</template> 
+</template>
 
 <script>
 	import uniLoadMore from '@/components/UniLoadMore/UniLoadMore.vue';
@@ -91,31 +108,43 @@
 				tabCurrentIndex: 0,
 				navList: [{
 						state: 0,
+						page:0,
 						text: '全部',
 						loadingType: 'more',
 						orderList: []
 					},
 					{
 						state: 1,
+						page:0,
 						text: '待付款',
 						loadingType: 'more',
 						orderList: []
 					},
 					{
 						state: 2,
-						text: '待收货',
+						page:0,
+						text: '待发货',
 						loadingType: 'more',
 						orderList: []
 					},
 					{
 						state: 3,
-						text: '待评价',
+						page:0,
+						text: '待收货',
 						loadingType: 'more',
 						orderList: []
 					},
 					{
 						state: 4,
-						text: '售后',
+						page:0,
+						text: '待评价',
+						loadingType: 'more',
+						orderList: []
+					},
+					{
+						state: 5,
+						page:0,
+						text: '已完成',
 						loadingType: 'more',
 						orderList: []
 					}
@@ -128,6 +157,7 @@
 			 * 修复app端点击除全部订单外的按钮进入时不加载数据的问题
 			 * 替换onLoad下代码即可
 			 */
+			// +号是让可以隐式转换的字符串变为数字
 			this.tabCurrentIndex = +options.state;
 			// #ifndef MP
 			this.loadData()
@@ -137,21 +167,7 @@
 				this.loadData()
 			}
 			// #endif
-			this.$request.GET({
-				url:this.$api.apiUrl.GET_USER_ORDER
-			}).then(res=>{
-				console.log(res);
-			})
-			this.$request.GET({
-				url:this.$api.apiUrl.GET_LOGIN_OUT
-			}).then(res=>{
-				console.log(res);
-			})
-			this.$request.GET({
-				url:this.$api.apiUrl.GET_ORDER_STATUS
-			}).then(res=>{
-				console.log(res);
-			})
+			
 		},
 		 
 		methods: {
@@ -170,29 +186,31 @@
 					//防止重复加载
 					return;
 				}
-				
+
 				navItem.loadingType = 'loading';
-				
-				setTimeout(()=>{
-					let orderList = Json.orderList.filter(item=>{
-						//添加不同状态下订单的表现形式
-						item = Object.assign(item, this.orderStateExp(item.state));
-						//演示数据所以自己进行状态筛选
-						if(state === 0){
-							//0为全部订单
-							return item;
-						}
-						return item.state === state
+				this.$request.GET({
+					url:this.$api.apiUrl.GET_ORDER_GET_LIST,
+					data:{
+						page:this.navList[this.tabCurrentIndex].page++,
+						status:this.tabCurrentIndex
+					}
+				}).then(res=>{
+					let list = this.navList[this.tabCurrentIndex];
+					//添加不同状态下订单的表现形式
+					let orderList = res.map(item=>{
+						return item = Object.assign(item, this.orderStateExp(item.status,item.statusText));
 					});
-					orderList.forEach(item=>{
-						navItem.orderList.push(item);
-					})
-					//loaded新字段用于表示数据加载完毕，如果为空可以显示空白页
-					this.$set(navItem, 'loaded', true);
+					this.$set(list,"orderList",list.orderList.concat(orderList))
 					
 					//判断是否还有数据， 有改为 more， 没有改为noMore 
-					navItem.loadingType = 'more';
-				}, 600);	
+					if(res.length>0){
+						navItem.loadingType = 'more';
+					}else{
+						navItem.loadingType = 'noMore';
+					}
+					//loaded新字段用于表示数据加载完毕，如果为空可以显示空白页组件
+					this.$set(navItem, 'loaded', true);
+				})
 			}, 
 
 			//swiper 切换
@@ -237,22 +255,41 @@
 			},
 
 			//订单状态文字和颜色
-			orderStateExp(state){
+			orderStateExp(state,statusText){
 				let stateTip = '',
-					stateTipColor = '#fa436a';
+					stateTipColor = '#fa436a',
+					btnArr = [];
 				switch(+state){
+					case 0:
+						btnArr = ["订单详情"]
+						stateTip = statusText; 
+						stateTipColor = 'red';break;
 					case 1:
-						stateTip = '待付款'; break;
+						btnArr = ["订单详情","去支付"]
+						stateTip = statusText;
+						stateTipColor = 'red';break;
 					case 2:
-						stateTip = '待发货'; break;
-					case 9:
-						stateTip = '订单已关闭'; 
-						stateTipColor = '#909399';
+						btnArr = ["订单详情"]
+						stateTip = statusText;
+						stateTipColor = 'red';break;
+					case 3:
+						btnArr = ["查看物流","确认收货","订单详情"]
+						stateTip = statusText; 
+						stateTipColor = 'red';break;
+					case 4:
+						btnArr = ["订单详情","去评价"]
+						stateTip = statusText; 
+						stateTipColor = 'red';break;
+					case 5:
+						stateTip = statusText; 
+						stateTipColor = 'red';break;	
 						break;
-						
-					//更多自定义
 				}
-				return {stateTip, stateTipColor};
+				return {stateTip, stateTipColor,btnArr};
+			},
+			operationOrder(e){
+				console.log(e);
+				
 			}
 		},
 	}
