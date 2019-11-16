@@ -6,12 +6,15 @@
 				<view class="portrait-box">
 					<image 
 					class="portrait" 
-					:src="'https://meizi.manogue.com.cn/static/upload/avatar/10000.jpg?1571897191'"
+					:src="userInfoObj.avatar
+					?userInfoObj.avatar
+					:'https://meizi.manogue.com.cn/static/wap/images/myct_hd.png'"
 					@tap="jumpLogin"
 					></image>
 				</view>
 				<view class="info-box">
-					<view class="username">{{'游客'}}</view>
+					<view class="username">{{userInfoObj.nickname}}</view>
+					<view class="vip_leavel">VIP1</view>
 				</view>
 			</view>
 		</view>
@@ -20,10 +23,15 @@
 			<!-- 订单 -->
 			<view class="order-section">
 				<view class="my_order">
-					<text class="left">我的订单</text>
-					<text class="right"
-					@tap="navTo({state:0})"
-					>全部订单<text class="iconfont icon-youjiantou linH"></text></text>
+						<view class="left">
+							<image src="https://meizi.manogue.com.cn/static/wap/images/myct_indent_red.png"></image>
+							<view>我的订单</view>
+						</view>
+						<view 
+						class="right"
+						@tap="navTo({state:0})"
+						>全部订单<text class="iconfont icon-youjiantou linH"></text>
+						</view>
 				</view>
 					<view 
 					class="order-item" 
@@ -32,6 +40,9 @@
 					@tap="navTo(item)"
 					>
 						<image :src="item.img_url" mode="aspectFit"></image>
+						<view class="pos_icon"
+						v-if="item.num"
+						>{{item.num}}</view>
 						<text>{{item.text}}</text>
 					</view>
 			</view>
@@ -40,7 +51,8 @@
 			<image class="recommend_img" src="https://meizi.manogue.com.cn/static/wap/images/my_icon2_red.png" mode="aspectFit"></image>
 			<text class="recommend_txt">推广有礼</text>
 		</view>
-		<view class="my_wallet">
+		<!-- 我的钱包功能暂未开启 -->
+		<!-- <view class="my_wallet">
 			<view class="order-section">
 				<view class="my_order">
 					<text class="left">我的钱包 <text class="is_opening">未开通,去开通</text></text>
@@ -53,7 +65,7 @@
 					<view class="text">{{item.text}}</view>
 				</view>
 			</view>
-		</view>
+		</view> -->
 		<view class="other_function">
 			<image 
 			:src="item.img_url" 
@@ -81,15 +93,14 @@ export default {
 },
   data() {
     return {
-      coverTransform: 'translateY(0px)',
-      coverTransition: '0s',
-      moving: false,
+			userInfoObj:{},
+			orderList:[],
 	  order_status:[
-		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__01.png`,text:"待付款",state:1},
-		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__03.png`,text:"待发货",state:5},
-		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__05.png`,text:"待收货",state:2},
-		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__07.png`,text:"带评价",state:3},
-		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__09.png`,text:"退换货",state:4}
+		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__01.png`,text:"待付款",state:1,num:0},
+		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__03.png`,text:"待发货",state:2,num:0},
+		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__05.png`,text:"待收货",state:3,num:0},
+		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__07.png`,text:"带评价",state:4,num:0},
+		  {img_url:`${this.$imgUrl}/images/myct_indentl_grey__09.png`,text:"退换货",state:5,num:0}
 	  ],
 	  my_wallet_item:[
 		  {num:"--",text:"余额"},
@@ -107,6 +118,13 @@ export default {
     };
   },
   onLoad() {
+		this.$request.GET({
+			url:this.$api.apiUrl.GET_USER_ORDER
+		}).then(res=>{
+			this.userInfoObj = res.data.infomation;
+			this.orderList = res.data.order;
+			this.iconNum();
+		})
   },
   // #ifndef MP
   onNavigationBarButtonTap(e) {
@@ -132,191 +150,33 @@ export default {
     ...mapState(['hasLogin', 'userInfo']),
   },
   methods: {
-
-    /**
-			* 统一跳转接口,拦截未登录路由
-			* navigator标签现在默认没有转场动画，所以用view
-			*/
+		// 跳转到订单状态页面
     navTo(obj) {
       uni.navigateTo({
         url:`/pages/mys/order/order?state=${obj.state}`
       });
 		},
+		// 跳转到login页面
 		jumpLogin(){
 			uni.navigateTo({
 				url:'/pages/mys/login/login',
 			})
+		},
+		// 设置图标数量
+		iconNum(){
+			for (let i = 0; i < this.orderList.length; i++) {
+				const element = this.orderList[i];
+				for (let k = 0; k < this.order_status.length; k++) {
+					const element2 = this.order_status[k];
+					if(element.status === element2.state){
+						this.$set(this.order_status[k],"num",element.num)	
+					}
+				}
+			}
 		}
   },
 };
 </script>
 <style lang='scss'>
-	%flex-center {
-	 display:flex;
-	 flex-direction: column;
-	 justify-content: center;
-	 align-items: center;
-	}
-	%section {
-	  display:flex;
-	  justify-content: space-around;
-	  align-content: center;
-	  background: #fff;
-	  border-radius: 10upx;
-	}
-
-	.user-section{
-		height: 400upx;
-		padding: 100upx 30upx 0;
-		position:relative;
-		.header_bg{
-			position:absolute;
-			left: 0;
-			top: 0;
-			width: 100%;
-			height: 100%;
-			background-color: rgb(223,14,29);
-		}
-	}
-	.user-info-box{
-		height: 180upx;
-		display:flex;
-		align-items:center;
-		position:relative;
-		z-index: 1;
-		.portrait{
-			width: 130upx;
-			height: 130upx;
-			border:5upx solid #fff;
-			border-radius: 50%;
-			margin-bottom: 100upx;
-		}
-		.username{
-			font-size: $font-lg + 6upx;
-			color: $font-color-dark;
-			margin-left: 20upx;
-			margin-bottom: 150upx;
-		}
-	}
-
-	.cover-container{
-		background: $page-color-base;
-		margin-top: -150upx;
-		padding: 0 30upx;
-		position:relative;
-		background: #f5f5f5;
-		padding-bottom: 20upx;
-	}
-	.tj-sction{
-		width: 100%;
-		padding: 24upx 50upx;
-		border-bottom:25upx solid #f5f5f5;
-		overflow: hidden;
-		.recommend_img{
-			width: 12vw;
-			height: 12vw;
-			float: left;
-		}
-		.recommend_txt{
-			margin-left:20upx;
-			float: left;
-			font-weight: 400;
-			font-size: 17px;
-			color: #4c4c4c;
-			display: block;
-			line-height:96upx;
-		}
-	}
-	.order-section{
-		@extend %section;
-		padding: 28upx 0;
-		margin-top: 20upx;
-		height: 240upx;
-		flex-wrap:wrap;
-		.my_order{
-			width: 100%;
-			padding: 20upx 0;
-			.right{
-				float: right;
-				color: #999;
-				font-size:16px;
-				margin-right: 10px;
-				.icon-youjiantou{
-					font-weight: 700;
-					font-size: 20px;
-				}
-			}
-			.left{
-				padding-left: 30upx;
-				font-size: 17px;
-			}
-		}
-		.order-item{
-			@extend %flex-center;
-			width: 120upx;
-			height: 120upx;
-			border-radius: 10upx;
-			font-size: $font-sm;
-			color: $font-color-dark;
-			image{
-				width: 55%;	
-			}
-		}
-		.yticon{
-			font-size: 48upx;
-			margin-bottom: 18upx;
-			color: #fa436a;
-		}
-		.icon-shouhoutuikuan{
-			font-size:44upx;
-		}
-	}
-	.my_wallet{
-		.order-section{
-			height: auto;
-			padding: 0;
-			.my_order{
-				.left{
-					padding-left: 30px;
-					.is_opening{
-						font-size: 14px;
-						color: #df0e1d;
-						padding-left: 6px;
-						position: relative;
-						top: 1px;
-					}
-				} 
-			}
-		}
-		.my_wallet_items{
-			width: 100%;
-			margin-top:22upx;
-			border-bottom:25upx solid #f5f5f5;
-			overflow: hidden;
-			flex-wrap:wrap;
-			.wallet_item{
-				float: left;
-				margin-bottom: 22upx;
-				width: 33.333%;
-				text-align: center;
-				.num{
-					color: #e23c3c;
-				}
-				.text{
-					font-size: 15px;
-				}
-			}
-		}
-	}
-	.other_function{
-		height: 400upx;
-		.other_function_item{
-			width: 25%;
-			height: 200upx;
-			float: left;
-		}
-	}
-	.linH{
-		line-height: 10px;
-	}
+	@import "./user.scss";
 </style>

@@ -86,7 +86,8 @@
 		<view class="bottom_settlement"
 		v-if="orderInfo.order_status==='待付款'"
 		>
-			<button 
+			<button
+			:disabled="isOvertime" 
 			:style="{backgroundColor: isOvertime ? 'gray' : 'red'}"
 			class="btn" 
 			@tap='payment'>{{btnTxt}}</button>
@@ -114,7 +115,9 @@ export default {
 			btnTxt:"支付",
 			someObject:{
 				info:""
-			}
+			},
+
+
 		}
 	},
 	components:{
@@ -148,6 +151,7 @@ export default {
 			this.$set(this.someObject,"info",e)
 		},
 		payment(){
+			this.isOvertime = true;
 			this.$request.POST({
 				url:this.$api.apiUrl.POST_PAY_INDEX,
 				data:{
@@ -175,6 +179,7 @@ export default {
 					},
 					fail: (err)=>{
 						this.$api.msg('支付失败' + JSON.stringify(err))
+						this.isOvertime = false;
 						console.log('支付失败' + JSON.stringify(err));
 					}
 				});
