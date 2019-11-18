@@ -1,6 +1,9 @@
 <template>
     <view class="container">
-		<view class="user-section">
+			<view class="set_icon" @tap="jumpLogin">
+				<text class="iconfont icon-shezhi"></text>
+			</view>
+		<view class="user-section" @tap="jumpLogin">
 			<view class="header_bg"></view>
 			<view class="user-info-box">
 				<view class="portrait-box">
@@ -9,7 +12,6 @@
 					:src="userInfoObj.avatar
 					?userInfoObj.avatar
 					:'https://meizi.manogue.com.cn/static/wap/images/myct_hd.png'"
-					@tap="jumpLogin"
 					></image>
 				</view>
 				<view class="info-box">
@@ -159,7 +161,7 @@ export default {
 		// 跳转到login页面
 		jumpLogin(){
 			uni.navigateTo({
-				url:'/pages/mys/login/login',
+				url:'/pages/mys/info/info',
 			})
 		},
 		// 设置图标数量

@@ -171,6 +171,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/mys/info/info",
+			"style": {
+				"navigationBarTitleText": "个人资料",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {
