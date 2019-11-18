@@ -205,6 +205,20 @@ export default {
 		})
 		
 	},
+	onShow(){
+		// 每次进入时更改购物车显示数量
+		this.$request.GET({
+			url:this.$api.apiUrl.GET_GOODS_CART,
+		}).then(res=>{
+			if(res.data.length){
+			console.log(res.data.length);
+			uni.setTabBarBadge({
+				index: 1,
+				text: String(res.data.length)
+			})
+			}
+		})
+	},
 	onPageScroll(e){e.scrollTop > 100 ?  this.isRed = "rgb(233, 12, 29)" : this.isRed = false;},
 	methods: {
 		...mapActions(['ADD', 'GOODS_RECOMMEND']),

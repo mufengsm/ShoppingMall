@@ -455,40 +455,40 @@ export default {
                 }
             }
         },
-        addCart() {
-				if(this.selected === "请选择规格: "){
-                    this.toggleSpec("specs")
-                }else{
-                    // 查找选择到的id
-						const result = this.popup.spec.find(item => {
-							return item.name === this.findIsSelected().join(",")
-						})
-						this.$request.POST({
-								url: this.$api.apiUrl.POST_SAVE_CART,
-								data: {
-										goods_id: this.goodsId,
-										spec_id: result.id,
-										goods_num: this.purchaseQuantity,
-										is_page: "product"
-								}
-						}).then(res => {this.$api.msg(res.msg)});
-                }
-				},
-				// 查找哪些被选中了
-				findIsSelected(){
-					let list = this.popup.specChildList;
-						let arr = [];
-						for (let i = 0; i < list.length; i++) {
-							const element = list[i].name;
-								for (let k = 0; k < element.length; k++) {
-									const element2 = element[k];
-									if(element2.selected){
-										arr.push(list[i].allName+":"+element2.name)
-									}
-								}							
-						}						
-						return arr
-				}
+      addCart() {
+        if(this.selected === "请选择规格: "){
+            this.toggleSpec("specs")
+        }else{
+            // 查找选择到的id
+                const result = this.popup.spec.find(item => {
+                    return item.name === this.findIsSelected().join(",")
+                })
+                this.$request.POST({
+                        url: this.$api.apiUrl.POST_SAVE_CART,
+                        data: {
+                                goods_id: this.goodsId,
+                                spec_id: result.id,
+                                goods_num: this.purchaseQuantity,
+                                is_page: "product"
+                        }
+                }).then(res => {this.$api.msg(res.msg)});
+        }
+        },
+        // 查找哪些被选中了
+        findIsSelected(){
+            let list = this.popup.specChildList;
+                let arr = [];
+                for (let i = 0; i < list.length; i++) {
+                    const element = list[i].name;
+                        for (let k = 0; k < element.length; k++) {
+                            const element2 = element[k];
+                            if(element2.selected){
+                                arr.push(list[i].allName+":"+element2.name)
+                            }
+                        }							
+                }						
+                return arr
+        }
     }
 };
 </script>

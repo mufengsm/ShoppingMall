@@ -104,6 +104,18 @@ export default {
       const result = this.totalPrice();
       // console.log(result);
     })
+    // 每次进入时更改购物车显示数量
+		this.$request.GET({
+			url:this.$api.apiUrl.GET_GOODS_CART,
+		}).then(res=>{
+			if(res.data.length){
+			console.log(res.data.length);
+			uni.setTabBarBadge({
+				index: 1,
+				text: String(res.data.length)
+			})
+			}
+		})
    
   },
   methods: {
