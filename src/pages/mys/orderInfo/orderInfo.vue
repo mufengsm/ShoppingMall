@@ -75,7 +75,9 @@
 				<view class="price">¥{{totalPrice+freight}}</view>
 			</view>
 		</view>
-		<view class="bottom_message">
+		<view class="bottom_message"
+		v-if="orderInfo.message"
+		>
 			<text class="title">订单备注:</text>
 			<text class="info">{{orderInfo.message}}</text>
 		</view>
@@ -90,7 +92,18 @@
 			:disabled="isOvertime" 
 			:style="{backgroundColor: isOvertime ? 'gray' : 'red'}"
 			class="btn" 
-			@tap='payment'>{{btnTxt}}</button>
+			@tap='payment'>支付</button>
+		</view>
+		<!-- 尽量不与支付共用,下面是待收货 -->
+		<view class="bottom_settlement"
+		v-if="orderInfo.order_status==='待收货'"
+		>
+			<button
+			class="collected left" 
+			@tap='searchLogistics(address.order_id)'>查看物流</button>
+			<button
+			class="collected right" 
+			@tap='payment'>确认收货</button>
 		</view>
 	</view>
 </template>
@@ -112,7 +125,6 @@ export default {
 				order_status:""
 			},
 			isOvertime:false,
-			btnTxt:"支付",
 			someObject:{
 				info:""
 			},
@@ -127,8 +139,10 @@ export default {
 		this.$request.GET({
 			url:this.$api.apiUrl.GET_ORDER_FIND+"/"+e.id,
 		}).then(res=>{
-			if(res.code !== 200){this.$api.msg(res.msg)}
+			if(res.code !== 200){this.$api.msg(res.msg); return false}
 			let result = res.data
+			console.log(result);
+			
 			// 过期时间,非待付款状态过滤
 			this.expireTime = result.expire_time ? result.expire_time : null;
 			// 地址
@@ -184,7 +198,23 @@ export default {
 					}
 				});
 			})
-		}
+		},
+		// 确认收货
+		searchLogistics(id){
+			this.$request.POST({
+				url:this.$api.apiUrl.POST_ORDER_LOGISTICS,
+				data:{
+					order_id:id
+				}
+			}).then(res=>{
+				const result = res.errMsg;
+				uni.showModal({
+					content: result.shipping_code+" : "+result.shipping_name,
+					showCancel: false,
+					confirmText: "确定"
+				})
+			})
+		},
 	}
 }
 </script>

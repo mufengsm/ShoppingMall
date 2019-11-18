@@ -277,7 +277,7 @@
 						stateTip = statusText; 
 						stateTipColor = 'red';break;
 					case 4:
-						btnArr = ["订单详情","去评价"]
+						btnArr = ["去评价","订单详情"]
 						stateTip = statusText; 
 						stateTipColor = 'red';break;
 					case 5:
@@ -287,8 +287,57 @@
 				}
 				return {stateTip, stateTipColor,btnArr};
 			},
+			// 查找物流
+			searchLogistics(orderId){
+				this.$request.POST({
+					url:this.$api.apiUrl.POST_ORDER_LOGISTICS,
+					data:{
+						order_id:orderId
+					}
+				}).then(res=>{
+					const result = res.errMsg;
+					uni.showModal({
+						content: result.shipping_code+" : "+result.shipping_name,
+						showCancel: false,
+						confirmText: "确定"
+					})
+				})
+			},
+			// 确认收货
+			confirmReceipt(orderId){
+				uni.showModal({
+					title: '消息提示',
+					content: '确定已收到货了吗?',
+					success:(res)=> {
+						if (res.confirm) {
+							this.$request.POST({
+								url:this.$api.apiUrl.POST_ORDER_RECEIPT,
+								data:{
+									id:orderId
+								}
+							}).then(res=>{
+								console.log(res);
+							})
+						} else if (res.cancel) {return false}
+					}
+				});
+			},
 			operationOrder(e){
-				console.log(e);
+				let txt = e.target.dataset.txt,
+					id 	= e.target.dataset.id;
+				switch (txt) {
+					case "订单详情":
+						uni.navigateTo({
+							url:`/pages/mys/orderInfo/orderInfo?id=${id}`
+						})
+						break;
+					case "查看物流":
+						this.searchLogistics(id);
+					case "确认收货":
+						this.confirmReceipt(id);
+					default:
+						break;
+				} 
 				
 			}
 		},

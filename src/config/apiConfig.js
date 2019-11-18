@@ -29,6 +29,12 @@ export const POST_PAY_INDEX = localApi + '/v1/pay/index';
  * @param {number}	page 	-页码
  * */
 export const GET_ORDER_GET_LIST = localApi + '/v1/order/get_list';
+// 确认收货
+export const POST_ORDER_RECEIPT = localApi + '/v1/order/receipt';
+
+/******************* v3 ******************* */
+// 查询物流
+export const POST_ORDER_LOGISTICS = localApi + '/v3/Order/logistics';
 
 /******************* v4 ******************* */
 // 控区控价信息列表

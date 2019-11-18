@@ -206,4 +206,22 @@ page{
 		right: 0;
 		bottom: 0;
 	}
+	.collected{
+		width: 27%;
+		height: 55upx;
+		line-height: 55upx;
+		color: black;
+		border-radius: 30px;
+		border: 1px solid black;
+	}
+	.right{
+		position: absolute;
+		right: 3%;
+		bottom: 21%;
+	}
+	.left{
+		position: absolute;
+		right: 34%;
+		bottom: 21%;
+	}
 }

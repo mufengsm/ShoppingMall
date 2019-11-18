@@ -105,16 +105,7 @@ export default {
       // console.log(result);
     })
     // 每次进入时更改购物车显示数量
-		this.$request.GET({
-			url:this.$api.apiUrl.GET_GOODS_CART,
-		}).then(res=>{
-			if(res.data.length){
-			uni.setTabBarBadge({
-				index: 1,
-				text: String(res.data.length)
-			})
-			}
-		})
+		this.changeCartNum();
    
   },
   methods: {
@@ -240,6 +231,8 @@ export default {
                   this.slectAll();
                   // 更改总价和数量
                   this.totalPrice();
+                  // 更改角标
+		              this.changeCartNum();
                 })
             } else if (res.cancel) {
               return false;
@@ -287,6 +280,23 @@ export default {
           url:'/pages/carts/buy/buy'
         })
       }
+    },
+    changeCartNum(){
+      this.$request.GET({
+        url:this.$api.apiUrl.GET_GOODS_CART,
+      }).then(res=>{
+        if(res.data.length){
+          uni.setTabBarBadge({
+            index: 1,
+            text: String(res.data.length)
+          })
+        }else{
+          uni.setTabBarBadge({
+            index: 1,
+            text: "0"
+          })
+        }
+      })
     }
   },
 };
