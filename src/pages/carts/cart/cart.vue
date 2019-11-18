@@ -109,7 +109,6 @@ export default {
 			url:this.$api.apiUrl.GET_GOODS_CART,
 		}).then(res=>{
 			if(res.data.length){
-			console.log(res.data.length);
 			uni.setTabBarBadge({
 				index: 1,
 				text: String(res.data.length)

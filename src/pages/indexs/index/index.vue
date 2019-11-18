@@ -189,8 +189,6 @@ export default {
 			url:this.$api.apiUrl.GET_INDEX
 		}).then(res => {
 			if(res.code === 200){
-				console.log(res.data);
-				
 				// 获取首页各种数据
 				this.indexData = res.data;
 				// 首页轮播图
@@ -211,7 +209,6 @@ export default {
 			url:this.$api.apiUrl.GET_GOODS_CART,
 		}).then(res=>{
 			if(res.data.length){
-			console.log(res.data.length);
 			uni.setTabBarBadge({
 				index: 1,
 				text: String(res.data.length)
