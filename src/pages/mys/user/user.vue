@@ -113,7 +113,7 @@ export default {
 		  {img_url:`${this.$imgUrl}/images/myct_others_i_red_13.png`},
 		  {img_url:`${this.$imgUrl}/images/myct_others_i_red_19.png`},
 		  {img_url:`${this.$imgUrl}/images/myct_others_i_red_06.png`},
-		  {img_url:`${this.$imgUrl}/images/myct_others_i_red_21.png`}
+		  // {img_url:`${this.$imgUrl}/images/myct_others_i_red_21.png`}
 		],
     };
   },

@@ -80,7 +80,7 @@ export const GET_USER_ORDER = localApi + '/v5/user_order';
 /*********************还未使用 */
 // 退出登录
 export const GET_LOGIN_OUT = localApi + '/v5/loginout';
-// 订单状态
+// 订单状态;已使用v1的接口解决
 // ['已取消','待付款','待发货','待收货','待评价','已完成']
 // [0,1,2,3,4,5]
 export const GET_ORDER_STATUS = localApi + '/v5/order_status';

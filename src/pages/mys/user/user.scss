@@ -1,3 +1,8 @@
+page{
+	height: 100%;
+	width: 100vw;
+	background-color: #f5f5f5;
+}
 %flex-center {
 	 display:flex;
 	 flex-direction: column;
@@ -68,6 +73,7 @@
 		width: 100%;
 		padding: 24upx 50upx;
 		border-bottom:25upx solid #f5f5f5;
+		background-color: white;
 		overflow: hidden;
 		.recommend_img{
 			width: 12vw;
@@ -193,7 +199,6 @@
 		}
 	}
 	.other_function{
-		height: 400upx;
 		.other_function_item{
 			width: 25%;
 			height: 200upx;

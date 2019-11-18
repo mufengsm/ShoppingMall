@@ -94,17 +94,16 @@
         <view class="page-bottom">
             <navigator url="/pages/indexs/index/index" open-type="switchTab" class="p-b-btn">
                 <text class="yticon icon-xiatubiao--copy"></text>
-                <text>首页</text>
+                <text>客服</text>
             </navigator>
+            <view class="p-b-btn" :class="{ active: favorite }" @tap="toFavorite">
+                <text class="yticon icon-shoucang"></text>
+                <text>{{favorite ? "已收藏" : "收藏"}}</text>
+            </view>
             <navigator url="/pages/carts/cart/cart" open-type="switchTab" class="p-b-btn">
                 <text class="yticon icon-gouwuche"></text>
                 <text>购物车</text>
             </navigator>
-            <view class="p-b-btn" :class="{ active: favorite }" @tap="toFavorite">
-                <text class="yticon icon-shoucang"></text>
-                <text>收藏</text>
-            </view>
-
             <view class="action-btn-group">
                 <button type="primary" class="action-btn no-border buy-now-btn" @tap="buy">立即购买</button>
                 <button

@@ -131,7 +131,7 @@
 		<!-- 为您推荐 -->
 		<view class="f-header seckill">
 			<view class="scroll_title">为您推荐</view>
-			<text class="Assemble_text_2">更多</text>
+			<!-- <text class="Assemble_text_2">更多</text> -->
 		</view>
 
 		<view class="guess-section">

@@ -199,15 +199,15 @@
 			},
 			{
 				"pagePath": "pages/mys/priceControl/priceControl",
-				"iconPath": "static/tab-my.png",
-				"selectedIconPath": "static/tab-my-current.png",
-				"text": "商品控价"
+				"iconPath": "static/tab-cate.png",
+				"selectedIconPath": "static/tab-cate-current.png",
+				"text": "控区控价"
 			},
 			{
 				"pagePath": "pages/mys/user/user",
 				"iconPath": "static/tab-my.png",
 				"selectedIconPath": "static/tab-my-current.png",
-				"text": "我的"
+				"text": "个人中心"
 			}
 		]
 	}
