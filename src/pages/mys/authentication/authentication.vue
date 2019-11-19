@@ -1,122 +1,164 @@
 <template>
 	<view>
-		<view class="info_list">
-			<view class="item">
-				<view class="key"> 认证类型</view>
-				<picker 
-				class="value picker" 
-				@change="bindPickerChange" 
-				:value="typeIndex" 
-				:range="typeArray" 
-				range-key="name">
-					<view class="uni-input">{{typeArray[typeIndex].name}}
-						<text class="value iconfont icon-downarrow"></text>	
-					</view>
-				</picker>
-			</view>
+		<!-- 未认证 -->
+		<view v-if="authStatus===20013">
+			<view class="info_list">
+				<view class="item">
+					<view class="key"> 认证类型</view>
+					<picker 
+					class="value picker" 
+					@change="bindPickerChange" 
+					:value="typeIndex" 
+					:range="typeArray" 
+					range-key="name">
+						<view class="uni-input">{{typeArray[typeIndex].name}}
+							<text class="value iconfont icon-downarrow"></text>	
+						</view>
+					</picker>
+				</view>
 
-			<view class="info">
-				<view class="key">姓名</view>
-				<view class="value">
-					<input 
-					v-model="realName"
-					type="text" placeholder="请填写真实姓名" placeholder-class="ipt_pla">
-				</view>
-			</view>
-			<view class="info">
-				<view class="key">店铺名称</view>
-				<view class="value">
-					<input
-					v-model="shopName"
-					type="text" placeholder="请填写真实店铺名称" placeholder-class="ipt_pla">
-				</view>
-			</view>
-			<view class="info">
-				<view class="key">手机号码</view>
-				<view class="value">
-					<input 
-					v-model="phone"
-					maxlength="11"
-					type="text" placeholder="请填写手机号码" placeholder-class="ipt_pla">
-				</view>
-			</view>
-			<view class="info">
-					<view class="key">地址</view>
+				<view class="info">
+					<view class="key">姓名</view>
 					<view class="value">
-						<picker 
-						class="value picker"
-						mode="multiSelector" 
-						@columnchange="bindMultiPickerColumnChange"
-						@change="regionalChoice" 
-						:value="multiIndex" 
-						:range="multiArray"
-						range-key="name"
+						<input 
+						v-model="realName"
+						type="text" placeholder="请填写真实姓名" placeholder-class="ipt_pla">
+					</view>
+				</view>
+				<view class="info">
+					<view class="key">店铺名称</view>
+					<view class="value">
+						<input
+						v-model="shopName"
+						type="text" placeholder="请填写真实店铺名称" placeholder-class="ipt_pla">
+					</view>
+				</view>
+				<view class="info">
+					<view class="key">手机号码</view>
+					<view class="value">
+						<input 
+						v-model="phone"
+						maxlength="11"
+						type="text" placeholder="请填写手机号码" placeholder-class="ipt_pla">
+					</view>
+				</view>
+				<view class="info">
+						<view class="key">地址</view>
+						<view class="value">
+							<picker 
+							class="value picker"
+							mode="multiSelector" 
+							@columnchange="bindMultiPickerColumnChange"
+							@change="regionalChoice" 
+							:value="multiIndex" 
+							:range="multiArray"
+							range-key="name"
+							>
+								<text class="vlaue">{{address}} 
+									<text class="iconfont icon-youjiantou"></text>
+								</text>
+							</picker>
+						</view>
+				</view>
+				<view class="info">
+					<view class="key">详细地址</view>
+					<view class="value">
+						<input 
+						v-model="detailedAddress"
+						type="text" placeholder="街道、门牌号等详细地址" placeholder-class="ipt_pla">
+					</view>
+				</view>
+				<view class="info">
+					<view class="key">性别</view>
+					<picker 
+					class="value picker" 
+					@change="bindSexChange" 
+					:value="sexIndex" 
+					:range="sexArray" 
+					range-key="name">
+						<view class="uni-input">{{sexArray[sexIndex].name}}
+							<text class="value iconfont icon-youjiantou"></text>	
+						</view>
+					</picker>
+				</view>
+				<view class="info">
+					<view class="key">昵称</view>
+					<view class="value">
+						<input 
+						v-model="nickname"
+						type="text" placeholder="请输入昵称" placeholder-class="ipt_pla">
+					</view>
+				</view>
+				<view class="id_img">
+					<view class="upl">身份证正反面上传</view>
+					<view class="imgs">
+						<view class="img"
+						v-for="(item,index) in userIdImg"
+						:key="index"
+						@tap="choiceImg(item)"
 						>
-							<text class="vlaue">{{address}} 
-								<text class="iconfont icon-youjiantou"></text>
-							</text>
-						</picker>
+							<image :src="item.img"></image>
+						</view>					
 					</view>
-			</view>
-			<view class="info">
-				<view class="key">详细地址</view>
-				<view class="value">
-					<input 
-					v-model="detailedAddress"
-					type="text" placeholder="街道、门牌号等详细地址" placeholder-class="ipt_pla">
 				</view>
-			</view>
-			<view class="info">
-				<view class="key">性别</view>
-				<picker 
-				class="value picker" 
-				@change="bindSexChange" 
-				:value="sexIndex" 
-				:range="sexArray" 
-				range-key="name">
-					<view class="uni-input">{{sexArray[sexIndex].name}}
-						<text class="value iconfont icon-youjiantou"></text>	
-					</view>
-				</picker>
-			</view>
-			<view class="info">
-				<view class="key">昵称</view>
-				<view class="value">
-					<input 
-					v-model="nickname"
-					type="text" placeholder="请输入昵称" placeholder-class="ipt_pla">
-				</view>
-			</view>
-			<view class="id_img">
-				<view class="upl">身份证正反面上传</view>
-				<view class="imgs">
-					<view class="img"
-					v-for="(item,index) in userIdImg"
-					:key="index"
-					@tap="choiceImg(item)"
-					>
-						<image :src="item.img"></image>
-					</view>					
-				</view>
-			</view>
-			<view 
-			v-if="type === '店铺认证'"
-			class="id_img id_img_shop">
-				<view class="upl">店铺正面照与营业执照上传</view>
-				<view class="imgs">
-					<view class="img"
-					v-for="(item,index) in shopImg"
-					:key="index"
-					@tap="choiceImg(item)"
-					>
-						<image :src="item.img"></image>
+				<view 
+				v-if="type === '店铺认证'"
+				class="id_img id_img_shop">
+					<view class="upl">店铺正面照与营业执照上传</view>
+					<view class="imgs">
+						<view class="img"
+						v-for="(item,index) in shopImg"
+						:key="index"
+						@tap="choiceImg(item)"
+						>
+							<image :src="item.img"></image>
+						</view>
 					</view>
 				</view>
 			</view>
+			<button class="btn"
+			@tap="submit"
+			>提交审核信息</button>
 		</view>
-		<button class="btn"
-		@tap="submit"
-		>提交审核信息</button>
+		<!-- 等待审核 -->
+		<view v-if="authStatus===20011">
+			<view class="in_audit">
+				<image 
+				src="https://meizi.manogue.com.cn/static/wap/images/icon-authentication4.png"></image>
+			</view>
+			<button class="btn"
+			@tap="setAuthStatus"
+			>重新提交认证信息</button>
+			<button class="btn"
+			@tap="toIndex"
+			>好的,我知道了</button>
+		</view>
+		<!-- 未通过 -->
+		<view v-if="authStatus===20012">
+			<view class="in_audit">
+				<image 
+				src="https://meizi.manogue.com.cn/static/wap/images/icon-authentication5.png"></image>
+			</view>
+			<view class="reject_info">
+				<view class="reject_key">驳回信息:</view>
+				<view class="reject_value">
+					{{authMessage}}
+				</view>
+			</view>
+			<button class="btn"
+			@tap="setAuthStatus"
+			>重新提交认证信息</button>
+		</view>
+		<!-- 已通过 -->
+		<view v-if="authStatus===200">
+			<view class="in_audit">
+				<image 
+				src="https://meizi.manogue.com.cn/static/wap/images/icon-authentication3.png"></image>
+			</view>
+			<button class="btn"
+			@tap="toIndex"
+			>好的，我知道了</button>
+		</view>
 	</view>
 </template>
 <script>
@@ -147,6 +189,8 @@ export default {
 				{id:0,msg:"shopImg",img:"https://meizi.manogue.com.cn/static/wap/images/camera.png"},
 				{id:1,msg:"shopImg",img:"https://meizi.manogue.com.cn/static/wap/images/camera.png"}
 			],
+			authStatus:20013,
+			authMessage:"信息不全"
 		}
 	},
 	onLoad(){
@@ -157,11 +201,12 @@ export default {
 		})
 	},
 	onShow(){
+		// 检测认证状态
 		this.$request.GET({
 			url:this.$api.apiUrl.GET_USER_AUTH_STATUS,
 		}).then(res=>{
-			console.log(res);
-			
+			this.authStatus = res.code;
+			if(res.data.message){this.authMessage=res.data.message;}
 		})
 	},
 	methods:{
@@ -287,6 +332,11 @@ export default {
 			this.$request.GET({
 				url:this.$api.apiUrl.GET_USER_INFO
 			}).then(res=>{
+				//显示消息提示框
+				uni.showLoading({
+					title:"正在提交信息",
+					mask: true
+				})
 				this.$request.POST({
 					url:this.$api.apiUrl.POST_USER_AUTHENTICATION,
 					data:{
@@ -302,11 +352,13 @@ export default {
 						auth_pic:this.computImg,
 					}
 				}).then(res=>{
+					uni.hideLoading();
 					if(res.errCode === 200){
 						uni.showToast({
 							title:res.errMsg,
 							success:()=>{
-								console.log(res,"309")
+								// 显示审核页面
+								this.authStatus=20011;
 							}
 						})
 					}else{
@@ -337,6 +389,13 @@ export default {
 					}
 				}
 			})
+		},
+		// 重新提交更改组件显示
+		setAuthStatus(){this.authStatus=20013;},
+		toIndex(){
+			uni.switchTab({
+				url:"/pages/indexs/index/index"
+			});
 		}
 	},
 	computed:{
@@ -461,5 +520,30 @@ export default {
 	border-radius:30px;
 	background-color: rgba(236,99,80,1);
 	color: white; 
+}
+.in_audit{
+	width: 100%;
+    height: 55vh;
+    border-top: 20px solid #F1F1F1;
+    text-align: center;
+	padding-top: 30px;
+	image{
+		height: 100%;
+		border: none;
+		vertical-align: middle;
+	}
+}
+.reject_info{
+	.reject_key{
+		margin-left: 7vh;
+		margin-bottom: 1vh;
+	}
+	.reject_value{
+		width: 70vw;
+		padding: 8px;
+		margin-left: 10vh;
+		background-color: #eee;
+		border-radius: 10px;
+	}
 }
 </style>
