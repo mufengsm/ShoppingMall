@@ -38,6 +38,8 @@ export const POST_USER_EDIT_INFO = localApi + '/v1/user/edit_info';
 /******************* v3 ******************* */
 // 查询物流
 export const POST_ORDER_LOGISTICS = localApi + '/v3/Order/logistics';
+// 会员认证
+export const POST_USER_AUTHENTICATION = localApi + '/v3/User/authentication';
 
 /******************* v4 ******************* */
 // 控区控价信息列表
@@ -82,6 +84,8 @@ export const GET_ORDER_FIND = localApi + '/v5/order_find';
 export const GET_USER_ORDER = localApi + '/v5/user_order';
 // 个人资料
 export const GET_USER_INFO = localApi + '/v5/user_info';
+// 认证状态
+export const GET_USER_AUTH_STATUS = localApi + '/v5/user_auth_status';
 /*********************还未使用 */
 // 退出登录
 export const GET_LOGIN_OUT = localApi + '/v5/loginout';

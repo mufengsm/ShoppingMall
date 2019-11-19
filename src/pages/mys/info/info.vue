@@ -89,23 +89,26 @@ export default {
 			this.$request.GET({
 				url:this.$api.apiUrl.GET_LOGIN_OUT
 			}).then(res=>{
-				// 清除本地存的登录信息
-				localStorage.setItem("access_token","")
-				uni.hideLoading();
-				uni.showToast({
-					title:"退出成功",
-					success:(res)=>{
-						uni.switchTab({
-							url:"/pages/indexs/index/index"
-						});
-					}
-				})
-			}).catch(err=>{
-				uni.hideLoading();
-				this.$api.msg("退出失败")
-				// uni.switchTab({
-				// 	url:"/pages/indexs/index/index"
-				// });
+				if(res.code === 200){
+					// 清除本地存的登录信息
+					uni.setStorage({
+						key: 'access_token',
+						data: '',
+						success:  ()=> {
+							uni.hideLoading();
+							uni.showToast({
+								title:"退出成功",
+								success:(res)=>{
+									uni.switchTab({
+										url:"/pages/indexs/index/index"
+									});
+								}
+							})
+						}
+					});
+				}else{
+					this.$api.msg(res.msg)
+				}
 			})
 		},
 		login(){

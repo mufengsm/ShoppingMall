@@ -151,6 +151,7 @@
 				</view>
 			</view>
 		</view>
+		<Authentication v-if="isAuth" />
 	</view>
 </template>
 
@@ -161,6 +162,7 @@ const { mapState, mapActions } = createNamespacedHelpers('storeCommodity');
 export default {
 	data() {
 		return {
+			isAuth:false,
 			indicatorDots:false,
 			isIndexData:false,
 			carouselList: [],
@@ -218,6 +220,16 @@ export default {
 					index: 1,
 					text: "0"
 				})
+			}
+		})
+		// 认证是否通过
+		this.$request.GET({
+			url:this.$api.apiUrl.GET_USER_AUTH_STATUS,
+		}).then(res=>{
+			if(res.code !== 200){
+				this.isAuth = true;
+			}else{
+				this.isAuth = false;
 			}
 		})
 	},

@@ -78,6 +78,7 @@
 			>
 			</image>
 		</view>
+		<Authentication v-if="isAuth" />
     </view>
 </template>
 <script>
@@ -95,6 +96,7 @@ export default {
 },
   data() {
     return {
+			isAuth:false,
 			userInfoObj:{},
 			orderList:[],
 	  order_status:[
@@ -126,6 +128,16 @@ export default {
 			this.userInfoObj = res.data.infomation;
 			this.orderList = res.data.order;
 			this.iconNum();
+		})
+		// 认证是否通过
+		this.$request.GET({
+			url:this.$api.apiUrl.GET_USER_AUTH_STATUS,
+		}).then(res=>{
+			if(res.code !== 200){
+				this.isAuth = true;
+			}else{
+				this.isAuth = false;
+			}
 		})
   },
   // #ifndef MP

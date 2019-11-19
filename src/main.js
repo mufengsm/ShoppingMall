@@ -13,6 +13,9 @@ Vue.component('BigSwiper', BigSwiper);
 // 加载更多数据时显示正在加载
 import UniLoadMore from '@/components/UniLoadMore/UniLoadMore';
 Vue.component('UniLoadMore', UniLoadMore);
+// 认证组件
+import Authentication from '@/components/Authentication/Authentication';
+Vue.component('Authentication', Authentication);
 /*********全局组件注册 */
 
 // 关闭vue默认提示
