@@ -182,6 +182,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/mys/modifyingData/modifyingData",
+			"style": {
+				"navigationBarTitleText": "修改资料",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {

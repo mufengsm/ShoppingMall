@@ -119,7 +119,7 @@ export default {
 		],
     };
   },
-  onLoad() {
+  onShow() {
 		this.$request.GET({
 			url:this.$api.apiUrl.GET_USER_ORDER
 		}).then(res=>{
@@ -159,10 +159,13 @@ export default {
       });
 		},
 		// 跳转到login页面
-		jumpLogin(){
+		jumpLogin(){			
 			uni.navigateTo({
-				url:'/pages/mys/info/info',
+				url:'/pages/mys/info/info?userInfo',
 			})
+			// uni.navigateTo({
+			// 	url:'/pages/mys/login/login',
+			// })
 		},
 		// 设置图标数量
 		iconNum(){

@@ -1,10 +1,11 @@
 // 定义api接口方便接口更改
 // 定义图片地址
-export const imgUrl = 'https://meizi.manogue.com.cn/static/wap';
+export const imgUrl = 'https://meizi.pingbbs.com:444/static/wap';
 // 本地接口
 const localApi = 'http://localhost:8888';
+// const localApi = 'https://meizi.pingbbs.com:444';
 // 线上测试接口
-const networkApi = 'http://meizi.pingbbs.com';
+const networkApi = 'https://meizi.pingbbs.com';
 // 线上正式接口
 const formalNetworkApi = 'https://meizi.manogue.com.cn';
 // 局域网接口
@@ -31,6 +32,8 @@ export const POST_PAY_INDEX = localApi + '/v1/pay/index';
 export const GET_ORDER_GET_LIST = localApi + '/v1/order/get_list';
 // 确认收货
 export const POST_ORDER_RECEIPT = localApi + '/v1/order/receipt';
+// 更新用户信息
+export const POST_USER_EDIT_INFO = localApi + '/v1/user/edit_info';
 
 /******************* v3 ******************* */
 // 查询物流
@@ -77,6 +80,8 @@ export const GET_FIND_ADRESS = localApi + '/v5/find_adress';
 export const GET_ORDER_FIND = localApi + '/v5/order_find';
 // 用户订单
 export const GET_USER_ORDER = localApi + '/v5/user_order';
+// 个人资料
+export const GET_USER_INFO = localApi + '/v5/user_info';
 /*********************还未使用 */
 // 退出登录
 export const GET_LOGIN_OUT = localApi + '/v5/loginout';

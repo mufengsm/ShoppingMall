@@ -11,24 +11,18 @@
 				</view>
 				<view class="input-item">
 					<input
-						type="number"
-						:value="mobile"
+						type="text"
+						v-model="mobile"
 						placeholder="账号/手机号/用户名"
-						maxlength="11"
-						data-key="mobile"
-						@input="inputChange"
 					/>
 				</view>
 				<view class="input-item">
 					<input
-						type="mobile"
-						:value="password"
+						type="text"
+						v-model="password"
 						placeholder="密码"
 						placeholder-class="input-empty"
-						maxlength="20"
 						password
-						data-key="password"
-						@input="inputChange"
 						@confirm="toLogin"
 					/>
 				</view>
@@ -64,10 +58,6 @@ export default {
   },
   methods: {
     ...mapMutations(['LOGIN']),
-    inputChange(e) {
-      const { key } = e.currentTarget.dataset;
-      this[key] = e.detail.value;
-    },
     navBack() {
       uni.navigateBack();
     },
