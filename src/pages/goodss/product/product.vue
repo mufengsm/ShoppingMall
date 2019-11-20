@@ -411,9 +411,9 @@ export default {
             this.favorite = !this.favorite;
         },
         buy() {
-            uni.navigateTo({
-                url: "/pages/mys/login/login"
-            });
+            // uni.navigateTo({
+            //     url: "/pages/mys/login/login"
+            // });
         },
 				stopPrevent() {},
 				// 分享

@@ -52,13 +52,13 @@
 				<view class="key"> 退出登录</view>
 			</view>
 		</view>
-		<view class="info_list"
+		<!-- <view class="info_list"
 		@tap="login"
 		>
 			<view class="item item_id id_login_out">
 				<view class="key"> 现在登录</view>
 			</view>
-		</view>
+		</view> -->
 	</view>
 </template>
 <script>

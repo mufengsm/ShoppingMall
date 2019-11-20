@@ -79,6 +79,8 @@
     </view>
 </template>
 <script>
+import { createNamespacedHelpers } from 'vuex';
+const { mapState, mapMutations } = createNamespacedHelpers('storeCommodity');
 var myreg = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1})|(19[0-9]{1}))+\d{8})$/;
 var myregs = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
 export default {
@@ -90,10 +92,12 @@ export default {
 			isPassword:"",
 			isBtn:false,
 			btnTxt:"获取验证码",
-			verificationCode:""
+			verificationCode:"",
+			...mapState(['isLogin'])
 		};
 	},
 	methods:{
+		...mapMutations(['LOGIN']),
 		// 检测手机是否被注册
 		checkPhone(){
 			if(myreg.test(this.phone)){
@@ -167,7 +171,8 @@ export default {
 			this.$request.POST({
 				url:this.$api.apiUrl.POST_SMS_CHECK,
 				data:{
-					code:this.verificationCode
+					code:this.verificationCode,
+					phone:this.phone
 				}
 			}).then(res=>{
 				if(res.errCode===200){
@@ -179,10 +184,12 @@ export default {
 							confirm_password:this.isPassword,
 						}
 					}).then(res=>{
+						this.userLogin();
 						if(res.errcode === 200){
-							uni.switchTab({
-								url:"/pages/mys/user/user"
-							});
+							uni.showToast({
+								title:"注册成功",
+								success:()=>{this.userLogin();}
+							})
 						}else{
 							this.$api.msg(res.errmsg)
 						}
@@ -191,7 +198,43 @@ export default {
 					this.$api.msg(res.errMsg)
 				}
 			})
-		}		
+		},
+		userLogin(){
+			this.$request.POST({
+				url:this.$api.apiUrl.POST_USER_LOGIN,
+				data:{
+					username:this.phone,
+					password:this.password
+				}
+			}).then(res => {
+				if(res.code === 200){
+					uni.setStorage({
+						key: 'access_token',
+						data: res.data,
+						success:()=>{
+							Promise.all([this.LOGIN({"isLogin":!this.isLogin()})]).then(() =>{
+								uni.showToast({
+									title: res.msg
+								});
+								uni.switchTab({
+									url:"/pages/mys/user/user"
+								});
+							});		
+						},
+						fail:()=>{
+							uni.showToast({
+								title: "Token设置失败，请自行登录"
+							});
+						}
+					});
+				}else{
+					uni.showToast({
+						title:res.msg,
+						icon:"none"
+					});
+				}
+			})
+		}
 	}
 };
 </script>

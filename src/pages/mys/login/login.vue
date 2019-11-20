@@ -31,9 +31,9 @@
 				<button class="confirm-btn" @tap="toLogin" :disabled="logining">登录</button>
 			</view>
 			<view class="forget_register">
-				<view class="forget-section">
+				<!-- <view class="forget-section">
 					忘记密码?
-				</view>
+				</view> -->
 				<view class="register-section">
 					还没有账号?
 					<text @tap="toRegist">马上注册</text>
@@ -91,8 +91,8 @@ export default {
 							uni.showToast({
 								title: res.msg
 							});
-							uni.navigateBack({
-								delta: 1
+							uni.switchTab({
+								url:"/pages/mys/user/user"
 							});
 						});		
 					},
