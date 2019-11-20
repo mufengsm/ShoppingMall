@@ -5,6 +5,8 @@ import App from './App';
 import request from './utils/request.js';
 // 引入自定义工具函数
 import { msg, json, prePage, apiUrl,imgUrl } from './utils';
+// 引入路由助手
+import { router } from './utils/routerHelper.js';
 
 /*********全局组件注册 */
 // 首页轮播图和商品详情轮播图
@@ -24,7 +26,10 @@ Vue.config.productionTip = false;
 Vue.prototype.$store = store;
 // 公共方法
 Vue.prototype.$api = { msg, json, prePage, apiUrl };
+// 图片地址
 Vue.prototype.$imgUrl = imgUrl;
+// 路由助手
+Vue.prototype.$route = { router };
 
 
 // 挂在全局请求方式

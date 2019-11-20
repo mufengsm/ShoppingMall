@@ -105,7 +105,10 @@
                 <text>购物车</text>
             </navigator>
             <view class="action-btn-group">
-                <button type="primary" class="action-btn no-border buy-now-btn" @tap="buy">立即购买</button>
+                <button 
+                type="primary" 
+                class="action-btn no-border buy-now-btn" 
+                @tap="addCart">立即购买</button>
                 <button
                     type="primary"
                     class="action-btn no-border add-cart-btn"
@@ -463,6 +466,7 @@ export default {
         if(this.selected === "请选择规格: "){
             this.toggleSpec("specs")
         }else{
+            this.navToLogin();
             // 查找选择到的id
                 const result = this.popup.spec.find(item => {
                     return item.name === this.findIsSelected().join(",")
@@ -492,6 +496,15 @@ export default {
                         }							
                 }						
                 return arr
+        },
+        navToLogin(){
+        // 页面鉴权
+        const TOKEN = uni.getStorageSync('access_token');
+            if (!TOKEN){
+                uni.navigateTo({
+                    url:"/pages/mys/login/login",
+                })
+            }
         }
     }
 };

@@ -1,5 +1,6 @@
 <template>
-	<view v-if="isLoding" class="container">
+	<view v-if="isWrapShow">
+    <view v-if="isLoding" class="container">
 		<!-- 空白页 -->
 		<view class="empty" v-if="!cartData.length">
 			<image src="https://meizi.manogue.com.cn/static/wap/images/emptycart.png" mode="scaleToFill"></image>
@@ -67,6 +68,7 @@
         <view class="settlement" @tap="shoppingSettlement">结算({{totalCommodity}})</view>
 			</view>
 		</view>
+  </view>
 </template>
 
 <script>
@@ -79,6 +81,7 @@ export default {
   },
   data() {
     return {
+      isWrapShow:false,
       cartData:[],
       isRadio:false,
       isLoding:false,
@@ -89,6 +92,8 @@ export default {
     };
   },
   onShow(){
+    // 路由鉴权
+    this.navToLogin();
     this.$request.GET({
       url: this.$api.apiUrl.GET_GOODS_CART
     }).then(res=>{
@@ -297,6 +302,27 @@ export default {
           })
         }
       })
+    },
+    navToLogin(){
+      // 页面鉴权
+      const TOKEN = uni.getStorageSync('access_token');
+      if(!this.isWrapShow){
+          if (!TOKEN){
+          uni.navigateTo({
+            url:"/pages/mys/login/login",
+            success:()=>{
+              this.isWrapShow = true;
+            }
+          })
+        }
+      }else{
+        uni.switchTab({
+            url:"/pages/indexs/index/index",
+            success:()=>{
+              this.isWrapShow = false;
+            }
+        })
+      }
     }
   },
 };

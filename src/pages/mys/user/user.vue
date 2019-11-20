@@ -1,5 +1,5 @@
 <template>
-    <view class="container">
+    <view class="container" v-if="isWrapShow">
 			<view class="set_icon" @tap="jumpLogin">
 				<text class="iconfont icon-shezhi"></text>
 			</view>
@@ -96,6 +96,7 @@ export default {
 },
   data() {
     return {
+			isWrapShow:false,
 			isAuth:false,
 			userInfoObj:{},
 			orderList:[],
@@ -120,8 +121,27 @@ export default {
 		  // {img_url:`${this.$imgUrl}/images/myct_others_i_red_21.png`}
 		],
     };
-  },
+	},
   onShow() {
+		// 页面鉴权
+		const TOKEN = uni.getStorageSync('access_token');
+		if(!this.isWrapShow){
+				if (!TOKEN){
+				uni.navigateTo({
+					url:"/pages/mys/login/login",
+					success:()=>{
+						this.isWrapShow = true;
+					}
+				})
+			}
+		}else{
+			uni.switchTab({
+					url:"/pages/indexs/index/index",
+					success:()=>{
+						this.isWrapShow = false;
+					}
+			})
+		}
 		this.$request.GET({
 			url:this.$api.apiUrl.GET_USER_ORDER
 		}).then(res=>{
@@ -181,13 +201,15 @@ export default {
 		},
 		// 设置图标数量
 		iconNum(){
-			for (let i = 0; i < this.orderList.length; i++) {
-				const element = this.orderList[i];
-				for (let k = 0; k < this.order_status.length; k++) {
-					const element2 = this.order_status[k];
-					if(element.status === element2.state){
-						this.$set(this.order_status[k],"num",element.num)	
-					}
+			if(this.orderList){
+					for (let i = 0; i < this.orderList.length; i++) {
+						const element = this.orderList[i];
+						for (let k = 0; k < this.order_status.length; k++) {
+								const element2 = this.order_status[k];
+								if(element.status === element2.state){
+									this.$set(this.order_status[k],"num",element.num)	
+								}
+						}
 				}
 			}
 		}
