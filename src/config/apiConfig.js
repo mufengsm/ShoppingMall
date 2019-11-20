@@ -40,6 +40,14 @@ export const POST_USER_EDIT_INFO = localApi + '/v1/user/edit_info';
 export const POST_ORDER_LOGISTICS = localApi + '/v3/Order/logistics';
 // 会员认证
 export const POST_USER_AUTHENTICATION = localApi + '/v3/User/authentication';
+// 手机号检查是否被使用
+export const POST_USER_CHECK = localApi + '/v3/User/check/';
+// 获取手机验证码
+export const POST_SMS_GETCODE = localApi + '/v3/Sms/getCode';
+// 用户注册
+export const POST_USER_REGISTER = localApi + '/v3/user/register';
+// 验证码检测
+export const POST_SMS_CHECK = localApi + '/v3/Sms/check/';
 
 /******************* v4 ******************* */
 // 控区控价信息列表
@@ -86,9 +94,9 @@ export const GET_USER_ORDER = localApi + '/v5/user_order';
 export const GET_USER_INFO = localApi + '/v5/user_info';
 // 认证状态
 export const GET_USER_AUTH_STATUS = localApi + '/v5/user_auth_status';
-/*********************还未使用 */
 // 退出登录
 export const GET_LOGIN_OUT = localApi + '/v5/loginout';
+/*********************还未使用 */
 // 订单状态;已使用v1的接口解决
 // ['已取消','待付款','待发货','待收货','待评价','已完成']
 // [0,1,2,3,4,5]

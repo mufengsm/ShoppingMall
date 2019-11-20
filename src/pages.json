@@ -197,7 +197,29 @@
 		{
 			"path": "pages/mys/authentication/authentication",
 			"style": {
-				"navigationBarTitleText": "会员认证",
+				"navigationBarTitleText": "认证",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/register/register",
+			"style": {
+				"navigationBarTitleText": "注册",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/indexs/useragreement/useragreement",
+			"style": {
+				"navigationBarTitleText": "多多美协议",
 				"app-plus": {
 					"titleNView": {
 						"type": "transparent"

@@ -27,14 +27,18 @@
 					/>
 				</view>
 			</view>
-			<button class="confirm-btn" @tap="toLogin" :disabled="logining">登录</button>
-			<view class="forget-section">
-				忘记密码?
+			<view>
+				<button class="confirm-btn" @tap="toLogin" :disabled="logining">登录</button>
 			</view>
-		</view>
-		<view class="register-section">
-			还没有账号?
-			<text @tap="toRegist">马上注册</text>
+			<view class="forget_register">
+				<view class="forget-section">
+					忘记密码?
+				</view>
+				<view class="register-section">
+					还没有账号?
+					<text @tap="toRegist">马上注册</text>
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -62,7 +66,9 @@ export default {
       uni.navigateBack();
     },
     toRegist() {
-      this.$api.msg('去注册');
+      uni.navigateTo({
+		  url:"/pages/mys/register/register"
+	  })
     },
     async toLogin() {
 		uni.showLoading({
@@ -196,7 +202,7 @@ export default {
 		height: 76upx;
 		line-height: 76upx;
 		border-radius: 50px;
-		margin-top: 70upx;
+		margin-top: 40upx;
 		background: rgb(236,99,80);
 		color: #fff;
 		font-size: $font-lg;
@@ -208,12 +214,8 @@ export default {
 		font-size: $font-sm+2upx;
 		color: $font-color-spec;
 		text-align: center;
-		margin-top: 40upx;
 	}
 	.register-section{
-		position:absolute;
-		left: 0;
-		bottom: 100upx;
 		width: 100%;
 		font-size: $font-sm+2upx;
 		color: $font-color-base;
@@ -222,5 +224,9 @@ export default {
 			color: $font-color-spec;
 			margin-left: 10upx;
 		}
+	}
+	.forget_register{
+		margin-top: 30upx;
+		line-height: 30px;
 	}
 </style>
