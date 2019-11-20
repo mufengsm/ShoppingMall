@@ -96,7 +96,7 @@ export default {
 		this.loadingData();
 	},
 	onUnload(e){
-		console.log(e);
+		// console.log(e);
 		
 	},
 	methods:{
@@ -113,7 +113,7 @@ export default {
 					this.address = res.data.address;
 				}
 				this.goods = res.data.goods;
-				console.log(this.goods);
+				// console.log(this.goods);
 				for (const key of this.goods) {
 					this.totalPrice += Number(key.goods_price) * key.goods_num
 					this.freight = this.totalPrice>300 ? 0 : 6;

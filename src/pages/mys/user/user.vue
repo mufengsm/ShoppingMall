@@ -124,24 +124,7 @@ export default {
 	},
   onShow() {
 		// 页面鉴权
-		const TOKEN = uni.getStorageSync('access_token');
-		if(!this.isWrapShow){
-				if (!TOKEN){
-				uni.navigateTo({
-					url:"/pages/mys/login/login",
-					success:()=>{
-						this.isWrapShow = true;
-					}
-				})
-			}
-		}else{
-			uni.switchTab({
-					url:"/pages/indexs/index/index",
-					success:()=>{
-						this.isWrapShow = false;
-					}
-			})
-		}
+		this.navToLogin();
 		this.$request.GET({
 			url:this.$api.apiUrl.GET_USER_ORDER
 		}).then(res=>{
@@ -212,6 +195,31 @@ export default {
 						}
 				}
 			}
+		},
+		navToLogin(){
+			const TOKEN = uni.getStorageSync('access_token');
+				if (!TOKEN){
+					if(this.isWrapShow){
+						uni.switchTab({
+							url:"/pages/indexs/index/index",
+							success:()=>{
+								this.isWrapShow = false;
+							}
+						})
+					}else{
+						// 没有登录直接到登录页面
+						uni.navigateTo({
+							url:"/pages/mys/login/login",
+							success:()=>{
+								// 到登录页面后显示user页面
+								this.isWrapShow = true;
+							}
+						})
+					}
+				}else{
+					// 如果登录了直接显示user页面
+					this.isWrapShow = true;
+				}
 		}
   },
 };

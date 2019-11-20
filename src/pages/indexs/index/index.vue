@@ -256,7 +256,7 @@ export default {
 			});
 		},
 		btn(e){
-			console.log(e)
+			// console.log(e)
 		},
 		classification(e){
 			const tags_id = e.id

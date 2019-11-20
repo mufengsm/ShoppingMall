@@ -305,7 +305,7 @@ export default {
                     page: 1
                 }
             }).then(res => {
-                console.log(res, "商品评论");
+                // console.log(res, "商品评论");
             });
     },
     methods: {
@@ -466,12 +466,18 @@ export default {
         if(this.selected === "请选择规格: "){
             this.toggleSpec("specs")
         }else{
+            // 是否登录
             this.navToLogin();
-            // 查找选择到的id
-                const result = this.popup.spec.find(item => {
-                    return item.name === this.findIsSelected().join(",")
-                })
-                this.$request.POST({
+            // 查看是否认证
+            this.$request.GET({
+                url:this.$api.apiUrl.GET_USER_AUTH_STATUS
+            }).then(res=>{
+                if(res.code === 200){
+                    // 查找选择到的id
+                    const result = this.popup.spec.find(item => {
+                        return item.name === this.findIsSelected().join(",")
+                    })
+                    this.$request.POST({
                         url: this.$api.apiUrl.POST_SAVE_CART,
                         data: {
                                 goods_id: this.goodsId,
@@ -479,7 +485,12 @@ export default {
                                 goods_num: this.purchaseQuantity,
                                 is_page: "product"
                         }
-                }).then(res => {this.$api.msg(res.msg)});
+                    }).then(res => {this.$api.msg(res.msg)});
+                }else{
+                    this.$api.msg("请先认证")
+                }
+            })
+            
         }
         },
         // 查找哪些被选中了

@@ -314,14 +314,18 @@ export default {
               this.isWrapShow = true;
             }
           })
+        }else{
+          this.isWrapShow = true;
         }
       }else{
-        uni.switchTab({
-            url:"/pages/indexs/index/index",
-            success:()=>{
-              this.isWrapShow = false;
-            }
-        })
+        if (!TOKEN){
+          uni.switchTab({
+              url:"/pages/indexs/index/index",
+              success:()=>{
+                this.isWrapShow = false;
+              }
+          })
+        }
       }
     }
   },

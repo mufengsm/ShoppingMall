@@ -42,7 +42,7 @@ const uploadFile = function (filePath, dir, successc, failc) {
       'success_action_status': '200',
     },
     success: function (res) {
-			console.log(res);
+			// console.log(res);
       if (res.statusCode != 200) {
         failc(new Error('上传错误:' + JSON.stringify(res)))
         return;
@@ -68,7 +68,7 @@ const getPolicyBase64 = function () {
   };
 
   const policyBase64 = base64.encode(JSON.stringify(policyText));
-	console.log(policyBase64);
+	// console.log(policyBase64);
   return policyBase64;
 }
 
@@ -79,7 +79,7 @@ const getSignature = function (policyBase64) {
     asBytes: true
   });
   const signature = Crypto.util.bytesToBase64(bytes);
-console.log(signature);
+// console.log(signature);
   return signature;
 }
 

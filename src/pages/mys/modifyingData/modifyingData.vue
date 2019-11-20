@@ -117,7 +117,7 @@ export default {
 					birthday:this.tiem
 				}
 			}).then(res=>{
-				console.log(res);
+				// console.log(res);
 				if(res.errcode === 1){
 					uni.showToast({
 						title:res.errmsg,

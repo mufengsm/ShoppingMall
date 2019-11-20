@@ -141,7 +141,7 @@ export default {
 		}).then(res=>{
 			if(res.code !== 200){this.$api.msg(res.msg); return false}
 			let result = res.data
-			console.log(result);
+			// console.log(result);
 			
 			// 过期时间,非待付款状态过滤
 			this.expireTime = result.expire_time ? result.expire_time : null;
@@ -172,7 +172,7 @@ export default {
 					order_sn:this.orderInfo.order_sn
 				}
 			}).then(res=>{
-				console.log(res);
+				// console.log(res);
 				uni.requestPayment({
 					provider: 'wxpay',
 					timeStamp: String(res.data.timestamp),
@@ -181,12 +181,12 @@ export default {
 					signType: 'MD5',
 					paySign: res.data.sign,
 					success: (res)=> {
-						console.log('success:' + JSON.stringify(res));
+						// console.log('success:' + JSON.stringify(res));
 						uni.showToast({
 							title:"支付成功",
 							success:()=>{
 								uni.navigateTo({
-									url:"/pages/mys/order/order"
+									url:"/pages/mys/order/order?state=0"
 								})
 							}
 						})
@@ -194,7 +194,7 @@ export default {
 					fail: (err)=>{
 						this.$api.msg('支付失败' + JSON.stringify(err))
 						this.isOvertime = false;
-						console.log('支付失败' + JSON.stringify(err));
+						// console.log('支付失败' + JSON.stringify(err));
 					}
 				});
 			})
