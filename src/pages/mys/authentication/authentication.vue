@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view v-if="isWrapShow">
 		<!-- 未认证 -->
 		<view v-if="authStatus===20013">
 			<view class="info_list">
@@ -25,7 +25,9 @@
 						type="text" placeholder="请填写真实姓名" placeholder-class="ipt_pla">
 					</view>
 				</view>
-				<view class="info">
+				<view class="info"
+				v-if="type === '店铺认证'"
+				>
 					<view class="key">店铺名称</view>
 					<view class="value">
 						<input
@@ -166,12 +168,13 @@ import uploadImage from '@/common/ossutil/uploadFile.js';
 export default {
 	data(){
 		return{
+			isWrapShow:false,
 			nickname:"",
 			realName:"",
 			shopName:"",
 			phone:"",
 			detailedAddress:"",
-			type:"店铺认证",
+			type:"会员认证",
 			sex:"男",
 			address:"请选择",
 			city:[],
@@ -199,8 +202,6 @@ export default {
 			this.multiArray.splice(0,1,res);
 			this.multiArray[0].unshift({name:"请选择"});
 		})
-	},
-	onShow(){
 		// 检测认证状态
 		this.$request.GET({
 			url:this.$api.apiUrl.GET_USER_AUTH_STATUS,
@@ -208,6 +209,10 @@ export default {
 			this.authStatus = res.code;
 			if(res.data.message){this.authMessage=res.data.message;}
 		})
+	},
+	onShow(){
+		// 路由鉴权
+    	this.navToLogin();	
 	},
 	methods:{
 		// 更改认证类型
@@ -306,7 +311,12 @@ export default {
 			// 获取可填写信息
 			if(!regName.test(this.realName)){this.$api.msg("请输入中文姓名"); return false};
 			if(!myreg.test(this.phone)){this.$api.msg("请输入正确的手机号码"); return false};
-			if(!this.shopName){this.$api.msg("请填写店铺名称"); return false};
+			if(!this.shopName){
+				if(this.type === "店铺认证"){
+					this.$api.msg("请填写店铺名称"); 
+					return false
+				}
+			};
 			if(this.city.length<3){
 				this.$api.msg("请选择完整地址"); 
 				return false
@@ -337,20 +347,21 @@ export default {
 					title:"正在提交信息",
 					mask: true
 				})
+				let dataObj = {
+					id:res.data.id,
+					type:this.type==="店铺认证"?2:1,
+					username:this.realName,
+					phone:this.phone,
+					area_ids:this.city.join(","),
+					address:this.detailedAddress,
+					nickname:this.nickname,
+					sex:this.sex==="男"?1:2,
+					auth_pic:this.computImg,
+				}
+				if(this.type === "店铺认证"){dataObj.store_name=this.shopName;}
 				this.$request.POST({
 					url:this.$api.apiUrl.POST_USER_AUTHENTICATION,
-					data:{
-						id:res.data.id,
-						type:this.type==="店铺认证"?1:2,
-						username:this.realName,
-						store_name:this.shopName,
-						phone:this.phone,
-						area_ids:this.city.join(","),
-						address:this.detailedAddress,
-						nickname:this.nickname,
-						sex:this.sex==="男"?1:2,
-						auth_pic:this.computImg,
-					}
+					data:dataObj
 				}).then(res=>{
 					uni.hideLoading();
 					if(res.errCode === 200){
@@ -396,6 +407,31 @@ export default {
 			uni.switchTab({
 				url:"/pages/indexs/index/index"
 			});
+		},
+		navToLogin(){
+			// 页面鉴权
+			const TOKEN = uni.getStorageSync('access_token');
+			if(!this.isWrapShow){
+				if (!TOKEN){
+					uni.navigateTo({
+						url:"/pages/mys/login/login",
+						success:()=>{
+							this.isWrapShow = true;
+						}
+					})
+				}else{
+					this.isWrapShow = true;
+				}
+			}else{
+				if (!TOKEN){
+					uni.switchTab({
+						url:"/pages/indexs/index/index",
+						success:()=>{
+							this.isWrapShow = false;
+						}
+					})
+				}
+			}
 		}
 	},
 	computed:{

@@ -2,8 +2,8 @@
 // 定义图片地址
 export const imgUrl = 'https://meizi.pingbbs.com:444/static/wap';
 // 本地接口
-// const localApi = 'http://localhost:8888';
-const localApi = 'https://meizi.pingbbs.com:444';
+const localApi = 'http://localhost:8888';
+// const localApi = 'https://meizi.pingbbs.com:444';
 // 线上测试接口
 const networkApi = 'https://meizi.pingbbs.com';
 // 线上正式接口
