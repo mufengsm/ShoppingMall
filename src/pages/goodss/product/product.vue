@@ -307,6 +307,10 @@ export default {
             }).then(res => {
                 // console.log(res, "商品评论");
             });
+
+         uni.showShareMenu({
+            withShareTicket:true,
+        });
     },
     methods: {
         // 规格弹窗开关
@@ -421,18 +425,7 @@ export default {
 				stopPrevent() {},
 				// 分享
         forward() {
-            uni.showShareMenu({
-                title: "商品",
-                content: "内容",
-                imageUrl:
-                    "https://meizi.manogue.com.cn/static/wap/images/ddmlogoicon.png",
-                path: "/pages/gooodss/product/product",
-                success: function() {
-                    uni.showToast({
-                        title: "分享成功"
-                    });
-                }
-            });
+           this.$api.msg("开发中,可通过右上角进行分享")
 				},
         // 增加于删除按钮				
         changeQuantity(mathematicalSymbols) {
