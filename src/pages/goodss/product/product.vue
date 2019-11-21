@@ -480,7 +480,7 @@ export default {
                         }
                     }).then(res => {this.$api.msg(res.msg)});
                 }else{
-                    this.$api.msg("请先认证")
+                    this.$api.msg("请登录,并认证")
                 }
             })
             
