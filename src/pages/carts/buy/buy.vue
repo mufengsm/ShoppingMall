@@ -109,14 +109,20 @@ export default {
 			this.$request.GET({
 				url:this.$api.apiUrl.GET_SHOW_ORDER_COMMIT
 			}).then(res=>{
-				if(res.data.address !== null){
+				if(res.code === 200){
+					if(res.data.address !== null){
 					this.address = res.data.address;
-				}
-				this.goods = res.data.goods;
-				// console.log(this.goods);
-				for (const key of this.goods) {
-					this.totalPrice += Number(key.goods_price) * key.goods_num
-					this.freight = this.totalPrice>300 ? 0 : 6;
+					}
+					this.goods = res.data.goods;
+					// console.log(this.goods);
+					for (const key of this.goods) {
+						this.totalPrice += Number(key.goods_price) * key.goods_num
+						this.freight = this.totalPrice>300 ? 0 : 6;
+					}
+				}else{
+					uni.switchTab({
+						url:'/pages/carts/cart/cart'
+					})
 				}
 			})
 		},

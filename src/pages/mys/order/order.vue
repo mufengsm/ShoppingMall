@@ -169,7 +169,11 @@
 			// #endif
 			
 		},
-		 
+		onShow(){
+			// 每次页面显示都让它去请求第一页数据
+			// 比如从订单详情页面跳转回来
+			this.loadData('tabChange');
+		},
 		methods: {
 			//获取订单列表
 			loadData(source){
@@ -179,11 +183,20 @@
 				let state = navItem.state;
 				
 				if(source === 'tabChange' && navItem.loaded === true){
-					//tab切换只有第一次需要加载数据
-					return;
+					// 设置请求状态
+					navItem.loadingType = 'more'
+					// 先把原来的数据清除
+					this.$set(this.navList[this.tabCurrentIndex],"orderList",[])
+					// tab切换时每次都是请求第一页数据
+					this.$set(this.navList[this.tabCurrentIndex],"page",0)
+					// return;
 				}
 				if(navItem.loadingType === 'loading'){
-					//防止重复加载
+					// 防止在加载中,重复去请求
+					return;
+				}
+				if(navItem.loadingType === 'noMore'){
+					// 如果没有数据不给予请求
 					return;
 				}
 
@@ -327,6 +340,11 @@
 					id 	= e.target.dataset.id;
 				switch (txt) {
 					case "订单详情":
+						uni.navigateTo({
+							url:`/pages/mys/orderInfo/orderInfo?id=${id}`
+						})
+						break;
+					case "去支付":
 						uni.navigateTo({
 							url:`/pages/mys/orderInfo/orderInfo?id=${id}`
 						})

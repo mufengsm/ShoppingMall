@@ -92,6 +92,7 @@
 			:disabled="isOvertime" 
 			:style="{backgroundColor: isOvertime ? 'gray' : 'red'}"
 			class="btn" 
+			open-type="getUserInfo"
 			@tap='payment'>支付</button>
 		</view>
 		<!-- 尽量不与支付共用,下面是待收货 -->
@@ -166,38 +167,42 @@ export default {
 		},
 		payment(){
 			this.isOvertime = true;
-			this.$request.POST({
-				url:this.$api.apiUrl.POST_PAY_INDEX,
-				data:{
-					order_sn:this.orderInfo.order_sn
-				}
-			}).then(res=>{
-				// console.log(res);
-				uni.requestPayment({
-					provider: 'wxpay',
-					timeStamp: String(res.data.timestamp),
-					nonceStr: res.data.noncestr,
-					package: res.data.package,
-					signType: 'MD5',
-					paySign: res.data.sign,
-					success: (res)=> {
-						// console.log('success:' + JSON.stringify(res));
-						uni.showToast({
-							title:"支付成功",
-							success:()=>{
-								uni.navigateTo({
-									url:"/pages/mys/order/order?state=0"
+			uni.login({
+				provider: 'weixin',
+				success:  (loginRes)=> {
+					this.$request.POST({
+						url:this.$api.apiUrl.POST_PAY_INDEX,
+						data:{
+							order_sn:this.orderInfo.order_sn,
+							code:loginRes.code
+						}
+					}).then(res=>{
+						uni.requestPayment({
+							provider: 'wxpay',
+							timeStamp: String(res.data.timeStamp),
+							nonceStr: res.data.nonceStr,
+							package: res.data.package,
+							signType: 'MD5',
+							paySign: res.data.paySign,
+							success: (res)=> {
+								uni.showToast({
+									title:"支付成功",
+									success:()=>{
+										uni.navigateTo({
+											url:"/pages/mys/order/order?state=2"
+										})
+									}
 								})
+							},
+							fail: (err)=>{
+								this.$api.msg('支付失败')
+								this.isOvertime = false;
+								// console.log('支付失败' + JSON.stringify(err));
 							}
-						})
-					},
-					fail: (err)=>{
-						this.$api.msg('支付失败' + JSON.stringify(err))
-						this.isOvertime = false;
-						// console.log('支付失败' + JSON.stringify(err));
-					}
-				});
-			})
+						});
+					})
+				},
+			});			
 		},
 		// 确认收货
 		searchLogistics(id){
