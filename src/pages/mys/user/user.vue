@@ -75,6 +75,7 @@
 			class="other_function_item" 
 			v-for="(item,index) in other_functions" 
 			:key="index" 
+			@tap="toAppointPage(item.txt)"
 			>
 			</image>
 		</view>
@@ -114,10 +115,10 @@ export default {
 		  {num:0,text:"银行卡管理"},
 	  ],
 	  other_functions:[
-		  {img_url:`${this.$imgUrl}/images/myct_others_i_red_01.png`},
-		  {img_url:`${this.$imgUrl}/images/myct_others_i_red_13.png`},
-		  {img_url:`${this.$imgUrl}/images/myct_others_i_red_19.png`},
-		  {img_url:`${this.$imgUrl}/images/myct_others_i_red_06.png`},
+		  {img_url:`${this.$imgUrl}/images/myct_others_i_red_01.png`,txt:"商品收藏"},
+		  {img_url:`${this.$imgUrl}/images/myct_others_i_red_13.png`,txt:"拼团频道"},
+		  {img_url:`${this.$imgUrl}/images/myct_others_i_red_19.png`,txt:"客服"},
+		  {img_url:`${this.$imgUrl}/images/myct_others_i_red_06.png`,txt:"帮助中心"},
 		  // {img_url:`${this.$imgUrl}/images/myct_others_i_red_21.png`}
 		],
     };
@@ -220,6 +221,19 @@ export default {
 					// 如果登录了直接显示user页面
 					this.isWrapShow = true;
 				}
+		},
+		toAppointPage(item){
+			// console.log(item);
+			switch (item) {
+				case "客服":
+					uni.navigateTo({
+						url:"/pages/goodss/wolive/wolive"
+					})
+					break;
+			
+				default:
+					break;
+			}
 		}
   },
 };

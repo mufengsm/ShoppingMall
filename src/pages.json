@@ -237,6 +237,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/goodss/wolive/wolive",
+			"style": {
+				"navigationBarTitleText": "在线客服",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {
