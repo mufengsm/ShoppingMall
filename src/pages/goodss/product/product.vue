@@ -104,7 +104,7 @@
 
         <!-- 底部操作菜单 -->
         <view class="page-bottom">
-            <navigator url="/pages/indexs/index/index" open-type="switchTab" class="p-b-btn">
+            <navigator url="/pages/goodss/wolive/wolive" open-type="switchTab" class="p-b-btn">
                 <text class="yticon icon-xiatubiao--copy"></text>
                 <text>客服</text>
             </navigator>
