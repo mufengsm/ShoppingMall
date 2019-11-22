@@ -26,7 +26,8 @@ export const prePage = () => {
   // #ifdef H5
   return prePage;
   // #endif
-  return prePage.$vm;
+  // return prePage.$vm;
+  return true;
 };
 export const apiUrl = url;
 export const imgUrl = url.imgUrl;
