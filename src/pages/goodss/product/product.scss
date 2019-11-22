@@ -52,7 +52,7 @@ page {
 	.goods_info{
 		display: flex;
 		.from{
-		width: 45px;
+		flex: 1;
 		font-size: 13px;
 		background: rgb(254,0,0);
 		color: #fff;
@@ -63,6 +63,7 @@ page {
 		margin-right:10px;
 		}
 		.title {
+			flex: 9;
 			font-size:17px;
 			color: $font-color-dark;
 		}

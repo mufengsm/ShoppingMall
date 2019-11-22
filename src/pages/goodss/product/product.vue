@@ -59,25 +59,37 @@
         <view class="eva-section">
             <view class="e-header">
                 <text class="tit">评价</text>
-                <text>(86)</text>
-                <text class="tip">好评率 100%</text>
-                <text class="yticon icon-you"></text>
+                <text class="tip"
+                v-if="commentListItem"
+                @tap="toEvaluatePage"
+                >查看更多评价</text>
+                <text class="iconfont icon-youjiantou"></text>
             </view>
-            <view class="eva-box">
+            <view class="eva-box" v-if="commentListItem">
                 <image 
-									class="portrait" 
-									src="http://img3.imgtn.bdimg.com/it/u=1150341365,1327279810&fm=26&gp=0.jpg" 
-									mode="aspectFill"
+                    class="portrait" 
+                    :src="commentListItem.avatar" 
+                    mode="aspectFill"
                 ></image>
                 <view class="right">
-                    <text class="name">Leo yo</text>
-                    <text class="con">商品收到了，我很喜欢,推荐大家前来购买</text>
+                    <text class="name">{{commentListItem.nickname}}</text>
+                    <text class="con">{{commentListItem.content}}</text>
                     <view class="bot">
                         <text class="attr">
                             <!-- 购买类型：XL 红色 -->
                         </text>
-                        <text class="time">2019-11-08 12:21</text>
+                        <text class="time">{{commentListItem.add_time}}</text>
                     </view>
+                </view>
+            </view>
+            <view class="eva-box" v-else>
+                <image 
+                class="portrait" 
+                src="https://meizi.manogue.com.cn/static/wap/images/myct_indentl_grey__07.png" 
+                mode="aspectFill"
+                ></image>
+               <view class="right">
+                    <text class="con">暂无评价，欢迎选购后留下您宝贵的意见哦~</text>
                 </view>
             </view>
         </view>
@@ -239,7 +251,8 @@ export default {
             purchaseQuantity: 1,
             isGoods: false,
 			isGoodsTxt: "确定",
-			forElection:[]
+            forElection:[],
+            commentListItem:null,
         };
     },
     components: {
@@ -299,14 +312,16 @@ export default {
             });
         // 商品评论
         this.$request.GET({
-                url: this.$api.apiUrl.GET_GOODS_COMMENT,
-                data: {
-                    id: options.id,
-                    page: 1
-                }
-            }).then(res => {
-                // console.log(res, "商品评论");
-            });
+            url: this.$api.apiUrl.GET_GOODS_COMMENT,
+            data: {
+                id: options.id,
+                page: 1
+            }
+        }).then(res => {
+            if(res.data.length){
+                this.commentListItem = res.data[0]
+            }
+        });
 
          uni.showShareMenu({
             withShareTicket:true,
@@ -509,6 +524,11 @@ export default {
                     url:"/pages/mys/login/login",
                 })
             }
+        },
+        toEvaluatePage(){
+            uni.navigateTo({
+                url:`/pages/goodss/evaluate/evaluate?id=${this.goodsId}`
+            })
         }
     }
 };

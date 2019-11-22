@@ -226,6 +226,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/goodss/evaluate/evaluate",
+			"style": {
+				"navigationBarTitleText": "商品评价",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {
