@@ -203,7 +203,10 @@ export default {
 				this.$api.msg("数据请求失败")
 			}
 		})
-		
+		// 可分享当前页面
+		uni.showShareMenu({
+            withShareTicket:true,
+        });
 	},
 	onShow(){
 		// 每次进入时更改购物车显示数量

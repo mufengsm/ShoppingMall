@@ -322,8 +322,8 @@ export default {
                 this.commentListItem = res.data[0]
             }
         });
-
-         uni.showShareMenu({
+        // 可分享当前页面   
+        uni.showShareMenu({
             withShareTicket:true,
         });
     },

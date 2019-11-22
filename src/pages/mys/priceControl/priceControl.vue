@@ -63,6 +63,10 @@ export default {
       },
     }).then((res) => {
       this.private_price_control_info = res.msg;
+		});
+		// 可分享当前页面
+		uni.showShareMenu({
+      withShareTicket:true,
     });
   },
   methods: {

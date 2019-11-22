@@ -98,6 +98,10 @@ export default {
 			this.private_info.private_brand_info = res.data.slice(0, 8);
 		});
 		this.sort_list();
+		// 可分享当前页面
+		uni.showShareMenu({
+			withShareTicket:true,
+		});
 	},
 	onReachBottom() {
 		// 触底事件发生后请求新数据

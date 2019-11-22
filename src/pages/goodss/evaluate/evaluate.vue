@@ -39,6 +39,10 @@ export default {
 	},
 	onLoad(options){
 		this.options = options;
+		// 可分享当前页面
+		uni.showShareMenu({
+            withShareTicket:true,
+        });
 	},
 	onShow(){
 		// 每次页面显示都要重新归零,防止用户提交评价后无法及时查看
