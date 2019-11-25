@@ -32,7 +32,9 @@
 				<view class="key"> 出生日期</view>
 				<view class="value">{{newUserInfoItem.birthday}}</view>
 			</view>
-			<view class="item item_id">
+			<view class="item item_id"
+			@tap="changePassword"
+			>
 				<view class="key"> 修改密码</view>
 				<text class="value iconfont icon-youjiantou"></text>
 			</view>
@@ -119,6 +121,11 @@ export default {
 		modifyingData(){
 			uni.navigateTo({
 				url:"/pages/mys/modifyingData/modifyingData"
+			})
+		},
+		changePassword(){
+			uni.navigateTo({
+				url:`/pages/mys/changePassword/changePassword?phone=${this.newUserInfoItem.username}`
 			})
 		}
 	}

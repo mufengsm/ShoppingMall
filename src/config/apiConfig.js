@@ -54,6 +54,8 @@ export const POST_SMS_GETCODE = localApi + '/v3/Sms/getCode';
 export const POST_USER_REGISTER = localApi + '/v3/user/register';
 // 验证码检测
 export const POST_SMS_CHECK = localApi + '/v3/Sms/check/';
+// 修改密码
+export const POST_USER_REPASS = localApi + '/v3/User/repass';
 
 /******************* v4 ******************* */
 // 控区控价信息列表

@@ -248,6 +248,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/mys/changePassword/changePassword",
+			"style": {
+				"navigationBarTitleText": "修改密码",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {
