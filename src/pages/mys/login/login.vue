@@ -31,9 +31,9 @@
 				<button class="confirm-btn" @tap="toLogin" :disabled="logining">登录</button>
 			</view>
 			<view class="forget_register">
-				<!-- <view class="forget-section">
+				<navigator url="/pages/mys/changePassword/changePassword" class="forget-section" >
 					忘记密码?
-				</view> -->
+				</navigator>
 				<view class="register-section">
 					还没有账号?
 					<text @tap="toRegist">马上注册</text>

@@ -120,7 +120,7 @@
                 <button 
                 type="primary" 
                 class="action-btn no-border buy-now-btn" 
-                @tap="addCart">立即购买</button>
+                @tap="addCart('immediately')">立即购买</button>
                 <button
                     type="primary"
                     class="action-btn no-border add-cart-btn"
@@ -253,6 +253,7 @@ export default {
 			isGoodsTxt: "确定",
             forElection:[],
             commentListItem:null,
+            isImmediately:""
         };
     },
     components: {
@@ -339,64 +340,64 @@ export default {
             } else if (this.specClass === "none") {
                 this.specClass = "show";
             }
-				},
-				// 如果选规格的时候没有选
+        },
+        // 如果选规格的时候没有选
         toggleSpecSpecial() {           
             if (this.selected === "请选择规格: ") {
-							this.$api.msg("请选择规格")
-              return false;
+			    this.$api.msg("请选择规格")
+                return false;
             } else if(this.findIsSelected().length!=this.popup.specChildList.length){
-               this.$api.msg("请选择"+this.forElection[0])
+                this.$api.msg("请选择"+this.forElection[0])
             }else{
-							this.toggleSpec();
-              this.addCart();
-						}
+				this.toggleSpec();
+                this.addCart(this.isImmediately ? 'immediately' : '');
+			}
         },
         // 选择规格
         selectSpec(item, index, name, nameIndex) {
-						// 设置两个显示文本状态
-						this.selected = "已选: ";
-						// 选中颜色
-						const list = this.popup.specChildList;
-						list.forEach((item,listIndex) => {
-							item.name.forEach((item2,listIndex2)=>{
-								// 如果选择中的名字相等
-								if(item2 === name){
-									this.$set(this.popup.specChildList[listIndex].name[listIndex2], 'selected', true);
-								}else if(listIndex===index){
-									// 只清除同一个数组中的样式
-									this.$set(this.popup.specChildList[listIndex].name[listIndex2], 'selected', false);
-								}
-							})
-						});
-						// 点击更改选中了那些文字
-						const resultArr = this.findIsSelected();						
-						this.popup.haveChosen = resultArr.join(",");
+            // 设置两个显示文本状态
+            this.selected = "已选: ";
+            // 选中颜色
+            const list = this.popup.specChildList;
+            list.forEach((item,listIndex) => {
+                item.name.forEach((item2,listIndex2)=>{
+                    // 如果选择中的名字相等
+                    if(item2 === name){
+                        this.$set(this.popup.specChildList[listIndex].name[listIndex2], 'selected', true);
+                    }else if(listIndex===index){
+                        // 只清除同一个数组中的样式
+                        this.$set(this.popup.specChildList[listIndex].name[listIndex2], 'selected', false);
+                    }
+                })
+            });
+            // 点击更改选中了那些文字
+            const resultArr = this.findIsSelected();						
+            this.popup.haveChosen = resultArr.join(",");
 
-						// 查看哪些没选中
-						const beDetectedArr = resultArr.map(item=>item.split(":")[0]);
-						const testingArr = list.map(item => item.allName)
-						function diff(arr1, arr2) {
-									var newArr1 = [];
-									var newArr2 = [];
-									// Same, same; but different.
-									newArr1 = arr1.filter(function(e){
-										return arr2.indexOf(e)==-1;
-									});
-									newArr2 = arr2.filter(function(e){
-										return arr1.indexOf(e)==-1;
-									});
-									return newArr1.concat(newArr2);
-						}
-						var result = diff(beDetectedArr, testingArr);
-						this.forElection = result;
-						if(result.length){
-							for (let i = 0; i < result.length; i++) {
-								const element = result[i];
-								this.$set(this.popup,"haveChosen",this.popup.haveChosen + " 请选择: " + element)
-							}
-						}						
-						// 查看是否有库存
+            // 查看哪些没选中
+            const beDetectedArr = resultArr.map(item=>item.split(":")[0]);
+            const testingArr = list.map(item => item.allName)
+            function diff(arr1, arr2) {
+                        var newArr1 = [];
+                        var newArr2 = [];
+                        // Same, same; but different.
+                        newArr1 = arr1.filter(function(e){
+                            return arr2.indexOf(e)==-1;
+                        });
+                        newArr2 = arr2.filter(function(e){
+                            return arr1.indexOf(e)==-1;
+                        });
+                        return newArr1.concat(newArr2);
+            }
+            var result = diff(beDetectedArr, testingArr);
+            this.forElection = result;
+            if(result.length){
+                for (let i = 0; i < result.length; i++) {
+                    const element = result[i];
+                    this.$set(this.popup,"haveChosen",this.popup.haveChosen + " 请选择: " + element)
+                }
+            }						
+            // 查看是否有库存
             if(this.findIsSelected().length === list.length){
 							this.$request.POST({
                     url: this.$api.apiUrl.POST_GOODS_STOCK,
@@ -437,10 +438,10 @@ export default {
             //     url: "/pages/mys/login/login"
             // });
         },
-				stopPrevent() {},
-				// 分享
+		stopPrevent() {},
+		// 分享
         forward() {
-           this.$api.msg("开发中,可通过右上角进行分享")
+           this.$api.msg("可通过右上角进行分享")
 				},
         // 增加于删除按钮				
         changeQuantity(mathematicalSymbols) {
@@ -449,8 +450,8 @@ export default {
             } else if (this.purchaseQuantity > 1) {
                 this.purchaseQuantity--;
             }
-				},
-				// 检测输入框输入
+		},
+	    // 检测输入框输入
         detectionValue(e) {
             const num = e.detail.value;
             if (num === "") {
@@ -470,7 +471,13 @@ export default {
                 }
             }
         },
-      addCart() {
+      addCart(immediately) {
+        // 是否是立即购买
+        if(immediately === 'immediately'){
+            this.isImmediately = '/true'
+        }else{
+            this.isImmediately = ''
+        }
         if(this.selected === "请选择规格: "){
             this.toggleSpec("specs")
         }else{
@@ -486,19 +493,34 @@ export default {
                         return item.name === this.findIsSelected().join(",")
                     })
                     this.$request.POST({
-                        url: this.$api.apiUrl.POST_SAVE_CART,
+                        url: this.$api.apiUrl.POST_SAVE_CART+this.isImmediately,
                         data: {
-                                goods_id: this.goodsId,
-                                spec_id: result.id,
-                                goods_num: this.purchaseQuantity,
-                                is_page: "product"
+                            goods_id: this.goodsId,
+                            spec_id: result.id,
+                            goods_num: this.purchaseQuantity,
+                            is_page: "product"
                         }
-                    }).then(res => {this.$api.msg(res.msg)});
+                    }).then(res => {
+                        this.$api.msg(res.msg)
+                        if(this.isImmediately){
+                            uni.showLoading({
+                                title:"正在跳转到订单页面",
+                                success:()=>{
+                                    uni.navigateTo({
+                                        url:"/pages/carts/buy/buy",
+                                        success:()=>{
+                                            uni.hideLoading()
+                                        }
+                                    })
+                                }
+                            })
+                        }
+                    });
                 }else{
                     this.$api.msg("请登录,并认证")
                 }
             })
-            
+
         }
         },
         // 查找哪些被选中了
