@@ -1,5 +1,5 @@
 <template>
-    <view class="container" v-if="isWrapShow">
+    <view class="container" v-if="isWrapShow()">
 			<view class="set_icon" @tap="jumpLogin">
 				<text class="iconfont icon-shezhi"></text>
 			</view>
@@ -83,11 +83,8 @@
     </view>
 </template>
 <script>
-import {
-  mapState,
-} from 'vuex';
-
-
+import { createNamespacedHelpers } from 'vuex';
+const { mapState, mapMutations } = createNamespacedHelpers('storeCommodity');
 
 let startY = 0; let moveY = 0; const
   pageAtTop = true;
@@ -97,7 +94,7 @@ export default {
 },
   data() {
     return {
-			isWrapShow:false,
+			...mapState(["isWrapShow"]),
 			isAuth:false,
 			userInfoObj:{},
 			orderList:[],
@@ -168,6 +165,7 @@ export default {
     ...mapState(['hasLogin', 'userInfo']),
   },
   methods: {
+		...mapMutations(["changeWrapShow"]),
 		// 跳转到订单状态页面
     navTo(obj) {
       uni.navigateTo({
@@ -200,11 +198,11 @@ export default {
 		navToLogin(){
 			const TOKEN = uni.getStorageSync('access_token');
 				if (!TOKEN){
-					if(this.isWrapShow){
+					if(this.isWrapShow()){
 						uni.switchTab({
 							url:"/pages/indexs/index/index",
 							success:()=>{
-								this.isWrapShow = false;
+								this.changeWrapShow({"isWrapShow":false})
 							}
 						})
 					}else{
@@ -213,13 +211,13 @@ export default {
 							url:"/pages/mys/login/login",
 							success:()=>{
 								// 到登录页面后显示user页面
-								this.isWrapShow = true;
+								this.changeWrapShow({"isWrapShow":true})
 							}
 						})
 					}
 				}else{
 					// 如果登录了直接显示user页面
-					this.isWrapShow = true;
+					this.changeWrapShow({"isWrapShow":true})
 				}
 		},
 		toAppointPage(item){

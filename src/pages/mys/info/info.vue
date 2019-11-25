@@ -64,6 +64,8 @@
 	</view>
 </template>
 <script>
+import { createNamespacedHelpers } from 'vuex';
+const { mapMutations } = createNamespacedHelpers('storeCommodity');
 export default {
 	data(){
 		return {
@@ -79,6 +81,7 @@ export default {
 		})
 	},
 	methods:{
+		...mapMutations(['changeWrapShow']),
 		toAddress(){
 			uni.navigateTo({
 				url:'/pages/mys/address/address'
@@ -104,6 +107,7 @@ export default {
 									uni.switchTab({
 										url:"/pages/indexs/index/index"
 									});
+									this.changeWrapShow({"isWrapShow":false})
 								}
 							})
 						}

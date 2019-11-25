@@ -5,5 +5,6 @@ export default {
   search_info: null,
   brand_info: null,
   sort_info: null,
-  isLogin:false
+  isLogin:false,
+  isWrapShow:false
 };

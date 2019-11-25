@@ -1,5 +1,5 @@
 import {
-  LOGIN, LOGOUT, SEARCH_INFO, BRAND_INFO, SORT_LIST,
+  LOGIN, LOGOUT, SEARCH_INFO, BRAND_INFO, SORT_LIST, changeWrapShow
 } from '../types.js';
 
 export default {
@@ -23,5 +23,8 @@ export default {
   },
   [LOGIN](state, payload) {
     state.isLogin = payload.isLogin;
+  },
+  [changeWrapShow](state,payload){
+    state.isWrapShow = payload.isWrapShow
   }
 };

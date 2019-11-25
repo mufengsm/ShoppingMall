@@ -10,3 +10,5 @@ export const BRAND_INFO = 'BRAND_INFO';
 export const SORT_LIST = 'SORT_LIST';
 // 控价页面信息
 export const PRICE_CONTROL_INFO = 'PRICE_CONTROL_INFO';
+// 修改user页面显示
+export const changeWrapShow = 'changeWrapShow';
