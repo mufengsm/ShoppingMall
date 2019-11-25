@@ -5,7 +5,7 @@ require('./hmac.js');
 require('./sha1.js');
 const Crypto = require('./crypto.js');
 
-/*
+/** 
  *上传文件到阿里云oss
  *@param - filePath :图片的本地资源路径
  *@param - dir:表示要传到哪个目录下

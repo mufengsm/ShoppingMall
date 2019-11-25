@@ -2,13 +2,13 @@
 // 定义图片地址
 export const imgUrl = 'https://meizi.pingbbs.com:444/static/wap';
 // 本地
-// const localApi = 'http://localhost:8888';
+const localApi = 'http://localhost:8888';
 
 // 测试
 // const localApi = 'https://meizi.pingbbs.com:444';
 
 // 正式
-const localApi = 'https://meizi.manogue.com.cn';
+// const localApi = 'https://meizi.manogue.com.cn';
 
 // 线上测试接口
 const networkApi = 'https://meizi.pingbbs.com';

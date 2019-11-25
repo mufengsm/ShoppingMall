@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import {
-  LOGIN, LOGOUT, ADD, SEARCH_INFO, BRAND_INFO, SORT_LIST, PRICE_CONTROL_INFO,
+  SEARCH_INFO, BRAND_INFO, SORT_LIST, PRICE_CONTROL_INFO,
 } from '../types.js';
 
 const $api = Vue.prototype;

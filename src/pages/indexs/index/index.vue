@@ -238,7 +238,7 @@ export default {
 	},
 	onPageScroll(e){e.scrollTop > 100 ?  this.isRed = "rgb(233, 12, 29)" : this.isRed = false;},
 	methods: {
-		...mapActions(['ADD', 'GOODS_RECOMMEND']),
+		
 		/**
 		 * 请求静态数据只是为了代码不那么乱
 		 * 分次请求未作整合
@@ -276,7 +276,7 @@ export default {
 	// 标题栏input搜索框点击
 	async onNavigationBarSearchInputClicked(e) {
 		// //完整的异步流程
-		// this.ADD()
+		
 		// console.log(this.num())
 		uni.navigateTo({ url: '/pages/search/search' });
 	},
