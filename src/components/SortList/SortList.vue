@@ -3,7 +3,9 @@
 		<view class="sort">
 			<view class="sort_info">
 				<view class="sort_info_left">{{title}}</view>
-				<view class="sort_info_right" @tap="open(title)">
+				<view 
+				v-if="private_info.length>4"
+				class="sort_info_right" @tap="open(title)">
 					{{ is_brand_open == false ? '展开更多' : '收起'+ title }}
 					<span :class="is_brand_open ? 'iconfont icon-downarrow-copy' : 'iconfont icon-downarrow'"></span>
 				</view>

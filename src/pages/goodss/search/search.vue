@@ -4,7 +4,7 @@
 		<!-- #ifdef MP -->
 		<view class="mp-search-box">
 			<text class="search_back" @tap="backIndex"></text>
-			<input class="ser-input" placeholder="搜索商品/品牌" type="text" v-model="search_input" />
+			<input class="ser-input" @blur="search_btn" placeholder="搜索商品/品牌" type="text" v-model="search_input" />
 			<text class="search_btn" @tap="search_btn">搜索</text>
 		</view>
 		<!-- #endif -->
@@ -217,6 +217,8 @@ export default {
 						this.no_data = false;
 					}
 					this.private_search_info = this.private_search_info.concat(res.data);
+					// 如果返回有数据，关闭指定图片
+					this.isImg = false;
 				} else {
 					// 如果返回为空就是没有任何数据，显示指定图片
 					this.isImg = true;
