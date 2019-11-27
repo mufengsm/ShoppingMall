@@ -3,15 +3,19 @@
 export const imgUrl = 'https://meizi.manogue.com.cn/static/wap';
 // 客服页面
 export const woliveUrl = 'https://meizi.pingbbs.com:444/wap/goods/wolive';
-// 本地
-// const localApi = 'http://localhost:8888';
+// 定义请求地址
+let localApi = '';
+if (process.env.NODE_ENV === 'development') {
+	// 开发环境
+	localApi = 'http://localhost:8888';
+} else {
+	// 生产环境
+	localApi = 'https://meizi.manogue.com.cn';
+}
+// 线上测试地址
+// localApi = 'https://meizi.pingbbs.com:444';
 
-// 测试
-// const localApi = 'https://meizi.pingbbs.com:444';
-
-// 正式
-const localApi = 'https://meizi.manogue.com.cn';
-
+/******************* 开发使用 ******************* */
 // 线上测试接口
 const networkApi = 'https://meizi.pingbbs.com';
 // 线上正式接口
