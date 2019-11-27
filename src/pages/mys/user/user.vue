@@ -115,8 +115,8 @@ export default {
 		  {img_url:`${this.$imgUrl}/images/myct_others_i_red_01.png`,txt:"商品收藏"},
 		  {img_url:`${this.$imgUrl}/images/myct_others_i_red_13.png`,txt:"拼团频道"},
 		  {img_url:`${this.$imgUrl}/images/myct_others_i_red_19.png`,txt:"客服"},
-		  {img_url:`${this.$imgUrl}/images/myct_others_i_red_06.png`,txt:"帮助中心"},
-		  // {img_url:`${this.$imgUrl}/images/myct_others_i_red_21.png`}
+			{img_url:`${this.$imgUrl}/images/myct_others_i_red_06.png`,txt:"帮助中心"},
+			
 		],
     };
 	},
@@ -218,7 +218,18 @@ export default {
 				}else{
 					// 如果登录了直接显示user页面
 					this.changeWrapShow({"isWrapShow":true})
+					this.reqUserInfo();
 				}
+		},
+		reqUserInfo(){
+			// 获取用户信息
+			this.$request.GET({
+				url:this.$api.apiUrl.GET_USER_INFO
+			}).then(res=>{
+				if(res.data.type === 1){
+					this.other_functions.push({img_url:`${this.$imgUrl}/images/myct_others_i_red_21.png`,txt:"合伙人后台"})
+				}
+			})
 		},
 		toAppointPage(item){
 			// console.log(item);
@@ -228,7 +239,11 @@ export default {
 						url:"/pages/goodss/wolive/wolive"
 					})
 					break;
-			
+				case "合伙人后台":
+					uni.navigateTo({
+						url:"/pages/mys/brokeragenew/brokeragenew"
+					})
+					break
 				default:
 					break;
 			}

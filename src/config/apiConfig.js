@@ -115,3 +115,6 @@ export const GET_LOGIN_OUT = localApi + '/v5/loginout';
 // ['已取消','待付款','待发货','待收货','待评价','已完成']
 // [0,1,2,3,4,5]
 export const GET_ORDER_STATUS = localApi + '/v5/order_status';
+/******************* api ******************* */
+// 合伙人接口
+export const GET_MY_BROKERAGENEW = localApi + '/wap/my/brokeragenew';

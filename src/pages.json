@@ -259,6 +259,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/mys/brokeragenew/brokeragenew",
+			"style": {
+				"navigationBarTitleText": "合伙人后台",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {
