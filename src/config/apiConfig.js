@@ -1,6 +1,6 @@
 // 定义api接口方便接口更改
 // 定义图片地址
-export const imgUrl = 'https://meizi.pingbbs.com:444/static/wap';
+export const imgUrl = 'https://meizi.manogue.com.cn/static/wap';
 // 客服页面
 export const woliveUrl = 'https://meizi.pingbbs.com:444/wap/goods/wolive';
 // 本地
