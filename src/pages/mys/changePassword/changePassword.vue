@@ -5,9 +5,9 @@
 		</view>
 		<view class="ipt_item id_btn">
 			<input type="text" placeholder="获取验证码" v-model="code">
-			<button class="btn"
+			<button 
+			class="btn button"
 			@tap="getCode"
-			class="button"
 			:style="{
 				backgroundColor:isBtn?'gray':'rgb(236, 61, 70)',
 				color:isBtn?'#999':'#fff'

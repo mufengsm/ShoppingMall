@@ -31,3 +31,4 @@ export const prePage = () => {
 };
 export const apiUrl = url;
 export const imgUrl = url.imgUrl;
+export const woliveUrl = url.woliveUrl;

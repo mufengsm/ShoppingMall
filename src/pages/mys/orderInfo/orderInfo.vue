@@ -12,7 +12,7 @@
 				endText="订单已超时"></ExpireTime>
 			</view>
 			<view class="right">
-				<image src="http://localhost:8888/static/wap/images/paylogo1.png"></image>
+				<image src="https://meizi.manogue.com.cn/static/wap/images/paylogo1.png"></image>
 			</view>
 		</view>
 		<view class="top_addrss">

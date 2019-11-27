@@ -4,7 +4,7 @@ import App from './App';
 // 封装uniRqeuest请求
 import request from './utils/request.js';
 // 引入自定义工具函数
-import { msg, json, prePage, apiUrl,imgUrl } from './utils';
+import { msg, json, prePage, apiUrl, imgUrl, woliveUrl } from './utils';
 // 引入路由助手
 import { router } from './utils/routerHelper.js';
 
@@ -28,6 +28,8 @@ Vue.prototype.$store = store;
 Vue.prototype.$api = { msg, json, prePage, apiUrl };
 // 图片地址
 Vue.prototype.$imgUrl = imgUrl;
+// 客服地址
+Vue.prototype.$woliveUrl = woliveUrl;
 // 路由助手
 Vue.prototype.$route = { router };
 
