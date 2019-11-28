@@ -23,15 +23,15 @@
 		<view
 		class="img_wrap"
 		>
-			<view
+			<navigator
 			class="img"
 			v-for="(item,index) in navToImg"
 			:key="index"
-			@tap="navToPage(item.txt)"
+			:url="item.pageUrl"
 			>
 				<image :src="item.img"></image>
 				<view>{{item.txt}}</view>
-			</view>
+			</navigator>
 		</view>
 	</view>
 </template>
@@ -50,7 +50,8 @@ export default {
 				volume: 0,
 			},
 			navToImg:[
-				{img:`${this.$imgUrl}/images/icon-partner-red-pic1.png`,txt:"店铺列表"},
+				{img:`${this.$imgUrl}/images/icon-partner-red-pic1.png`,txt:"店铺列表",
+				pageUrl:"/pages/mys/kelist/kelist"},
 				{img:`${this.$imgUrl}/images/icon-partner-red-pic2.png`,txt:"店铺审核"},
 				{img:`${this.$imgUrl}/images/icon-partner-red-pic3.png`,txt:"店铺榜单"},
 				{img:`${this.$imgUrl}/images/icon-partner-red-pic4.png`,txt:"销售排行"},
@@ -78,16 +79,7 @@ export default {
 		})
 	},
 	methods:{
-		navToPage(e){
-			switch (e) {
-				case "店铺列表":
-					
-					break;
-			
-				default:
-					break;
-			}
-		}
+
 	},
 	computed:{
 		oneList(){

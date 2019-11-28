@@ -109,7 +109,7 @@
 		{
 			"path": "pages/mys/priceControl/priceControl",
 			"style": {
-				"navigationBarTitleText": "控制价格",
+				"navigationBarTitleText": "控区控价",
 				"app-plus": {
 					"titleNView": {
 						"type": "transparent"
@@ -264,6 +264,17 @@
 			"path": "pages/mys/brokeragenew/brokeragenew",
 			"style": {
 				"navigationBarTitleText": "合伙人后台",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/kelist/kelist",
+			"style": {
+				"navigationBarTitleText": "创客列表",
 				"app-plus": {
 					"titleNView": {
 						"type": "transparent"
