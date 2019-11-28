@@ -49,6 +49,9 @@
 <script>
 import { createNamespacedHelpers } from 'vuex';
 const { mapState, mapMutations } = createNamespacedHelpers('storeCommodity');
+import MD5 from '@/common/MD5.js';
+import Base64 from '@/common/base64.js';
+import CryptoJS from '@/common/crypto.js';
 
 export default {
   data() {
@@ -58,26 +61,12 @@ export default {
       logining: false,
 	  isActive: 0,
 	  phoneType:2,
+	  randNum:'',
 	  ...mapState(['isLogin'])
     };
   },
   onLoad() {
-	// 获取什么设备
-	uni.getSystemInfo({
-		success: (res)=> {
-			let platform = res.platform;
-			if(platform === "devtools"){
-	            this.phoneType = 2;
-			}else if(platform === "ios"){
-	            this.phoneType = 1;
-			}else if(platform === "android"){
-	            this.phoneType = 2;
-			}
-		}
-	});
-	// 设置随机码
-	let randNum = this.$fnHelper.randomWord(true, 32, 32);
-	console.log(randNum);
+	
   },
   methods: {
     ...mapMutations(['LOGIN']),
@@ -90,6 +79,14 @@ export default {
 	  })
     },
     async toLogin() {
+		if(this.mobile === ''){
+			this.$api.msg("请输入用户名")
+			return false;
+		}
+		if(this.password === ''){
+			this.$api.msg("请输入密码")
+			return false;
+		}
 		uni.showLoading({
 			title: '正在登录中'
 		});
@@ -99,14 +96,6 @@ export default {
 		}else{
 			this.userLogin();
 		}
-    
-    //   if (result.status === 1) {
-    //     this.login(result.data);
-    //     uni.navigateBack();
-    //   } else {
-    //     this.$api.msg(result.msg);
-    //     this.logining = false;
-    //   }
     },
     typeSwitch(e) {
 	  this.isActive = e;
@@ -149,8 +138,99 @@ export default {
 		})
 	},
 	staff(){
-
+		// 获取什么设备
+		uni.getSystemInfo({
+			success: (res)=> {
+				let platform = res.platform;
+				if(platform === "devtools"){
+		            this.phoneType = 2;
+				}else if(platform === "ios"){
+		            this.phoneType = 1;
+				}else if(platform === "android"){
+		            this.phoneType = 2;
+				}
+			}
+		});
+		// 设置随机码
+		if(!this.randNum){
+			let randNum = this.$fnHelper.randomWord(true, 32, 32);
+			this.randNum = randNum;
+		}
+		this.$request.POST({
+			url:this.$api.apiUrl.POST_USER_APP_SERECT,
+			data:{
+				device_uuid:this.randNum,
+				device_type:this.phoneType
+			}
+		}).then(res=>{
+			let result = res.data;
+			if(res.code === 'SUCCESS'){
+				let storageToken = uni.getStorageSync("token")
+				?uni.getStorageSync("token")
+				:null;
+				let oToken = JSON.parse(storageToken);
+				if(oToken === null){
+					let signMd5 = this.randNum+result.app_id+result.app_secret+'i$6xtmclRStow$uj&rj7uFj^ZnV8&WyN';
+					this.$request.POST({
+						url:this.$api.apiUrl.POST_USER_TOKEN,
+						data:{
+							"app_id": result.app_id,
+							"app_secret": result.app_secret,
+							"sign": signMd5.MD5(32)
+						}
+					}).then(res=>{
+						if(res.code === 'SUCCESS'){
+							this.verifyLogin(res.data);
+						}
+					})
+				}
+			}
+		})
 	},
+	verifyLogin(data){
+		// AES加密
+		// 为了避免补位，直接用16位的密钥
+		let key = CryptoJS.enc.Latin1.parse(Base64.decode(data.sessionKey));
+		// 16位初始向量
+		let iv = CryptoJS.enc.Latin1.parse(Base64.decode(data.iv)); 
+		
+		// Encrypt
+	    let username = CryptoJS.AES.encrypt(this.mobile, key, {
+	    	iv: iv,
+	    	mode: CryptoJS.mode.CBC,
+	    	padding: CryptoJS.pad.ZeroPadding
+	    });
+	    let password = CryptoJS.AES.encrypt(this.password, key, {
+	    	iv: iv,
+	    	mode: CryptoJS.mode.CBC,
+	    	padding: CryptoJS.pad.ZeroPadding
+	    });
+		this.$request.POST({
+			url:this.$api.apiUrl.POST_V6_USER_LOGIN,
+			data:{
+				"token": data.token,
+				"username": ''+username,
+				"password": ''+password
+			}
+		}).then(res=>{
+			if(res.code == 'SUCCESS'){
+		    	uni.showToast({
+					title:res.msg,
+					success:()=>{
+						uni.setStorage({
+							key: 'access_token',
+							data: data.token,
+						});
+						uni.switchTab({
+							url:"/pages/mys/user/user"
+						});
+					}
+				})
+		    }else{
+		    	this.$api.msg(res.msg)
+		    }
+		})
+	}
   }
 };
 </script>

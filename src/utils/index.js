@@ -1,6 +1,11 @@
 import Json from '../Json'; // 测试时用的数据
 import * as url from '../config/apiConfig';
 
+// 挂在到全局的url
+export const apiUrl = url;
+export const imgUrl = url.imgUrl;
+export const woliveUrl = url.woliveUrl;
+
 // 调用消息提醒
 export const msg = (title, duration = 1500, mask = false, icon = 'none') => {
   if (Boolean(title) === false) {
@@ -13,12 +18,14 @@ export const msg = (title, duration = 1500, mask = false, icon = 'none') => {
     icon,
   });
 };
+
 // 模拟异步请求数据
 export const json = (type) => new Promise((resolve) => {
   setTimeout(() => {
     resolve(Json[type]);
   }, 500);
 });
+
 // 关于页面的
 export const prePage = () => {
   const pages = getCurrentPages();
@@ -29,6 +36,3 @@ export const prePage = () => {
   // return prePage.$vm;
   return true;
 };
-export const apiUrl = url;
-export const imgUrl = url.imgUrl;
-export const woliveUrl = url.woliveUrl;

@@ -123,3 +123,10 @@ export const GET_MY_BROKERAGENEW = localApi + '/wap/my/brokeragenew';
  * @param {Number} page -页码
  */
 export const POST_MY_KELIST = localApi + '/wap/my/kelist';
+/******************* v6 ******************* */
+// 员工登录换取签名
+export const POST_USER_APP_SERECT = localApi + '/v6/User/appSerect';
+// 获取员工登录token
+export const POST_USER_TOKEN = localApi + '/v6/User/token';
+// 员工登录
+export const POST_V6_USER_LOGIN = localApi + '/v6/User/login';

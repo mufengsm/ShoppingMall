@@ -1,8 +1,10 @@
 export default {
-	/*
-	** randomWord 产生任意长度随机字母数字组合
-	** randomFlag-是否任意长度 min-任意长度最小位[固定位数] max-任意长度最大位
-	** xuanfeng 2014-08-28
+	/**
+	* 产生任意长度随机字母数字组合
+	* @param 	{Boolean}	randomFlag 	-是否任意长度
+	* @param 	{Number}	min 		-任意长度最小位[固定位数]
+	* @param 	{Number}	max 		-任意长度最大位
+	* @returns 	{String} 				-转化为全部大写的字符串
 	*/
 	randomWord(randomFlag, min, max) {
 		var str = "",
