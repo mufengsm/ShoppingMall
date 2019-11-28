@@ -97,7 +97,7 @@
 <script>
 	import uniLoadMore from '@/components/UniLoadMore/UniLoadMore.vue';
 	import empty from "@/components/empty/empty";
-	import Json from '@/Json';
+
 	export default {
 		components: {
 			uniLoadMore,

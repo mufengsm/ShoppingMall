@@ -226,7 +226,7 @@ export default {
 			this.$request.GET({
 				url:this.$api.apiUrl.GET_USER_INFO
 			}).then(res=>{
-				if(res.data.type === 1){
+				if(res.data.type === 1 && this.other_functions.length===4){
 					this.other_functions.push({img_url:`${this.$imgUrl}/images/myct_others_i_red_21.png`,txt:"合伙人后台"})
 				}
 			})

@@ -3,10 +3,10 @@ import store from './store';
 import App from './App';
 // 封装uniRqeuest请求
 import request from './utils/request.js';
+// 封装全局函数助手
+import functionHelper from './utils/functionHelper.js';
 // 引入自定义工具函数
 import { msg, json, prePage, apiUrl, imgUrl, woliveUrl } from './utils';
-// 引入路由助手
-import { router } from './utils/routerHelper.js';
 
 /*********全局组件注册 */
 // 首页轮播图和商品详情轮播图
@@ -30,12 +30,11 @@ Vue.prototype.$api = { msg, json, prePage, apiUrl };
 Vue.prototype.$imgUrl = imgUrl;
 // 客服地址
 Vue.prototype.$woliveUrl = woliveUrl;
-// 路由助手
-Vue.prototype.$route = { router };
 
 
 // 挂在全局请求方式
 Vue.prototype.$request = request;
+Vue.prototype.$fnHelper = functionHelper;
 App.mpType = 'app';
 
 const app = new Vue({

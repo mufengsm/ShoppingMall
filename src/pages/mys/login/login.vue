@@ -6,8 +6,12 @@
 			<image src="https://meizi.manogue.com.cn/static/wap/images/ddmlogoicon.png" class="logo" mode="aspectFit"></image>
 			<view class="input-content">
 				<view class="userType">
-					<view :class="{left:true,active:isActive}" @tap="typeSwitch">会员登录</view>
-					<view :class="{right:true,active:!isActive}" @tap="typeSwitch">员工登录</view>
+					<view 
+					:class="{left:true,active:isActive===0?true:false}" 
+					@tap="typeSwitch(0)">会员登录</view>
+					<view 
+					:class="{right:true,active:isActive===1?true:false}" 
+					@tap="typeSwitch(1)">员工登录</view>
 				</view>
 				<view class="input-item">
 					<input
@@ -23,7 +27,6 @@
 						placeholder="密码"
 						placeholder-class="input-empty"
 						password
-						@confirm="toLogin"
 					/>
 				</view>
 			</view>
@@ -53,12 +56,28 @@ export default {
       mobile: '',
       password: '',
       logining: false,
-	  isActive: true,
+	  isActive: 0,
+	  phoneType:2,
 	  ...mapState(['isLogin'])
     };
   },
   onLoad() {
-
+	// 获取什么设备
+	uni.getSystemInfo({
+		success: (res)=> {
+			let platform = res.platform;
+			if(platform === "devtools"){
+	            this.phoneType = 2;
+			}else if(platform === "ios"){
+	            this.phoneType = 1;
+			}else if(platform === "android"){
+	            this.phoneType = 2;
+			}
+		}
+	});
+	// 设置随机码
+	let randNum = this.$fnHelper.randomWord(true, 32, 32);
+	console.log(randNum);
   },
   methods: {
     ...mapMutations(['LOGIN']),
@@ -74,6 +93,25 @@ export default {
 		uni.showLoading({
 			title: '正在登录中'
 		});
+		// 判断查看是那个员工登录
+		if(this.isActive){
+			this.staff();
+		}else{
+			this.userLogin();
+		}
+    
+    //   if (result.status === 1) {
+    //     this.login(result.data);
+    //     uni.navigateBack();
+    //   } else {
+    //     this.$api.msg(result.msg);
+    //     this.logining = false;
+    //   }
+    },
+    typeSwitch(e) {
+	  this.isActive = e;
+	},
+	userLogin(){
 		this.$request.POST({
 			url:this.$api.apiUrl.POST_USER_LOGIN,
 			data:{
@@ -109,20 +147,11 @@ export default {
 				});
 			}
 		})
-    
-    //   if (result.status === 1) {
-    //     this.login(result.data);
-    //     uni.navigateBack();
-    //   } else {
-    //     this.$api.msg(result.msg);
-    //     this.logining = false;
-    //   }
-    },
-    typeSwitch() {
-      this.isActive = !this.isActive;
-    },
-  },
+	},
+	staff(){
 
+	},
+  }
 };
 </script>
 
