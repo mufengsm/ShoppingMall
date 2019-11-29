@@ -109,8 +109,8 @@
 				</view>
 			</view>
 		</view> -->
-		<!-- 底部其他功能组件 -->
-		<view class="other_function">
+		<!-- 底部其他功能组件会员版 -->
+		<view class="other_function" v-if="grade === 'VIP1'">
 			<image
 			:src="item.img_url"
 			mode="aspectFit"
@@ -120,6 +120,24 @@
 			@tap="toAppointPage(item.txt)"
 			>
 			</image>
+		</view>
+		<!-- 底部其他功能组件员工版 -->
+		<view class="other_function" v-if="grade !== 'VIP1'">
+			<navigator
+			v-for="(item,index) in employeeFunction"
+			:key="index"
+			:url="item.url"
+			>
+				<view>
+					<image
+					:src="item.img_url"
+					mode="aspectFit"
+					class="other_function_item"
+					>
+					</image>
+					<view class="text">{{item.text}}</view>
+				</view>
+			</navigator>
 		</view>
 		<!-- 认证组件 -->
 		<Authentication v-if="isAuth" />
@@ -155,6 +173,12 @@ export default {
 				{img_url:`${this.$imgUrl}/images/myct_others_i_red_19.png`,txt:"客服"},
 				{img_url:`${this.$imgUrl}/images/myct_others_i_red_06.png`,txt:"帮助中心"},
 
+			],
+			employeeFunction:[
+				{img_url:`${this.$imgUrl}/images/icon-partner-red-pic1.png`,text:"店铺列表",url:"#"},
+				{img_url:`${this.$imgUrl}/images/icon-salesman-red-pic2.png`,text:"品牌审核",url:"#"},
+				{img_url:`${this.$imgUrl}/images/icon-salesman-red-pic3.png`,text:"店铺榜单",url:"#"},
+				{img_url:`${this.$imgUrl}/images/icon-salesman-red-pic4.png`,text:"邀请入驻",url:"#"},
 			],
 			grade:"",
 			salesmanData:{

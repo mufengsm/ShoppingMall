@@ -236,10 +236,28 @@ page{
 		}
 	}
 	.other_function{
+		overflow: hidden;
+		padding: 10px 0;
+		background-color: white;
 		.other_function_item{
 			width: 25%;
 			height: 200upx;
 			float: left;
+		}
+		navigator{
+			float: left;
+			text-align: center;
+			.other_function_item{
+				float: none;
+				width: 25vw;
+				height: 110upx;
+			}
+			.text{
+				font-size: 17px;
+				color: #2b2b2b;
+				margin: 0;
+				padding-top: 6px;
+			}
 		}
 	}
 	.linH{
