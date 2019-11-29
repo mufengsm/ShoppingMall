@@ -130,3 +130,7 @@ export const POST_USER_APP_SERECT = localApi + '/v6/User/appSerect';
 export const POST_USER_TOKEN = localApi + '/v6/User/token';
 // 员工登录
 export const POST_V6_USER_LOGIN = localApi + '/v6/User/login';
+// 员工信息
+export const GET_V6_USER_INFO = localApi + '/v6/user/info';
+// 员工信息页面数据
+export const GET_V6_SHOP_FINANCE = localApi + '/v6/Shop/finance'; 
