@@ -223,9 +223,17 @@ export default {
 		},
 		// 跳转到用户信息页面
 		jumpLogin(){
-			uni.navigateTo({
-				url:'/pages/mys/info/info?userInfo',
-			})
+			// 普通用户跳转页面
+			if(this.grade === 'VIP1'){
+				uni.navigateTo({
+					url:'/pages/mys/info/info?userInfo',
+				})
+			}else{
+				// 员工页面
+				uni.navigateTo({
+					url:'/pages/mys/salesmaninfo/salesmaninfo'
+				})
+			}
 		},
 		// 设置图标数量
 		iconNum(){
@@ -290,7 +298,18 @@ export default {
 					}).then(res=>{
 						let result = res.data;
 						if(res.code === 'SECCUSS'){
-							this.$set(this.userInfoObj,'nickname',result.username);
+							// 有nickname就用没有就用手机号代替
+							if(result.nickname){
+								this.$set(this.userInfoObj,'nickname',result.nickname);
+							}else{
+								this.$set(this.userInfoObj,'nickname',result.mobile);
+							}
+							// 有头像就用,没有就用默认头像
+							if(result.avatar){
+								this.$set(this.userInfoObj,'avatar',result.avatar);
+							}else{
+								this.$set(this.userInfoObj,'avatar','https://meizi.manogue.com.cn/static/wap/images/myct_hd.png');
+							}
 							this.grade = '业务员';
 							this.reqSalesmanData()
 						}

@@ -134,3 +134,5 @@ export const POST_V6_USER_LOGIN = localApi + '/v6/User/login';
 export const GET_V6_USER_INFO = localApi + '/v6/user/info';
 // 员工信息页面数据
 export const GET_V6_SHOP_FINANCE = localApi + '/v6/Shop/finance'; 
+// 员工信息修改
+export const POST_V6_USER_UPINFO = localApi + '/v6/user/upinfo';

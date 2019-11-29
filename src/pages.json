@@ -281,6 +281,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/mys/salesmaninfo/salesmaninfo",
+			"style": {
+				"navigationBarTitleText": "业务员个人资料",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {
