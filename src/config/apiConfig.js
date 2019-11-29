@@ -46,6 +46,8 @@ export const GET_ORDER_GET_LIST = localApi + '/v1/order/get_list';
 export const POST_ORDER_RECEIPT = localApi + '/v1/order/receipt';
 // 更新用户信息
 export const POST_USER_EDIT_INFO = localApi + '/v1/user/edit_info';
+// 用户设置头像
+export const POST_USER_EDIT_AVATAR = localApi + '/v1/user/edit_avatar';
 
 /******************* v3 ******************* */
 // 查询物流

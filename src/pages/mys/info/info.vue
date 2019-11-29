@@ -1,21 +1,23 @@
 <template>
 	<view>
-		<view class="top_card"
-		@tap="modifyingData"
-		>
-			<view class="user-info-box">
+		<view class="top_card">
+			<view class="user-info-box"
+			@tap="setAvatar"
+			>
 				<image 
 				class="portrait" 
-				:src="newUserInfoItem.avatar
-				?newUserInfoItem.avatar
-				:'https://meizi.manogue.com.cn/static/wap/images/myct_hd.png'"
+				:src="avatar"
 				></image>
 			</view>
-			<view class="txt">
+			<view class="txt"
+			@tap="modifyingData"
+			>
 				<view class="nickname">{{newUserInfoItem.nickname}}</view>
 				<view class="username">用户名：{{newUserInfoItem.username}}</view>
 			</view>
-			<view class="icon">
+			<view class="icon"
+			@tap="modifyingData"
+			>
 				<text class="iconfont icon-youjiantou"></text>
 			</view>
 		</view>
@@ -70,7 +72,8 @@ export default {
 	data(){
 		return {
 			newUserInfoItem:{},
-			userInfoObj:{}
+			userInfoObj:{},
+			avatar:'',
 		}
 	},
 	onShow(){
@@ -78,6 +81,11 @@ export default {
 			url:this.$api.apiUrl.GET_USER_INFO,
 		}).then(res=>{
 			this.newUserInfoItem = res.data;
+			if(res.data.avatar){
+				this.avatar = res.data.avatar+'?'+Date.now();
+			}else{
+				this.avatar = 'https://meizi.manogue.com.cn/static/wap/images/myct_hd.png';
+			}
 		})
 	},
 	methods:{
@@ -130,6 +138,38 @@ export default {
 		changePassword(){
 			uni.navigateTo({
 				url:`/pages/mys/changePassword/changePassword?phone=${this.newUserInfoItem.username}`
+			})
+		},
+		setAvatar(){
+			uni.chooseImage({
+				count: 1, // 默认最多一次选择9张图
+				success: res => {
+					uni.showLoading({
+						mask: true
+					})
+					// 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+					var tempFilePaths = res.tempFilePaths[0];
+					// 把base64上传到服务器
+					uni.getFileSystemManager().readFile({
+						filePath: tempFilePaths, //选择图片返回的相对路径
+						encoding: 'base64', //编码格式
+						success: (res) => { //成功的回调
+							this.$request.POST({
+								url:this.$api.apiUrl.POST_USER_EDIT_AVATAR,
+								data:{
+									avatar:res.data
+								}
+							}).then(res2=>{
+								uni.hideLoading();
+								if(res2.errcode===1){
+									uni.showToast({
+										title:res2.errmsg
+									})
+								}
+							})
+						}
+					})
+				}
 			})
 		}
 	}

@@ -11,9 +11,7 @@
 				<view class="portrait-box">
 					<image
 					class="portrait"
-					:src="userInfoObj.avatar
-					?userInfoObj.avatar
-					:'https://meizi.manogue.com.cn/static/wap/images/myct_hd.png'"
+					:src="avatar"
 					></image>
 				</view>
 				<view class="info-box">
@@ -189,7 +187,8 @@ export default {
 				today_price: 0,
 				total_price: 0,
 				week_price: 0,
-			}
+			},
+			avatar:"",
 		};
 	},
 	onShow() {
@@ -343,6 +342,11 @@ export default {
 				url:this.$api.apiUrl.GET_USER_ORDER
 			}).then(res=>{
 				this.userInfoObj = res.data.infomation;
+				if(res.data.infomation.avatar){
+					this.avatar = res.data.infomation.avatar + '?' + Date.now();
+				}else{
+					this.avatar = 'https://meizi.manogue.com.cn/static/wap/images/myct_hd.png';
+				}
 				this.grade = 'VIP1';
 				this.orderList = res.data.order;
 				this.iconNum();
