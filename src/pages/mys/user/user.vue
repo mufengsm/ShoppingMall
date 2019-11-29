@@ -70,10 +70,29 @@
 				</view>
 			</view>
 		</view>
-		<!-- 第二个状态组件 -->
-		<view class="tj-sction">
+		<!-- 第二个状态组件普通用户显示 -->
+		<view class="tj-sction" v-if="grade === 'VIP1'">
 			<image class="recommend_img" src="https://meizi.manogue.com.cn/static/wap/images/my_icon2_red.png" mode="aspectFit"></image>
 			<text class="recommend_txt">推广有礼</text>
+		</view>
+		<!-- 第二个状态组件销售员显示 -->
+		<view class="tj-sction" v-if="grade !== 'VIP1'">
+			<view class="left">
+				<image 
+				src="https://meizi.manogue.com.cn/static/wap/images/myct_indent_red.png"></image>
+				<view>今日成交量</view>
+			</view>
+			<view class="content order-section">
+				<view
+				v-if="grade !== 'VIP1'"
+				class="order-item salesman"
+				v-for="(item,index) in todayDeal"
+				:key="index"
+				>
+					<view class="num">{{item.num}}</view>
+					<view class="text">{{item.text}}</view>
+				</view>
+			</view>
 		</view>
 		<!-- 我的钱包功能暂未开启 -->
 		<!-- <view class="my_wallet">
@@ -161,6 +180,12 @@ export default {
 				{num:this.salesmanData.today_price,text:"今日销售额"},
 				{num:this.salesmanData.week_price,text:"近7天销售额"},
 				{num:this.salesmanData.month_price,text:"近30天销售额"},
+			]
+		},
+		todayDeal(){
+			return [
+				{num:this.salesmanData.today_num,text:"今日成交件数"},
+				{num:this.salesmanData.kprice,text:"今日客单价"},
 			]
 		}
 	},

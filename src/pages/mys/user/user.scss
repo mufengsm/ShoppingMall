@@ -102,6 +102,19 @@ page{
 			display: block;
 			line-height:96upx;
 		}
+		.left{
+			flex: 5;
+			display: flex;
+			font-size: 17px;
+			image{
+				width: 18px;
+				height:19px;
+				margin-right: 4px;
+			}
+			view{
+				line-height: 21px;
+			}
+		}
 	}
 	.order-section{
 		@extend %section;
