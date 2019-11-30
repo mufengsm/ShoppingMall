@@ -127,7 +127,9 @@ export default {
 	methods:{
 		...mapMutations(['changeWrapShow']),
 		changePassword(){
-
+			uni.navigateTo({
+				url:"/pages/mys/changePassword/changePassword"
+			})
 		},
 		loginOut(){
 			uni.showLoading({

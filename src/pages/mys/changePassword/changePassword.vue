@@ -1,9 +1,16 @@
 <template>
 	<view class="content">
 		<view class="ipt_item">
-			<input type="text" maxlength="11" placeholder="请填写手机号" v-model="username">
+			<input 
+			v-if="!salesman"
+			type="text" maxlength="11" placeholder="请填写手机号" v-model="username">
+			<input 
+			v-if="salesman"
+			type="text" password placeholder="请输入原密码" v-model="originalPassword">
 		</view>
-		<view class="ipt_item id_btn">
+		<view 
+		v-if="!salesman"
+		class="ipt_item id_btn">
 			<input type="text" placeholder="获取验证码" v-model="code">
 			<button 
 			class="btn button"
@@ -21,8 +28,15 @@
 		<view class="ipt_item">
 			<input type="text" password placeholder="请再次确认密码" v-model="confirmPassword">
 		</view>
-		<button class="btn"
+		<button 
+		v-if="!salesman"
+		class="btn"
 		@tap="submit"
+		>确定修改</button>
+		<button 
+		v-if="salesman"
+		class="btn"
+		@tap="staffSubmit"
 		>确定修改</button>
 	</view>
 </template>
@@ -32,6 +46,8 @@ const { mapState, mapMutations } = createNamespacedHelpers('storeCommodity');
 export default {
 	data(){
 		return {
+			originalPassword:"",
+			salesman:false,
 			username:"",
 			isBtn:false,
 			btnTxt:"获取验证码",
@@ -41,7 +57,22 @@ export default {
 			...mapState(['isLogin'])
 		}
 	},
-	onLoad(e){this.username=e.phone},
+	onLoad(e){if(e.phone){this.username=e.phone;}},
+	onShow(){
+		// 获取用户信息
+		this.$request.GET({
+			url:this.$api.apiUrl.GET_USER_INFO
+		}).then(res=>{
+			let result = res.data;
+			if(result.rule !== 'salesman'){
+				// 普通用户
+				this.salesman = false;
+			}else{
+				// 员工页面
+				this.salesman = true;
+			}
+		})
+	},
 	methods:{
 		...mapMutations(['LOGIN']),
 		getCode(){
@@ -168,6 +199,35 @@ export default {
 					this.$api.msg(res.msg);
 				}
 			})
+		},
+		staffSubmit(){
+			// 判断是否输入原密码
+			if(!this.originalPassword){this.$api.msg("请输入原密码");return false;};
+			// 判断新输入的密码是否相同;
+			const isPssword = this.passwordIdentical();
+			if(isPssword){
+				this.$request.POST({
+					url:this.$api.apiUrl.POST_V6_PARTNER_CHANGEPASSWORD,
+					data:{
+						"oldpassword": this.originalPassword,
+						"password": this.password,
+						"repassword": this.confirmPassword
+					}
+				}).then(res=>{
+					if(res.code === 'SECCUSS'){
+						uni.showToast({
+							title:res.msg,
+							success:()=>{
+								uni.switchTab({
+									url:"/pages/mys/user/user"
+								})
+							}
+						})
+					}else{
+						this.$api.msg(res.msg)
+					}
+				})
+			}
 		}
 	}
 }

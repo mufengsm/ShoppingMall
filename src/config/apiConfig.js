@@ -142,3 +142,5 @@ export const POST_V6_USER_UPINFO = localApi + '/v6/user/upinfo';
 export const GET_V6_USER_CHECKTOKEN = localApi + '/v6/User/checkToken';
 // 退出登录
 export const GET_V6_USER_OUT = localApi + '/v6/User/out';
+// 员工修改密码
+export const POST_V6_PARTNER_CHANGEPASSWORD = localApi + '/v6/Partner/changePassword';

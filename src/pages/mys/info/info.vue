@@ -137,7 +137,7 @@ export default {
 		},
 		changePassword(){
 			uni.navigateTo({
-				url:`/pages/mys/changePassword/changePassword?phone=${this.newUserInfoItem.username}`
+				url:`/pages/mys/changePassword/changePassword?phone=${this.newUserInfoItem.phone}`
 			})
 		},
 		setAvatar(){
