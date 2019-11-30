@@ -305,9 +305,9 @@ export default {
 							}
 							// 有头像就用,没有就用默认头像
 							if(result.avatar){
-								this.$set(this.userInfoObj,'avatar',result.avatar);
+								this.avatar = result.avatar + '?' + Date.now();;
 							}else{
-								this.$set(this.userInfoObj,'avatar','https://meizi.manogue.com.cn/static/wap/images/myct_hd.png');
+								this.avatar = 'https://meizi.manogue.com.cn/static/wap/images/myct_hd.png';
 							}
 							this.grade = '业务员';
 							this.reqSalesmanData()

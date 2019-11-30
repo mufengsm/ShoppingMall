@@ -90,6 +90,8 @@
 	</view>
 </template>
 <script>
+import { createNamespacedHelpers } from 'vuex';
+const { mapMutations } = createNamespacedHelpers('storeCommodity');
 import uploadImage from '@/common/ossutil/uploadFile.js';
 export default {
 	data(){
@@ -123,6 +125,7 @@ export default {
 		})
 	},
 	methods:{
+		...mapMutations(['changeWrapShow']),
 		changePassword(){
 
 		},
@@ -130,7 +133,44 @@ export default {
 			uni.showLoading({
 				title:"正在退出"
 			})
-			
+			const TOKEN = uni.getStorageSync('access_token');
+			this.$request.GET({
+				url:this.$api.apiUrl.GET_V6_USER_CHECKTOKEN,
+				data:{
+					token:TOKEN
+				}
+			}).then(res=>{
+				if(res.code === 'SECCUSS'){
+					this.$request.GET({
+						url:this.$api.apiUrl.GET_V6_USER_OUT,
+						data:{
+							token:TOKEN
+						}
+					}).then(res2=>{
+						if(res2.code == 'SECCUSS'){
+							uni.setStorage({
+								key: 'access_token',
+								data: "",
+								success:()=>{
+									uni.hideLoading();
+									uni.showToast({
+										title:"退出成功",
+										success:()=>{
+											uni.switchTab({
+												url:"/pages/indexs/index/index"
+											});
+											this.changeWrapShow({"isWrapShow":false})
+										}
+									})
+								}
+							});
+						}
+					})
+				}else{
+					uni.hideLoading();
+					this.$api.msg(res.msg);
+				}
+			})
 		},
 		modifyingData(){
 			this.toggleSpec();

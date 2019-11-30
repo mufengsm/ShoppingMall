@@ -138,3 +138,7 @@ export const GET_V6_USER_INFO = localApi + '/v6/user/info';
 export const GET_V6_SHOP_FINANCE = localApi + '/v6/Shop/finance'; 
 // 员工信息修改
 export const POST_V6_USER_UPINFO = localApi + '/v6/user/upinfo';
+// 验证登录状态
+export const GET_V6_USER_CHECKTOKEN = localApi + '/v6/User/checkToken';
+// 退出登录
+export const GET_V6_USER_OUT = localApi + '/v6/User/out';
