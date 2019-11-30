@@ -328,8 +328,8 @@ export default {
 			const value = uni.getStorageSync('storage_salesman');
 			const TOKEN = uni.getStorageSync('access_token');
 			if(value){
-				this.$request.GET({
-					url:this.$api.apiUrl.GET_V6_USER_CHECKTOKEN,
+				this.$request.POST({
+					url:this.$api.apiUrl.POST_V6_USER_CHECKTOKEN,
 					data:{
 						token:TOKEN
 					}

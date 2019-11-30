@@ -104,6 +104,7 @@ export default {
 			}).then(res=>{
 				if(res.code === 200){
 					// 清除本地存的登录信息
+					uni.setStorageSync('storage_salesman','')
 					uni.setStorage({
 						key: 'access_token',
 						data: '',

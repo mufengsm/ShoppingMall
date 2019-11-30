@@ -136,8 +136,8 @@ export default {
 				title:"正在退出"
 			})
 			const TOKEN = uni.getStorageSync('access_token');
-			this.$request.GET({
-				url:this.$api.apiUrl.GET_V6_USER_CHECKTOKEN,
+			this.$request.POST({
+				url:this.$api.apiUrl.POST_V6_USER_CHECKTOKEN,
 				data:{
 					token:TOKEN
 				}
@@ -155,6 +155,7 @@ export default {
 								data: "",
 								success:()=>{
 									uni.hideLoading();
+									uni.setStorageSync('storage_salesman','');
 									uni.showToast({
 										title:"退出成功",
 										success:()=>{

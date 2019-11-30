@@ -7,7 +7,7 @@ export const woliveUrl = 'https://meizi.pingbbs.com:444/wap/goods/wolive';
 let localApi = '';
 if (process.env.NODE_ENV === 'development') {
 	// 开发环境
-	localApi = 'http://localhost:8888';
+	localApi = 'https://meizi.pingbbs.com:444';
 } else {
 	// 生产环境
 	localApi = 'https://meizi.manogue.com.cn';
@@ -139,7 +139,7 @@ export const GET_V6_SHOP_FINANCE = localApi + '/v6/Shop/finance';
 // 员工信息修改
 export const POST_V6_USER_UPINFO = localApi + '/v6/user/upinfo';
 // 验证登录状态
-export const GET_V6_USER_CHECKTOKEN = localApi + '/v6/User/checkToken';
+export const POST_V6_USER_CHECKTOKEN = localApi + '/v6/User/checkToken';
 // 退出登录
 export const GET_V6_USER_OUT = localApi + '/v6/User/out';
 // 员工修改密码
