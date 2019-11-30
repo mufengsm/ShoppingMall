@@ -275,7 +275,11 @@ export default {
 				this.reqUserInfo();
 			}
 		},
-		reqUserInfo(){
+		async reqUserInfo(){
+			let checkoutUserResult = await this.checkoutUser();
+			if(checkoutUserResult){this.reqUserInfoCore()};
+		},
+		reqUserInfoCore(){
 			// 获取用户信息
 			this.$request.GET({
 				url:this.$api.apiUrl.GET_USER_INFO
@@ -289,6 +293,7 @@ export default {
 							txt:"合伙人后台"
 						})
 					}
+					uni.setStorageSync('storage_salesman','')
 					// 这是普通用户或者合伙人登录请求的数据;
 					this.reqUserOrder();
 				}else{
@@ -310,11 +315,39 @@ export default {
 								this.avatar = 'https://meizi.manogue.com.cn/static/wap/images/myct_hd.png';
 							}
 							this.grade = '业务员';
+							uni.setStorageSync('storage_salesman','true')
 							this.reqSalesmanData()
 						}
 					})
 				}
 			})
+		},
+		// 检查是不是员工且登录状态失效
+		checkoutUser(){
+			// 先查看是什么用户
+			const value = uni.getStorageSync('storage_salesman');
+			const TOKEN = uni.getStorageSync('access_token');
+			if(value){
+				this.$request.GET({
+					url:this.$api.apiUrl.GET_V6_USER_CHECKTOKEN,
+					data:{
+						token:TOKEN
+					}
+				}).then(res=>{
+					if(res.code !== 'SECCUSS'){
+						// 如果是员工登录且被顶下线就清除token和登录类别
+						uni.setStorageSync('storage_salesman','')
+						uni.setStorageSync('access_token','')
+						uni.navigateTo({
+							url:"/pages/mys/login/login"
+						})
+					}else{
+						this.reqUserInfoCore();
+					}
+				});
+			}else{
+				return true;
+			}	
 		},
 		// 获取业务员页面信息
 		reqSalesmanData(){
