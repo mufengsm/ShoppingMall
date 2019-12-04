@@ -7,13 +7,14 @@ export const woliveUrl = 'https://meizi.pingbbs.com:444/wap/goods/wolive';
 let localApi = '';
 if (process.env.NODE_ENV === 'development') {
 	// 开发环境
-	localApi = 'https://meizi.pingbbs.com:444';
+	localApi = 'http://localhost:8888';
+	// 线上测试地址
+	// localApi = 'https://meizi.pingbbs.com:444';
 } else {
 	// 生产环境
 	localApi = 'https://meizi.manogue.com.cn';
 }
-// 线上测试地址
-// localApi = 'https://meizi.pingbbs.com:444';
+
 
 /******************* 开发使用 ******************* */
 // 线上测试接口
@@ -144,3 +145,5 @@ export const POST_V6_USER_CHECKTOKEN = localApi + '/v6/User/checkToken';
 export const GET_V6_USER_OUT = localApi + '/v6/User/out';
 // 员工修改密码
 export const POST_V6_PARTNER_CHANGEPASSWORD = localApi + '/v6/Partner/changePassword';
+// 获取店铺列表
+export const GET_SHOP_LISTING = localApi + '/v6/Shop/listing';

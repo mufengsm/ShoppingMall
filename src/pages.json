@@ -292,6 +292,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/mys/storelist/storelist",
+			"style": {
+				"navigationBarTitleText": "店铺列表",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {
