@@ -174,7 +174,7 @@ export default {
 			],
 			employeeFunction:[
 				{img_url:`${this.$imgUrl}/images/icon-partner-red-pic1.png`,text:"店铺列表",url:"/pages/mys/storelist/storelist"},
-				{img_url:`${this.$imgUrl}/images/icon-salesman-red-pic2.png`,text:"品牌审核",url:"#"},
+				{img_url:`${this.$imgUrl}/images/icon-salesman-red-pic2.png`,text:"品牌审核",url:"/pages/mys/storebrandlist/storebrandlist"},
 				{img_url:`${this.$imgUrl}/images/icon-salesman-red-pic3.png`,text:"店铺榜单",url:"#"},
 				{img_url:`${this.$imgUrl}/images/icon-salesman-red-pic4.png`,text:"邀请入驻",url:"#"},
 			],

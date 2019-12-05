@@ -7,9 +7,9 @@ export const woliveUrl = 'https://meizi.pingbbs.com:444/wap/goods/wolive';
 let localApi = '';
 if (process.env.NODE_ENV === 'development') {
 	// 开发环境
-	localApi = 'http://localhost:8888';
+	// localApi = 'http://localhost:8888';
 	// 线上测试地址
-	// localApi = 'https://meizi.pingbbs.com:444';
+	localApi = 'https://meizi.pingbbs.com:444';
 } else {
 	// 生产环境
 	localApi = 'https://meizi.manogue.com.cn';
@@ -128,9 +128,9 @@ export const GET_MY_BROKERAGENEW = localApi + '/wap/my/brokeragenew';
 export const POST_MY_KELIST = localApi + '/wap/my/kelist';
 /******************* v6 ******************* */
 // 员工登录换取签名
-export const POST_USER_APP_SERECT = localApi + '/v6/User/appSerect';
+export const POST_V6_USER_APP_SERECT = localApi + '/v6/User/appSerect';
 // 获取员工登录token
-export const POST_USER_TOKEN = localApi + '/v6/User/token';
+export const POST_V6_USER_TOKEN = localApi + '/v6/User/token';
 // 员工登录
 export const POST_V6_USER_LOGIN = localApi + '/v6/User/login';
 // 员工信息
@@ -146,4 +146,6 @@ export const GET_V6_USER_OUT = localApi + '/v6/User/out';
 // 员工修改密码
 export const POST_V6_PARTNER_CHANGEPASSWORD = localApi + '/v6/Partner/changePassword';
 // 获取店铺列表
-export const GET_SHOP_LISTING = localApi + '/v6/Shop/listing';
+export const GET_V6_SHOP_LISTING = localApi + '/v6/Shop/listing';
+// 店铺审核列表
+export const GET_V6_BRAND_LISTING = localApi + '/v6/Brand/listing';

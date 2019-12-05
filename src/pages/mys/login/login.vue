@@ -157,7 +157,7 @@ export default {
 			this.randNum = randNum;
 		}
 		this.$request.POST({
-			url:this.$api.apiUrl.POST_USER_APP_SERECT,
+			url:this.$api.apiUrl.POST_V6_USER_APP_SERECT,
 			data:{
 				device_uuid:this.randNum,
 				device_type:this.phoneType
@@ -172,7 +172,7 @@ export default {
 				if(oToken === null){
 					let signMd5 = this.randNum+result.app_id+result.app_secret+'i$6xtmclRStow$uj&rj7uFj^ZnV8&WyN';
 					this.$request.POST({
-						url:this.$api.apiUrl.POST_USER_TOKEN,
+						url:this.$api.apiUrl.POST_V6_USER_TOKEN,
 						data:{
 							"app_id": result.app_id,
 							"app_secret": result.app_secret,

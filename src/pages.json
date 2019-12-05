@@ -303,6 +303,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/mys/storebrandlist/storebrandlist",
+			"style": {
+				"navigationBarTitleText": "店铺审核",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {

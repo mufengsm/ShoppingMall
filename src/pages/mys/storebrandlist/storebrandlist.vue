@@ -1,15 +1,35 @@
 <template>
 	<view>
 		<view class="card_list">
-			<view 
-			v-for="(item,index) in dataList"
+			<view
+			v-for="(item,inex) in dataList"
 			:key="index"
 			class="card_item">
 				<view class="left">
-					<view>{{item.shop_name}}</view>
-					<view class="bottom">总成交额：<text>¥{{item.total_price}}</text></view>
+					<view class="top">
+						<view>{{item.brand_name}}</view>
+						<view>申请人电话:</view>
+					</view>
+					<view class="bottom">
+						<view>{{item.shop_name}}</view>
+						<view>{{item.mobile}}</view>
+					</view>
 				</view>
-				<view class="right iconfont icon-youjiantou"></view>
+				<view class="right">
+					<view
+					v-if="item.status === '0'" 
+					class="btn"
+					>
+						<button class="yes btn_public">同意</button>
+						<button class="no btn_public">驳回</button>
+					</view>
+					<view
+					v-else
+					class="txt"
+					>
+						<text>{{item.status === '1' ? "已审核" : "不通过"}}</text>
+					</view>
+				</view>
 			</view>
 		</view>
 		<UniLoadMore :status="noData"></UniLoadMore>
@@ -45,11 +65,9 @@ export default {
 	methods:{
 		reqStoreList(){
 			this.noData = 'loding';
-			const TOKEN = uni.getStorageSync('access_token');
 			this.$request.GET({
-				url:this.$api.apiUrl.GET_V6_SHOP_LISTING,
+				url:this.$api.apiUrl.GET_V6_BRAND_LISTING,
 				data:{
-					token:TOKEN,
 					page:this.page,
 					listRows:this.listRows
 				}
@@ -85,14 +103,43 @@ page{
 	border-bottom:1px solid #eee;
 	background-color: white;
 	.left{
-		flex: 9;
+		flex: 7;
+		font-size: 16px;
+		overflow: hidden;
+		.top{
+			float: left;
+		}
 		.bottom{
-			color: #999;
-			text{color:#e23c3c;}
+			float: left;
+			padding-left: 10px;
 		}
 	}
 	.right{
-		flex:1;
+		flex:3;
+		.btn{
+			display: flex;
+			.btn_public{
+				padding: 0;
+				width: 47%;
+				height: 26px;
+				color: white;
+				font-size: 14px;
+				line-height: 26px;
+				border-radius: 0;
+			}
+			.yes{
+				margin-right: 6%;
+				background-color: #ffa60f;
+			}
+			.no{
+				background-color: #df0e1d;
+			}
+		}
+		.txt{
+			float: right;
+			font-size: 14px;
+			color: #8f8f94;
+		}
 	}
 }
 </style>
