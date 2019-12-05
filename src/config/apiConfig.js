@@ -149,3 +149,5 @@ export const POST_V6_PARTNER_CHANGEPASSWORD = localApi + '/v6/Partner/changePass
 export const GET_V6_SHOP_LISTING = localApi + '/v6/Shop/listing';
 // 店铺审核列表
 export const GET_V6_BRAND_LISTING = localApi + '/v6/Brand/listing';
+// 审核店铺
+export const POST_V6_BRAND_CHECK = localApi + '/v6/Brand/check';

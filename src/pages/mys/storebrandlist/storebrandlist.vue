@@ -17,17 +17,23 @@
 				</view>
 				<view class="right">
 					<view
-					v-if="item.status === '0'" 
+					v-if="item.status == '0'" 
 					class="btn"
 					>
-						<button class="yes btn_public">同意</button>
-						<button class="no btn_public">驳回</button>
+						<button class="yes btn_public"
+						:data-id="item.id"
+						data-btn='1'
+						@tap="submit">同意</button>
+						<button class="no btn_public"
+						:data-id="item.id"
+						data-btn='2'
+						@tap="submit">驳回</button>
 					</view>
 					<view
 					v-else
 					class="txt"
 					>
-						<text>{{item.status === '1' ? "已审核" : "不通过"}}</text>
+						<text>{{item.status == '1' ? "已审核" : "不通过"}}</text>
 					</view>
 				</view>
 			</view>
@@ -81,6 +87,29 @@ export default {
 						this.noData = 'more';
 					}
 					this.dataList = this.dataList.concat(res.data);
+				}else{
+					this.$api.msg(res.msg)
+				}
+			})
+		},
+		submit(e){
+			// 按的是什么按钮
+			var listId = e.target.dataset.btn;
+			// 审核列表的id
+		    var parentId = e.target.dataset.id;
+			this.$request.POST({
+				url:this.$api.apiUrl.POST_V6_BRAND_CHECK,
+				data:{
+					"id": parentId,
+					"status": listId
+				}
+			}).then(res=>{
+				if(res.code == 'SUCCESS'){
+					let index = this.dataList.findIndex(item=>{
+						return item.id == parentId
+					})
+					// 更改显示页面的
+					this.$set(this.dataList[index],'status',listId)
 				}else{
 					this.$api.msg(res.msg)
 				}
