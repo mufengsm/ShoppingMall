@@ -314,6 +314,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/mys/storetop/storetop",
+			"style": {
+				"navigationBarTitleText": "店铺榜单",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {
