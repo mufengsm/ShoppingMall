@@ -325,6 +325,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/shares/index/index",
+			"style": {
+				"navigationBarTitleText": "推广有礼",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {

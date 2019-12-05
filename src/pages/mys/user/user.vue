@@ -70,8 +70,12 @@
 		</view>
 		<!-- 第二个状态组件普通用户显示 -->
 		<view class="tj-sction" v-if="grade === 'VIP1'">
-			<image class="recommend_img" src="https://meizi.manogue.com.cn/static/wap/images/my_icon2_red.png" mode="aspectFit"></image>
-			<text class="recommend_txt">推广有礼</text>
+			<image 
+			@tap="toAppointPage('推广有礼')"
+			class="recommend_img" src="https://meizi.manogue.com.cn/static/wap/images/my_icon2_red.png" mode="aspectFit"></image>
+			<text 
+			@tap="toAppointPage('推广有礼')"
+			class="recommend_txt">推广有礼</text>
 		</view>
 		<!-- 第二个状态组件销售员显示 -->
 		<view class="tj-sction" v-if="grade !== 'VIP1'">
@@ -176,7 +180,7 @@ export default {
 				{img_url:`${this.$imgUrl}/images/icon-partner-red-pic1.png`,text:"店铺列表",url:"/pages/mys/storelist/storelist"},
 				{img_url:`${this.$imgUrl}/images/icon-salesman-red-pic2.png`,text:"品牌审核",url:"/pages/mys/storebrandlist/storebrandlist"},
 				{img_url:`${this.$imgUrl}/images/icon-salesman-red-pic3.png`,text:"店铺榜单",url:"/pages/mys/storetop/storetop"},
-				{img_url:`${this.$imgUrl}/images/icon-salesman-red-pic4.png`,text:"邀请入驻",url:"#"},
+				{img_url:`${this.$imgUrl}/images/icon-salesman-red-pic4.png`,text:"邀请入驻",url:"/pages/shares/index/index"},
 			],
 			grade:"",
 			salesmanData:{
@@ -408,6 +412,10 @@ export default {
 						url:"/pages/mys/brokeragenew/brokeragenew"
 					})
 					break
+				case "推广有礼":
+					uni.navigateTo({
+						url:"/pages/shares/index/index"
+					})
 				default:
 					break;
 			}
