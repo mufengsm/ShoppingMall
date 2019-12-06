@@ -20,7 +20,7 @@ export default {
 	onShareAppMessage(res) {
 		return {
 			title:"选进囗品就上多多美",
-			path:`/pages/indexs/index/index?id=${this.userId}`,
+			path:`/pages/shares/bindmobile/bindmobile?id=${this.userId}`,
 			success:(res)=>{
 				console.log(res);
 			},
@@ -29,16 +29,7 @@ export default {
 			}
 		}
 	}
-	// onLoad(options){
-	// 	var uid = options.id;
-	// 	if(typeof (uid) === undefined || uid === undefined){
-	// 		uid = '';
-	// 	}else{
-	// 		this.shareUid = uid;
-	// 	}
-	// 	// console.log(uid,"uid");
-	// 	this.$api.msg(uid)
-	// },
+
 }
 </script>
 <style lang="scss">
@@ -47,7 +38,7 @@ page{
 	height: 100vh;
 	background-image: url('https://meizi.manogue.com.cn/static/wap/images/tuiguan_bd3.png?v=20190704');
 	background-repeat: no-repeat;
-    background-size: 100%;
+   	background-size: 100% 100%;
 }
 button{
 	position: absolute;

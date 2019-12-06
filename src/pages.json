@@ -336,6 +336,28 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/shares/bindmobile/bindmobile",
+			"style": {
+				"navigationBarTitleText": "成为会员",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/shares/bindsuccess/bindsuccess",
+			"style": {
+				"navigationBarTitleText": "我要推广",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {
