@@ -358,6 +358,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/mys/partnerGuestListTop/partnerGuestListTop",
+			"style": {
+				"navigationBarTitleText": "创客榜首",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {

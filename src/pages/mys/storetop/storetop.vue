@@ -48,7 +48,7 @@ export default {
 	},
 	methods:{
 		reqStoreList(){
-			this.noData = 'loding';
+			this.noData = 'loading';
 			const TOKEN = uni.getStorageSync('access_token');
 			this.$request.GET({
 				url:this.$api.apiUrl.GET_V6_SHOP_LISTING,

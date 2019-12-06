@@ -70,7 +70,7 @@ export default {
 	},
 	methods:{
 		reqStoreList(){
-			this.noData = 'loding';
+			this.noData = 'loading';
 			this.$request.GET({
 				url:this.$api.apiUrl.GET_V6_BRAND_LISTING,
 				data:{
