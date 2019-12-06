@@ -8,6 +8,7 @@ export default {
 	data(){
 		return{
 			userId:null,
+			invitationCode:null,
 		}
 	},
 	onLoad(){
@@ -16,11 +17,22 @@ export default {
 		}).then(res=>{
 			this.userId = res.data.id;
 		})
+		const isSalesman = uni.getStorageSync("storage_salesman");
+		// 员工邀请获取邀请码
+		if(isSalesman){
+			this.$request.GET({
+				url:this.$api.apiUrl.GET_V6_SHARE_INDEX,
+			}).then(data=>{
+				if(data.code == 'SECCUSS'){
+					this.invitationCode = data.data;
+				}				
+			})
+		}
 	},
 	onShareAppMessage(res) {
 		return {
 			title:"选进囗品就上多多美",
-			path:`/pages/shares/bindmobile/bindmobile?id=${this.userId}`,
+			path:`/pages/shares/bindmobile/bindmobile?id=${this.userId}&invitationCode=${this.invitationCode}`,
 			success:(res)=>{
 				console.log(res);
 			},

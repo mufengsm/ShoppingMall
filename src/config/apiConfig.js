@@ -153,3 +153,7 @@ export const GET_V6_SHOP_LISTING = localApi + '/v6/Shop/listing';
 export const GET_V6_BRAND_LISTING = localApi + '/v6/Brand/listing';
 // 审核店铺
 export const POST_V6_BRAND_CHECK = localApi + '/v6/Brand/check';
+// 获取邀请码
+export const GET_V6_SHARE_INDEX = localApi + '/v6/Share/index';
+// 分享页绑定
+export const POST_V6_SHARE_BINDSHOP = localApi + '/v6/Share/bindShop';
