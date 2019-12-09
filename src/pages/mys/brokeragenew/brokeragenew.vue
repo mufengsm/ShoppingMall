@@ -58,7 +58,8 @@ export default {
 				{img:`${this.$imgUrl}/images/icon-partner-red-pic4.png`,txt:"销售排行"},
 				{img:`${this.$imgUrl}/images/icon-partner-red-pic5.png`,txt:"订单明细",
 				pageUrl:"/pages/mys/partnerorderdetail/partnerorderdetail"},
-				{img:`${this.$imgUrl}/images/icon-partner-red-pic6.png`,txt:"添加业务员"},
+				{img:`${this.$imgUrl}/images/icon-partner-red-pic6.png`,txt:"添加业务员",
+				pageUrl:"/pages/mys/partneraddsalesman/partneraddsalesman"},
 				{img:`${this.$imgUrl}/images/icon-partner-red-pic7.png`,txt:"团队管理"},
 			]
 		}

@@ -380,6 +380,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/mys/partneraddsalesman/partneraddsalesman",
+			"style": {
+				"navigationBarTitleText": "添加业务员",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {

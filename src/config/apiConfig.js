@@ -161,3 +161,7 @@ export const POST_V6_BRAND_CHECK = localApi + '/v6/Brand/check';
 export const GET_V6_SHARE_INDEX = localApi + '/v6/Share/index';
 // 分享页绑定
 export const POST_V6_SHARE_BINDSHOP = localApi + '/v6/Share/bindShop';
+// 验证业务员手机号,用户名
+export const POST_V6_PARTNER_CHECKSALESMAN = localApi + '/v6/Partner/checkSalesman';
+// 添加业务员
+export const POST_V6_PARTNER_ADDSALESMAN = localApi + '/v6/Partner/addSalesman';
