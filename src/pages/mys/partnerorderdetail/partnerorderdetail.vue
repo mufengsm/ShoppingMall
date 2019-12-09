@@ -5,6 +5,7 @@
 			v-for="(product,name) in dataList"
 			:key="name"
 			>
+				<view class="postion_img"><image :src="'https://meizi.manogue.com.cn/static/wap/images/order_detail_stusta_'+ product[0].status +'.png'"></image></view>
 				<view class="top">
 					<view class="title">自营</view>
 					<view class="order_number">订单号：{{name}}</view>
@@ -88,7 +89,6 @@ export default {
 					page:this.page
 				}
 			}).then(res=>{
-				console.log(res);
 				if(res.code === 200){
 					if(res.data){
 						this.noData = 'more';
@@ -124,8 +124,18 @@ page{
 	width: 100vw;
 	.list_item{
 		width: 100%;
+		position: relative;
 		padding-top: 10px;
 		border-bottom: 1px solid #efeff4;
+		.postion_img{
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			image{
+				width: 15vw;
+				height: 15vw;
+			}
+		}
 		.top{
 			display: flex;
 			align-items: center;
