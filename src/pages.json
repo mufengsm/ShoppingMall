@@ -369,6 +369,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/mys/partnerorderdetail/partnerorderdetail",
+			"style": {
+				"navigationBarTitleText": "订单明细",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {
