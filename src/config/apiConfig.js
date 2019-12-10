@@ -7,9 +7,9 @@ export const woliveUrl = 'https://meizi.pingbbs.com:444/wap/goods/wolive';
 let localApi = '';
 if (process.env.NODE_ENV === 'development') {
 	// 开发环境
-	localApi = 'http://localhost:8888';
+	// localApi = 'http://localhost:8888';
 	// 线上测试地址
-	// localApi = 'https://meizi.pingbbs.com:444';
+	localApi = 'https://meizi.pingbbs.com:444';
 } else {
 	// 生产环境
 	localApi = 'https://meizi.manogue.com.cn';
@@ -79,6 +79,10 @@ export const POST_GOODS_STOCK = localApi + '/v4/goods/stock';
 export const POST_V4_USER_KE_LIST = localApi + '/v4/User/ke_list/';
 // 后台合伙人订单明细
 export const POST_V4_USER_SELL_DETAIL = localApi + '/v4/user/sell_detail';
+// 审核列表详情
+export const POST_V4_USER_SHOW_MEMBER = localApi + '/v4/User/show_member/';
+// 驳回审核信息
+export const POST_V4_USER_CHECK_PASS = localApi + '/V4/User/check_pass/';
 
 /******************* v5 ******************* */
 // 用户登录
@@ -132,6 +136,11 @@ export const GET_MY_BROKERAGENEW = localApi + '/wap/my/brokeragenew';
 export const POST_MY_KELIST = localApi + '/wap/my/kelist';
 // 成为会员
 export const POST_SHARE_BINDMOBILE = localApi + '/wap/share/bindmobile';
+// 店铺审核列表
+export const  GET_WAP_MY_KECHECK = localApi + '/wap/my/kecheck';
+// 通过审核
+export const KECHECK = localApi + '/wap/my/kecheck/keCheck';
+
 /******************* v6 ******************* */
 // 员工登录换取签名
 export const POST_V6_USER_APP_SERECT = localApi + '/v6/User/appSerect';

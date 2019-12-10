@@ -391,6 +391,39 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/mys/kecheck/kecheck",
+			"style": {
+				"navigationBarTitleText": "审核列表",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/kelistbyid/kelistbyid",
+			"style": {
+				"navigationBarTitleText": "审核列表详情",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/notPass/notPass",
+			"style": {
+				"navigationBarTitleText": "驳回信息",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {

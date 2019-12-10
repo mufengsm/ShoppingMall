@@ -238,7 +238,7 @@
 			//删除订单
 			deleteOrder(index){
 				uni.showLoading({
-					title: '请稍后'
+					title: '请稍候'
 				})
 				setTimeout(()=>{
 					this.navList[this.tabCurrentIndex].orderList.splice(index, 1);
@@ -248,7 +248,7 @@
 			//取消订单
 			cancelOrder(item){
 				uni.showLoading({
-					title: '请稍后'
+					title: '请稍候'
 				})
 				setTimeout(()=>{
 					let {stateTip, stateTipColor} = this.orderStateExp(9);

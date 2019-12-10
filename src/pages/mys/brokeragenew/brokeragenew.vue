@@ -52,7 +52,8 @@ export default {
 			navToImg:[
 				{img:`${this.$imgUrl}/images/icon-partner-red-pic1.png`,txt:"店铺列表",
 				pageUrl:"/pages/mys/kelist/kelist"},
-				{img:`${this.$imgUrl}/images/icon-partner-red-pic2.png`,txt:"店铺审核"},
+				{img:`${this.$imgUrl}/images/icon-partner-red-pic2.png`,txt:"店铺审核",
+				pageUrl:"/pages/mys/kecheck/kecheck"},
 				{img:`${this.$imgUrl}/images/icon-partner-red-pic3.png`,txt:"店铺榜单",
 				pageUrl:"/pages/mys/partnerGuestListTop/partnerGuestListTop"},
 				{img:`${this.$imgUrl}/images/icon-partner-red-pic4.png`,txt:"销售排行"},
