@@ -39,14 +39,20 @@
 				v-for="(item,index) in dataList"
 				:key="index"
 				>
-					<view class="left">{{item.realname}}</view>
-					<view class="center">
-						<text>销售额：</text>
-						<text class="col_red">¥{{item.order_amount}}</text>
+					<view class="left">
+						<image :src="item.logo_img"></image>
 					</view>
 					<view class="right">
-						<text>成交量：</text>
-						<text class="col_red">({{item.order_total}})</text>
+						<view class="title">{{item.title}}</view>
+						<view class="bottom_wrap">
+							<view class="info">
+								<view>单价：<text>¥{{item.goods_price}}</text></view>
+								<view>销量：<text>{{item.goods_num}}</text></view>
+							</view>
+							<view class="bottom">
+								总销售额：<text>¥{{item.total}}</text>
+							</view>
+						</view>
 					</view>
 				</view>
 			</view>
@@ -62,7 +68,7 @@ export default {
         return {
 			noData:'more',
             items: ['7天','30天','自定义'],
-			current: 0,
+			current: 2,
 			dataList:[],
 			page:1,
 			userId:null,
@@ -133,7 +139,7 @@ export default {
 				newDate = this.optionalTime.startDate;				
 			}
 			this.$request.POST({
-				url:this.$api.apiUrl.POST_V4_USER_KE_LIST,
+				url:this.$api.apiUrl.POST_V4_USER_SELL_LIST,
 				data:{
 					user_id: this.userId,
 					start_time: newDate,
@@ -166,7 +172,9 @@ export default {
 				this.$api.msg('开始时间不能大于结束时间!');
 				return false;
 			}
+			// 初始化页面
 			this.init();
+			// 提示用户选择没有选的时间
 			if(this.endDate !== '请选择结束时间'){
 				this.optionalTime = this.computedTime;
 				this.reqStoreList();
@@ -181,7 +189,9 @@ export default {
 				this.$api.msg('开始时间不能大于结束时间!');
 				return false;
 			}
+			// 初始化页面
 			this.init();
+			// 提示用户选择没有选的时间
 			if(this.startDate !== '请选择开始时间'){
 				this.optionalTime = this.computedTime;
 				this.reqStoreList();
@@ -219,27 +229,46 @@ page{
 }
 .list_item{
 	width: 100vw;
-	padding: 20px 10px;
+	padding: 0px 10px;
 	font-size: 16px;
 	background-color: white;
 	display: flex;
 	border-bottom: 1px solid #ccc;
 	.left{
-		flex:2;
-		text-align: left;
-	}
-	.center{
-		flex:4;
-		color:#999;
-		text-align: left;
+		flex: 4;
+		height: 33vw;
+		image{
+			width: 100%;
+			height: 100%;
+		}
 	}
 	.right{
-		flex:4;
-		color:#999;
-		text-align: left;
-	}
-	.col_red{
-		color: #e23c3c;
+		flex:6;
+		padding-left: 5px;
+		font-size: 16px;
+		.title{
+			height: 50%;
+			/*将对象作为弹性伸缩盒子模型显示*/
+			display: -webkit-box;
+			/*设置子元素排列方式*/
+			-webkit-box-orient: vertical;
+			/*设置显示的行数，多出的部分会显示为...*/
+			-webkit-line-clamp: 3;
+			overflow: hidden;
+		}
+		.info{
+			display: flex;
+			margin-top: 5px;
+			justify-content: space-between;
+			text{
+				color:#f16155;
+			}
+		}
+		.bottom{
+			text{
+				color:#f16155;
+			}
+		}
 	}
 }
 .uniList{

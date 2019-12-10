@@ -83,6 +83,8 @@ export const POST_V4_USER_SELL_DETAIL = localApi + '/v4/user/sell_detail';
 export const POST_V4_USER_SHOW_MEMBER = localApi + '/v4/User/show_member/';
 // 驳回审核信息
 export const POST_V4_USER_CHECK_PASS = localApi + '/V4/User/check_pass/';
+// 销售排行榜
+export const POST_V4_USER_SELL_LIST = localApi + '/v4/User/sell_list/';
 
 /******************* v5 ******************* */
 // 用户登录

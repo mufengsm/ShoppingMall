@@ -424,6 +424,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/mys/partnerguestsalesrank/partnerguestsalesrank",
+			"style": {
+				"navigationBarTitleText": "销售排行",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {
