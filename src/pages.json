@@ -435,6 +435,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/mys/partnerteammanagement/partnerteammanagement",
+			"style": {
+				"navigationBarTitleText": "团队管理",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {

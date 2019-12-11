@@ -85,6 +85,8 @@ export const POST_V4_USER_SHOW_MEMBER = localApi + '/v4/User/show_member/';
 export const POST_V4_USER_CHECK_PASS = localApi + '/V4/User/check_pass/';
 // 销售排行榜
 export const POST_V4_USER_SELL_LIST = localApi + '/v4/User/sell_list/';
+// 团队管理
+export const POST_V4_USER_SALESMANS = localApi + '/v4/User/salesmans';
 
 /******************* v5 ******************* */
 // 用户登录
