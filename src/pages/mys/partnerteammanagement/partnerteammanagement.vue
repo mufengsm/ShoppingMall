@@ -43,7 +43,7 @@
 							<text class="price_num">{{item.total_price}}</text>
 						</view>
 					</view>
-					<view class="top_ranking" v-if="index === 0 || inedx === 1 ||  inedx === 2">
+					<view class="top_ranking" v-if="index === 0 || index === 1 ||  index === 2">
 						<image :src="'https://meizi.manogue.com.cn/static/wap/images/icon-ranking-'+ (index+1) +'.png'"></image>
 					</view>
 				</view>

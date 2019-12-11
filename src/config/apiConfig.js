@@ -7,9 +7,9 @@ export const woliveUrl = 'https://meizi.pingbbs.com:444/wap/goods/wolive';
 let localApi = '';
 if (process.env.NODE_ENV === 'development') {
 	// 开发环境
-	// localApi = 'http://localhost:8888';
+	localApi = 'http://localhost:8888';
 	// 线上测试地址
-	localApi = 'https://meizi.pingbbs.com:444';
+	// localApi = 'https://meizi.pingbbs.com:444';
 } else {
 	// 生产环境
 	localApi = 'https://meizi.manogue.com.cn';
