@@ -24,7 +24,7 @@
 				<view class="foot_info">
 					<view class="foot_info_topImg">
 						<view class="img_item" v-for="(item,index) in item.goods" :key="index">
-							<image class="foot_info_img" :src="item.image" mode="aspectFit"></image>
+							<image @tap="navToJoin" class="foot_info_img" :src="item.image" mode="aspectFit"></image>
 							<view class="foot_info_txt">
 								{{item.label}}
 							</view>
@@ -62,15 +62,25 @@ export default {
         num: 10,
       },
     }).then((res) => {
-      this.private_price_control_info = res.msg;
-		});
-		// 可分享当前页面
-		uni.showShareMenu({
-      withShareTicket:true,
+		if(res.code === 1){
+      		this.private_price_control_info = res.msg;
+		}else{
+			this.$api.msg(res.msg)
+		}
+	});
+	// 可分享当前页面
+	uni.showShareMenu({
+		withShareTicket:true,
     });
   },
   methods: {
-    ...mapActions(['PRICE_CONTROL_INFO']),
+	...mapActions(['PRICE_CONTROL_INFO']),
+	navToJoin(){
+		// 还在开发中
+		// uni.navigateTo({
+		// 	url:"/pages/mys/controlledpricesdetails/controlledpricesdetails"
+		// })
+	}
   },
   computed: {
   },

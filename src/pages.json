@@ -446,6 +446,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/mys/controlledpricesdetails/controlledpricesdetails",
+			"style": {
+				"navigationBarTitleText": "控区控价详情",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {

@@ -5,28 +5,28 @@ export default {
   },
   fnHelper:{
 	  async checkoutUser() {
-		  // 先查看是什么用户
-		  const value = uni.getStorageSync('storage_salesman');
-		  if (value) {
+		// 先查看是什么用户
+		const value = uni.getStorageSync('storage_salesman');
+		if (value) {
 			const TOKEN = uni.getStorageSync('access_token');
 			const [error, res] = await uni.request({
 				method: 'POST',
-        url: apiUrl.POST_V6_USER_CHECKTOKEN,
-        header: {
-          'Token': TOKEN,
-        },
+				url: apiUrl.POST_V6_USER_CHECKTOKEN,
+				header: {
+					'Token': TOKEN,
+				},
 				data:{
 					token: TOKEN
 				},
 			});
-      if (res.data.msg ==='登陆状态失效!'){
+      		if (res.data.msg ==='登陆状态失效!'){
 				uni.setStorageSync('storage_salesman', '');
 				uni.setStorageSync('access_token', '');
 			}
 			return res.data;
-		  } else {
+		} else {
 			return false;
-		  }
+		}
 	  },
   },
   async GET(dataObj) {
