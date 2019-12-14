@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "店铺审核",
-  "usingComponents": {
-    "uni-load-more": "/components/UniLoadMore/UniLoadMore"
-  }
-}

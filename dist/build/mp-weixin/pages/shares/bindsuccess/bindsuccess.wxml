@@ -1,1 +1,0 @@
-<view><view class="wrap"><button data-event-opts="{{[['tap',[['navToPage',['$event']]]]]}}" bindtap="__e">开启省钱模式</button><view class="sq_ta"><view class="sq_title">美妆好货 一手掌握<text>多多美</text></view><view class="sq_desc"><view>1.点击上方<text>开启省钱模式</text>按钮跳转到注册页面</view><view>{{"2.24小时内使用手机号 "+phone+" 成功注册即可"}}</view></view></view></view></view>

@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "销售排行",
-  "usingComponents": {
-    "uni-segmented-control": "/components/UniSegmentedControl/UniSegmentedControl"
-  }
-}
