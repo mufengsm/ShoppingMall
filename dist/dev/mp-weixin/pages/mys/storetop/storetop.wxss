@@ -1,0 +1,2 @@
+page{width:100%;height:100%;background-color:#efeff4}.list_item{width:100vw;padding:20px 10px;font-size:16px;background-color:white;display:-webkit-flex;display:flex;border-bottom:1px solid #ccc}.list_item .left{-webkit-flex:2;flex:2;text-align:left}.list_item .center{-webkit-flex:4;flex:4;color:#999;text-align:left}.list_item .right{-webkit-flex:4;flex:4;color:#999;text-align:left}.list_item .col_red{color:#e23c3c}
+

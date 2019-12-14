@@ -1,0 +1,86 @@
+{
+  "pages": [
+    "pages/indexs/index/index",
+    "pages/goodss/search/search",
+    "pages/goodss/product/product",
+    "pages/carts/cart/cart",
+    "pages/mys/user/user",
+    "pages/mys/login/login",
+    "pages/mys/priceControl/priceControl",
+    "pages/mys/address/address",
+    "pages/mys/addressForm/addressForm",
+    "pages/carts/buy/buy",
+    "pages/mys/order/order",
+    "pages/mys/orderInfo/orderInfo",
+    "pages/mys/info/info",
+    "pages/mys/modifyingData/modifyingData",
+    "pages/mys/authentication/authentication",
+    "pages/mys/register/register",
+    "pages/indexs/useragreement/useragreement",
+    "pages/goodss/evaluate/evaluate",
+    "pages/goodss/wolive/wolive",
+    "pages/mys/changePassword/changePassword",
+    "pages/mys/brokeragenew/brokeragenew",
+    "pages/mys/kelist/kelist",
+    "pages/mys/salesmaninfo/salesmaninfo",
+    "pages/mys/storelist/storelist",
+    "pages/mys/storebrandlist/storebrandlist",
+    "pages/mys/storetop/storetop",
+    "pages/shares/index/index",
+    "pages/shares/bindmobile/bindmobile",
+    "pages/shares/bindsuccess/bindsuccess",
+    "pages/mys/partnerGuestListTop/partnerGuestListTop",
+    "pages/mys/partnerorderdetail/partnerorderdetail",
+    "pages/mys/partneraddsalesman/partneraddsalesman",
+    "pages/mys/kecheck/kecheck",
+    "pages/mys/kelistbyid/kelistbyid",
+    "pages/mys/notPass/notPass",
+    "pages/mys/partnerguestsalesrank/partnerguestsalesrank",
+    "pages/mys/partnerteammanagement/partnerteammanagement"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "搜索商品",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#f8f8f8"
+  },
+  "tabBar": {
+    "color": "#C0C4CC",
+    "selectedColor": "#fa436a",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/indexs/index/index",
+        "iconPath": "static/tab-home.png",
+        "selectedIconPath": "static/tab-home-current.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/carts/cart/cart",
+        "iconPath": "static/tab-cart.png",
+        "selectedIconPath": "static/tab-cart-current.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/mys/priceControl/priceControl",
+        "iconPath": "static/tab-cate.png",
+        "selectedIconPath": "static/tab-cate-current.png",
+        "text": "控区控价"
+      },
+      {
+        "pagePath": "pages/mys/user/user",
+        "iconPath": "static/tab-my.png",
+        "selectedIconPath": "static/tab-my-current.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "usingComponents": {
+    "big-swiper": "/components/BigSwiper/BigSwiper",
+    "uni-load-more": "/components/UniLoadMore/UniLoadMore",
+    "authentication": "/components/Authentication/Authentication"
+  },
+  "sitemapLocation": "sitemap.json"
+}

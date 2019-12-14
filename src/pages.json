@@ -1,0 +1,500 @@
+{
+	"pages": [
+		{
+			"path": "pages/indexs/index/index",
+			"style": {
+				// #ifdef MP 
+				"navigationBarTitleText": "多多美商城",
+				//"navigationStyle": "custom",
+				// #endif 
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent",
+						"searchInput": {
+							"backgroundColor": "rgba(231, 231, 231,.7)",
+							"borderRadius": "16px",
+							"placeholder": "请输你想购买的商品",
+							"disabled": true,
+							"placeholderColor": "#606266"
+						},
+						"buttons": [
+							{
+								"fontSrc": "/static/yticon.ttf",
+								"text": "广州",
+								"fontSize": "14",
+								"color": "#303133",
+								"float": "left",
+								"background": "rgba(0,0,0,0)"
+							},
+							{
+								"fontSrc": "/static/yticon.ttf",
+								"text": "\ue744",
+								"fontSize": "27",
+								"color": "#303133",
+								"background": "rgba(0,0,0,0)"
+							}
+						]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/goodss/search/search",
+			"style": {
+				"app-plus": {
+					"titleNView": {
+						"type": "default",
+						"searchInput": {
+							"backgroundColor": "rgb(238,238,238)",
+							"borderRadius": "16px",
+							"placeholder": "请输你想购买的商品",
+							"disabled": false,
+							"placeholderColor": "#606266"
+						},
+						"buttons": [
+							{
+								"text": "搜索",
+								"fontSize": "13",
+								"color": "black"
+							}
+						]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/goodss/product/product",
+			"style": {
+				"navigationBarTitleText": "详情展示",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/carts/cart/cart",
+			"style": {
+				"navigationBarTitleText": "购物车",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/user/user",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/login/login",
+			"style": {
+				"navigationBarTitleText": "用户登录",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/priceControl/priceControl",
+			"style": {
+				"navigationBarTitleText": "控区控价",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/address/address",
+			"style": {
+				"navigationBarTitleText": "管理收获地址",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/addressForm/addressForm",
+			"style": {
+				"navigationBarTitleText": "添加收获地址",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/carts/buy/buy",
+			"style": {
+				"navigationBarTitleText": "确认订单",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/order/order",
+			"style": {
+				"navigationBarTitleText": "订单状态",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/orderInfo/orderInfo",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/info/info",
+			"style": {
+				"navigationBarTitleText": "个人资料",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/modifyingData/modifyingData",
+			"style": {
+				"navigationBarTitleText": "修改资料",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/authentication/authentication",
+			"style": {
+				"navigationBarTitleText": "认证",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/register/register",
+			"style": {
+				"navigationBarTitleText": "注册",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/indexs/useragreement/useragreement",
+			"style": {
+				"navigationBarTitleText": "多多美协议",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/goodss/evaluate/evaluate",
+			"style": {
+				"navigationBarTitleText": "商品评价",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/goodss/wolive/wolive",
+			"style": {
+				"navigationBarTitleText": "在线客服",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/changePassword/changePassword",
+			"style": {
+				"navigationBarTitleText": "修改密码",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/brokeragenew/brokeragenew",
+			"style": {
+				"navigationBarTitleText": "合伙人后台",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/kelist/kelist",
+			"style": {
+				"navigationBarTitleText": "创客列表",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/salesmaninfo/salesmaninfo",
+			"style": {
+				"navigationBarTitleText": "业务员个人资料",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/storelist/storelist",
+			"style": {
+				"navigationBarTitleText": "店铺列表",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/storebrandlist/storebrandlist",
+			"style": {
+				"navigationBarTitleText": "店铺审核",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/storetop/storetop",
+			"style": {
+				"navigationBarTitleText": "店铺榜单",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/shares/index/index",
+			"style": {
+				"navigationBarTitleText": "推广有礼",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/shares/bindmobile/bindmobile",
+			"style": {
+				"navigationBarTitleText": "成为会员",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/shares/bindsuccess/bindsuccess",
+			"style": {
+				"navigationBarTitleText": "我要推广",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/partnerGuestListTop/partnerGuestListTop",
+			"style": {
+				"navigationBarTitleText": "创客榜首",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/partnerorderdetail/partnerorderdetail",
+			"style": {
+				"navigationBarTitleText": "订单明细",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/partneraddsalesman/partneraddsalesman",
+			"style": {
+				"navigationBarTitleText": "添加业务员",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/kecheck/kecheck",
+			"style": {
+				"navigationBarTitleText": "审核列表",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/kelistbyid/kelistbyid",
+			"style": {
+				"navigationBarTitleText": "审核列表详情",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/notPass/notPass",
+			"style": {
+				"navigationBarTitleText": "驳回信息",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/partnerguestsalesrank/partnerguestsalesrank",
+			"style": {
+				"navigationBarTitleText": "销售排行",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/partnerteammanagement/partnerteammanagement",
+			"style": {
+				"navigationBarTitleText": "团队管理",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/mys/controlledpricesdetails/controlledpricesdetails",
+			"style": {
+				"navigationBarTitleText": "控区控价详情",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "搜索商品",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#f8f8f8"
+	},
+	"tabBar": {
+		"color": "#C0C4CC",
+		"selectedColor": "#fa436a",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [
+			{
+				"pagePath": "pages/indexs/index/index",
+				"iconPath": "static/tab-home.png",
+				"selectedIconPath": "static/tab-home-current.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/carts/cart/cart",
+				"iconPath": "static/tab-cart.png",
+				"selectedIconPath": "static/tab-cart-current.png",
+				"text": "购物车"
+			},
+			{
+				"pagePath": "pages/mys/priceControl/priceControl",
+				"iconPath": "static/tab-cate.png",
+				"selectedIconPath": "static/tab-cate-current.png",
+				"text": "控区控价"
+			},
+			{
+				"pagePath": "pages/mys/user/user",
+				"iconPath": "static/tab-my.png",
+				"selectedIconPath": "static/tab-my-current.png",
+				"text": "个人中心"
+			}
+		]
+	}
+}

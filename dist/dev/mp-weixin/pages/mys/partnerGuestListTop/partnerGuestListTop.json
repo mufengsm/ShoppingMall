@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "创客榜首",
+  "usingComponents": {
+    "uni-segmented-control": "/components/UniSegmentedControl/UniSegmentedControl"
+  }
+}

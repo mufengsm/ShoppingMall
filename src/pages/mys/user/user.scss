@@ -1,0 +1,265 @@
+page{
+	height: 100%;
+	width: 100vw;
+	background-color: #f5f5f5;
+}
+.container{
+	position: relative;
+}
+.set_icon{
+	position: absolute;
+	top: 3vw;
+	right: 5vw;
+	color: white;
+	z-index: 999999;
+	.icon-shezhi{
+		font-size: 25px;
+	}
+}
+%flex-center {
+	 display:flex;
+	 flex-direction: column;
+	 justify-content: center;
+	 align-items: center;
+	}
+	%section {
+	  display:flex;
+	  justify-content: space-around;
+	  align-content: center;
+	  background: #fff;
+	  border-radius: 10upx;
+	}
+
+	.user-section{
+		height: 400upx;
+		padding: 100upx 30upx 0;
+		position:relative;
+		.header_bg{
+			position:absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgb(223,14,29);
+		}
+	}
+	.user-info-box{
+		height: 180upx;
+		display:flex;
+		align-items:center;
+		position:relative;
+		z-index: 1;
+		text-align: left;
+		.portrait{
+			width: 130upx;
+			height: 130upx;
+			border:5upx solid #fff;
+			border-radius: 50%;
+			margin-bottom: 100upx;
+			margin-right: 10px;
+		}
+		.info-box{
+			color: white;
+			margin-bottom: 100rpx;
+			.username{
+				font-size: $font-lg + 6upx;
+			}
+			.vip_leavel{
+				display: inline;
+				border: 1px solid #fff;
+				border-radius: 1em;
+				padding: 0.1em 0.5em;
+				font-size: 12px;
+			}
+		}
+	}
+
+	.cover-container{
+		background: $page-color-base;
+		margin-top: -150upx;
+		padding: 0 30upx;
+		position:relative;
+		background: #f5f5f5;
+		padding-bottom: 20upx;
+	}
+	.tj-sction{
+		width: 100%;
+		padding: 24upx 50upx;
+		border-bottom:25upx solid #f5f5f5;
+		background-color: white;
+		overflow: hidden;
+		.recommend_img{
+			width: 12vw;
+			height: 12vw;
+			float: left;
+		}
+		.recommend_txt{
+			margin-left:20upx;
+			float: left;
+			font-weight: 400;
+			font-size: 17px;
+			color: #4c4c4c;
+			display: block;
+			line-height:96upx;
+		}
+		.left{
+			flex: 5;
+			display: flex;
+			font-size: 17px;
+			image{
+				width: 18px;
+				height:19px;
+				margin-right: 4px;
+			}
+			view{
+				line-height: 21px;
+			}
+		}
+	}
+	.order-section{
+		@extend %section;
+		padding: 35upx 0;
+		margin-top: 20upx;
+		flex-wrap:wrap;
+		.my_order{
+			width: 100%;
+			padding: 0upx 0 40upx 0;
+			display: flex;
+			.right{
+				flex: 5;
+				color: #999;
+				font-size:16px;
+				margin-right: 10px;
+				text-align: right;
+				line-height: 17px;
+				.icon-youjiantou{
+					font-weight: 700;
+					font-size: 20px;
+				}
+			}
+			.left{
+				flex: 5;
+				display: flex;
+				padding-left: 20upx;
+				font-size: 17px;
+				image{
+					width: 18px;
+					height:19px;
+					margin-right: 4px;
+				}
+				view{
+					line-height: 21px;
+				}
+			}
+		}
+		.order-item{
+			@extend %flex-center;
+			width: 120upx;
+			height: 120upx;
+			border-radius: 10upx;
+			font-size: $font-sm;
+			color: $font-color-dark;
+			position: relative;
+			image{
+				width: 55%;	
+			}
+			.pos_icon{
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 22px;
+				height: 22px;
+				background-color: red;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: white;
+				border-radius: 50%;
+				font-size: 13px;
+			}
+		}
+		.salesman{
+			width: auto;
+			.num{
+				color: #df0e1d;
+				font-size: 20px;
+			}
+			.text{
+				color: #666666;
+				font-size: 13px
+			}
+		}
+		.yticon{
+			font-size: 48upx;
+			margin-bottom: 18upx;
+			color: #fa436a;
+		}
+		.icon-shouhoutuikuan{
+			font-size:44upx;
+		}
+	}
+	.my_wallet{
+		.order-section{
+			height: auto;
+			padding: 0;
+			.my_order{
+				.left{
+					padding-left: 30px;
+					.is_opening{
+						font-size: 14px;
+						color: #df0e1d;
+						padding-left: 6px;
+						position: relative;
+						top: 1px;
+					}
+				} 
+			}
+		}
+		.my_wallet_items{
+			width: 100%;
+			margin-top:22upx;
+			border-bottom:25upx solid #f5f5f5;
+			overflow: hidden;
+			flex-wrap:wrap;
+			.wallet_item{
+				float: left;
+				margin-bottom: 22upx;
+				width: 33.333%;
+				text-align: center;
+				.num{
+					color: #e23c3c;
+				}
+				.text{
+					font-size: 15px;
+				}
+			}
+		}
+	}
+	.other_function{
+		overflow: hidden;
+		padding: 10px 0;
+		background-color: white;
+		.other_function_item{
+			width: 25%;
+			height: 200upx;
+			float: left;
+		}
+		navigator{
+			float: left;
+			text-align: center;
+			.other_function_item{
+				float: none;
+				width: 25vw;
+				height: 110upx;
+			}
+			.text{
+				font-size: 17px;
+				color: #2b2b2b;
+				margin: 0;
+				padding-top: 6px;
+			}
+		}
+	}
+	.linH{
+		line-height: 10px;
+	}

@@ -1,0 +1,2 @@
+.ipt{padding:0 10px;margin:28px 0;border-bottom:1px solid #DDDDDD}.id_type{padding:0 0}.imgs{width:100vw;display:-webkit-flex;display:flex;padding:0 10px;margin-bottom:40px}.imgs image{-webkit-flex:5;flex:5;margin:0 2px;height:30vw}.btns{display:-webkit-flex;display:flex;padding:0 10vw;margin-bottom:20px}.btns button{width:40vw;margin:0 10px;color:white}.btns .yes{background-color:#ec6350}.btns .no{background-color:#939393}
+

@@ -1,0 +1,1 @@
+<view><textarea data-event-opts="{{[['input',[['__set_model',['','info','$event',[]]]]]]}}" value="{{info}}" bindinput="__e"></textarea><view class="btns"><button data-event-opts="{{[['tap',[['fail',['$event']]]]]}}" class="no" bindtap="__e">不通过</button></view></view>
