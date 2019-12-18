@@ -87,6 +87,10 @@ export const POST_V4_USER_CHECK_PASS = localApi + '/V4/User/check_pass/';
 export const POST_V4_USER_SELL_LIST = localApi + '/v4/User/sell_list/';
 // 团队管理
 export const POST_V4_USER_SALESMANS = localApi + '/v4/User/salesmans';
+// 控区控价详情
+export const POST_V4_BRANDS_DETAIL = localApi + '/v4/Brands/detail';
+// 获取控区控价爆品推荐
+export const POST_V4_GOODS_GOODS_LIST = localApi + '/v4/goods/goods_list';
 
 /******************* v5 ******************* */
 // 用户登录
@@ -178,3 +182,5 @@ export const POST_V6_SHARE_BINDSHOP = localApi + '/v6/Share/bindShop';
 export const POST_V6_PARTNER_CHECKSALESMAN = localApi + '/v6/Partner/checkSalesman';
 // 添加业务员
 export const POST_V6_PARTNER_ADDSALESMAN = localApi + '/v6/Partner/addSalesman';
+// 店铺品牌授权状态
+export const GET_V6_BRAND_APPLYSTATUS = localApi + '/v6/Brand/applyStatus';

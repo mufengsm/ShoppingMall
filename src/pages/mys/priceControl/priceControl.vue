@@ -23,10 +23,10 @@
 				</view>
 				<view class="foot_info">
 					<view class="foot_info_topImg">
-						<view class="img_item" v-for="(item,index) in item.goods" :key="index">
-							<image @tap="navToJoin" class="foot_info_img" :src="item.image" mode="aspectFit"></image>
+						<view class="img_item" v-for="(item2,index) in item.goods" :key="index">
+							<image @tap="navToJoin" :data-brandId="item.brand_id" class="foot_info_img" :src="item2.image" mode="aspectFit"></image>
 							<view class="foot_info_txt">
-								{{item.label}}
+								{{item2.label}}
 							</view>
 						</view>
 					</view>
@@ -75,11 +75,11 @@ export default {
   },
   methods: {
 	...mapActions(['PRICE_CONTROL_INFO']),
-	navToJoin(){
-		// 还在开发中
-		// uni.navigateTo({
-		// 	url:"/pages/mys/controlledpricesdetails/controlledpricesdetails"
-		// })
+	navToJoin(e){
+		const brandId = e.target.dataset.brandid;
+		uni.navigateTo({
+			url:`/pages/mys/controlledpricesdetails/controlledpricesdetails?brandId=${brandId}`
+		})
 	}
   },
   computed: {
