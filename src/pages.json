@@ -457,6 +457,17 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "pages/goodss/goodsbrandapply/goodsbrandapply",
+			"style": {
+				"navigationBarTitleText": "品牌申请",
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
 		}
 	],
 	"globalStyle": {
