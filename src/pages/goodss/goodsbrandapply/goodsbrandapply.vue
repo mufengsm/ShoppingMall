@@ -21,14 +21,16 @@
 				class="iconfont icon-cuowu"></text>
 				<view class="title">填写申请信息</view>
 				<view class="info_list">
-					<view class="item">
-						<view class="value">
-							<input class="salesman_phone" type="number" :value="setValue" :disabled="setDisabled" :placeholder="setPlaceholder" />
+					<view id="tips">*请输入店铺名称</view>
+					<view class="item" id="item">
+						<view class="value" id="ipt">
+							<input placeholder="请输入店铺名称" v-model="storeName"></input>							
 						</view>
 					</view>
-					<view class="item">
-						<view class="value">
-							<input placeholder="请输入昵称" v-model="nickname"></input>
+					<view id="tips">*请输入业务员手机号码</view>
+					<view class="item" id="item">
+						<view class="value" id="ipt">
+							<input class="salesman_phone" type="number" v-model="setValue" :disabled="setDisabled" :placeholder="setPlaceholder" />
 						</view>
 					</view>
 				</view>
@@ -41,22 +43,24 @@
 export default {
 	data(){
 		return {
+			brandId:"",
 			setPlaceholder:"请输入业务员手机号码",
 			setValue:"",
 			setDisabled:false,
 			icon:"",
 			logoImg:"",
 			isPopup:"",
-			specClass:"none"
+			specClass:"none",
+			storeName:""
 		}
 	},
 	onLoad(e){
-		console.log(e.brandId);
+		this.brandId = e.brandId;
 		// 获取商品信息
 		this.$request.GET({
 			url:this.$api.apiUrl.GET_V6_BRAND_DETAILS,
 			data:{
-				brand_id:e.brandId
+				brand_id:this.brandId
 			}
 		}).then(res=>{
 			if(res.code == 'SUCCESS'){
@@ -78,9 +82,36 @@ export default {
 		})
 	},
 	methods:{
+		submit(){
+			if(this.storeName == ''){
+				this.$api.msg('店铺名称不能为空！');
+				return false;
+			}
+			var myreg = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1})|(19[0-9]{1}))+\d{8})$/;
+			if(!myreg.test(this.setValue)){
+				this.$api.msg('请输入正确的手机号码');
+				return false;
+			}
+			this.$request.POST({
+				url:this.$api.apiUrl.POST_V6_BRAND_APPLY,
+				data:{
+					brand_id:this.brandId,
+					shop_name:this.storeName,
+					salesman_mobile:this.setValue
+				}
+			}).then(res=>{
+				if(res.code == 'SUCCESS'){
+					this.$api.msg('您的申请已提交，我们将在1~3个工作日内审核完毕，请耐心等待');
+			    }else{
+			    	this.$api.msg(res.msg);
+			    }
+			   	this.toggleSpec();
+			})
+		},
 		isShowPopup(){
 			this.toggleSpec();
 		},
+		stopPrevent(){},
 		toggleSpec(popup) {
             this.isPopup = popup;
             if (this.specClass === "show") {
@@ -111,5 +142,23 @@ button{
 	color: #FFFFFF;
 	background-color: #ffa60f;
 	text-align: center;
+}
+#ipt{
+	margin-bottom: 10px;
+	padding: 6px 0;
+	border:1px solid #E3E3E3;
+}
+#tips{
+	width: 100vw;
+	font-size: 15px;
+    color: rgba(233, 12, 29, 0.5);
+}
+#item{
+	border: 0px;
+}
+.btn{
+	width: 80vw;
+	margin: 0;
+	background-color: #ffa60f;
 }
 </style>

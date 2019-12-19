@@ -188,3 +188,5 @@ export const GET_V6_BRAND_APPLYSTATUS = localApi + '/v6/Brand/applyStatus';
 export const GET_V6_BRAND_DETAILS = localApi + '/v6/Brand/details';
 // 品牌申请获取上级业务员
 export const GET_V6_MEMBER_SELFSALESMAN = localApi + '/v6/Member/selfSalesman';
+// 提交品牌申请
+export const POST_V6_BRAND_APPLY = localApi + '/v6/Brand/apply';
