@@ -14,12 +14,12 @@
 				</view>
 			</view>
 			<view class="collapsible">
-				<text>品牌简介：</text>
-				<view class="isCollapsible" :style="{'height':dynamicHeight}">
+				<text v-if="goodsData.desc">品牌简介：</text>
+				<view v-if="goodsData.desc" class="isCollapsible" :style="{'height':dynamicHeight}">
 					<rich-text :nodes="goodsData.desc"></rich-text>
 				</view>
 				<view class="btn">
-					<view class="is_show" @tap="isShow">查看全部
+					<view v-if="goodsData.desc" class="is_show" @tap="isShow">查看全部
 						<text v-if="dynamicHeight==='35vw'" class="iconfont icon-downarrow"></text>
 						<text v-else class="iconfont icon-downarrow-copy"></text>
 					</view>
@@ -83,10 +83,12 @@ export default {
 				// 设置页面内容
 				this.goodsData = res.msg;
 				// 自己给图文介绍设置一下样式
-				this.setDesc = `<div style="width:100vw">${this.goodsData.explain.replace(
-					/<img/g,
-					"<img style='width:100vw'"
-				)}</div>`;
+				if(this.goodsData.explain){
+					this.setDesc = `<div style="width:100vw">${this.goodsData.explain.replace(
+						/<img/g,
+						"<img style='width:100vw'"
+					)}</div>`;
+				}
 			}else{
 				this.$api.msg(res.msg);
 			}
@@ -176,9 +178,9 @@ export default {
 					if(result != null){
 						// 如果数据没有返回设置的6条，就是没有更多了
 						this.goodsListData = this.goodsListData.concat(result);
-						console.log(this.goodsListData);
-						if(result.length > 6){
 
+						if(result.length > 6){
+							
 							this.noData='more';
 						}else{
 							this.noData = 'noMore';

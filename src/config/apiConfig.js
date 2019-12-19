@@ -184,3 +184,7 @@ export const POST_V6_PARTNER_CHECKSALESMAN = localApi + '/v6/Partner/checkSalesm
 export const POST_V6_PARTNER_ADDSALESMAN = localApi + '/v6/Partner/addSalesman';
 // 店铺品牌授权状态
 export const GET_V6_BRAND_APPLYSTATUS = localApi + '/v6/Brand/applyStatus';
+// 品牌申请页面信息
+export const GET_V6_BRAND_DETAILS = localApi + '/v6/Brand/details';
+// 品牌申请获取上级业务员
+export const GET_V6_MEMBER_SELFSALESMAN = localApi + '/v6/Member/selfSalesman';
