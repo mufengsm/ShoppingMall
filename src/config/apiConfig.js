@@ -26,7 +26,7 @@ const lanApi = 'http://192.168.2.130/meizi';
 
 /******************* v1 ******************* */
 // 首页商品推荐
-export const GET_MERCHANDISE_RECOMMENDATION = localApi+'/v1/goods/recommend';
+export const GET_MERCHANDISE_RECOMMENDATION = localApi + '/v1/goods/recommend';
 // 商品评价
 export const GET_GOODS_COMMENT = localApi + '/v1/goods/comment_list';
 // 添加收货地址
@@ -68,11 +68,11 @@ export const POST_USER_REPASS = localApi + '/v3/User/repass';
 
 /******************* v4 ******************* */
 // 控区控价信息列表
-export const POST_BRAND_LIST = localApi+'/v4/Brands/index';
+export const POST_BRAND_LIST = localApi + '/v4/Brands/index';
 // 查询品牌
-export const POST_QUERY_BRAND = localApi+'/v4/goods/brand_list';
+export const POST_QUERY_BRAND = localApi + '/v4/goods/brand_list';
 // 查询分类
-export const POST_QUERY_CLASSIFICATION = localApi+'/v4/goods/cate_list';
+export const POST_QUERY_CLASSIFICATION = localApi + '/v4/goods/cate_list';
 // 查看是否有货
 export const POST_GOODS_STOCK = localApi + '/v4/goods/stock';
 // 创客榜首
@@ -114,7 +114,7 @@ export const POST_ORDER_COMMIT = localApi + '/v5/order_commit';
 // 订单页面信息
 export const GET_SHOW_ORDER_COMMIT = localApi + '/v5/show_order_commit';
 // 获取城市列表
-export const POST_GET_CITY = localApi +  '/v5/get_city';
+export const POST_GET_CITY = localApi + '/v5/get_city';
 // 获取地址列表
 export const GET_SHOW_ADDRESS = localApi + '/v5/show_address';
 // 编辑地址
@@ -145,7 +145,7 @@ export const POST_MY_KELIST = localApi + '/wap/my/kelist';
 // 成为会员
 export const POST_SHARE_BINDMOBILE = localApi + '/wap/share/bindmobile';
 // 店铺审核列表
-export const  GET_WAP_MY_KECHECK = localApi + '/wap/my/kecheck';
+export const GET_WAP_MY_KECHECK = localApi + '/wap/my/kecheck';
 // 通过审核
 export const KECHECK = localApi + '/wap/my/kecheck/keCheck';
 
@@ -159,7 +159,7 @@ export const POST_V6_USER_LOGIN = localApi + '/v6/User/login';
 // 员工信息
 export const GET_V6_USER_INFO = localApi + '/v6/user/info';
 // 员工信息页面数据
-export const GET_V6_SHOP_FINANCE = localApi + '/v6/Shop/finance'; 
+export const GET_V6_SHOP_FINANCE = localApi + '/v6/Shop/finance';
 // 员工信息修改
 export const POST_V6_USER_UPINFO = localApi + '/v6/user/upinfo';
 // 验证登录状态

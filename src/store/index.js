@@ -6,7 +6,7 @@ import storeCommodity from './storeCommodity';
 Vue.use(Vuex);
 // plugins: [createLogger()]
 export default new Vuex.Store({
-  modules: { // 放入modules
-    storeCommodity,
-  },
+	modules: { // 放入modules
+		storeCommodity,
+	},
 });

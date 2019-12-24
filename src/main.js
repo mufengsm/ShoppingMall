@@ -40,7 +40,7 @@ Vue.prototype.$fnHelper = functionHelper;
 App.mpType = 'app';
 
 const app = new Vue({
-  ...App,
-  store,
+	...App,
+	store,
 });
 app.$mount();

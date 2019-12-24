@@ -5,17 +5,17 @@ import Getters from './getters/index.js';
 
 
 export default {
-  namespaced: true,
-  state: {
-    ...State,
-  },
-  mutations: {
-    ...Mutations,
-  },
-  actions: {
-    ...Actions,
-  },
-  getters: {
-    ...Getters,
-  },
+	namespaced: true,
+	state: {
+		...State,
+	},
+	mutations: {
+		...Mutations,
+	},
+	actions: {
+		...Actions,
+	},
+	getters: {
+		...Getters,
+	},
 };
