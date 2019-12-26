@@ -61,6 +61,12 @@
 			"urlCheck": true
 		}
 	},
+	"mp-alipay": {
+		"usingComponents": true,
+		"setting": {
+			"urlCheck": true
+		}
+	},
 	"h5": {
 		"devServer": {
 			"port": 8000, //端口号

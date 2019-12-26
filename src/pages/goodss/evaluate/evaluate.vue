@@ -39,10 +39,12 @@ export default {
 	},
 	onLoad(options){
 		this.options = options;
-		// 可分享当前页面
+		// 只有在微信小程序可分享当前页面
+		//#ifdef MP-WEIXIN
 		uni.showShareMenu({
             withShareTicket:true,
         });
+		//#endif
 	},
 	onShow(){
 		// 每次页面显示都要重新归零,防止用户提交评价后无法及时查看

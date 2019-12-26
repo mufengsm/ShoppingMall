@@ -323,10 +323,12 @@ export default {
                 this.commentListItem = res.data[0]
             }
         });
-        // 可分享当前页面   
-        uni.showShareMenu({
+        // 只有在微信小程序可分享当前页面
+		//#ifdef MP-WEIXIN
+		uni.showShareMenu({
             withShareTicket:true,
         });
+		//#endif
     },
     methods: {
         // 规格弹窗开关

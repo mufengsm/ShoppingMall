@@ -41,7 +41,7 @@
 </template>
 
 <script>
-// eslint-disable-next-line import/no-unresolved
+
 import { createNamespacedHelpers } from 'vuex';
 
 const { mapActions } = createNamespacedHelpers('storeCommodity');
@@ -68,10 +68,12 @@ export default {
 			this.$api.msg(res.msg)
 		}
 	});
-	// 可分享当前页面
+	// 只有在微信小程序可分享当前页面
+	//#ifdef MP-WEIXIN
 	uni.showShareMenu({
 		withShareTicket:true,
-    });
+	});
+	//#endif
   },
   methods: {
 	...mapActions(['PRICE_CONTROL_INFO']),

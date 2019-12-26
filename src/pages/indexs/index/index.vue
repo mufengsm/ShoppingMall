@@ -203,10 +203,12 @@ export default {
 				this.$api.msg("数据请求失败")
 			}
 		})
-		// 可分享当前页面
+		// 只有在微信小程序可分享当前页面
+		//#ifdef MP-WEIXIN
 		uni.showShareMenu({
             withShareTicket:true,
         });
+		//#endif
 	},
 	onShow(){
 		// 每次进入时更改购物车显示数量

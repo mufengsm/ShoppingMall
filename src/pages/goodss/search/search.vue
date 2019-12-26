@@ -98,10 +98,12 @@ export default {
 			this.private_info.private_brand_info = res.data.slice(0, 8);
 		});
 		this.sort_list();
-		// 可分享当前页面
+		// 只有在微信小程序可分享当前页面
+		//#ifdef MP-WEIXIN
 		uni.showShareMenu({
-			withShareTicket:true,
-		});
+            withShareTicket:true,
+        });
+		//#endif
 	},
 	onReachBottom() {
 		// 触底事件发生后请求新数据
