@@ -30,7 +30,7 @@
 					/>
 				</view>
 			</view>
-			<view>
+			<view id="id_btn_wrap">
 				<button class="confirm-btn" @tap="toLogin" :disabled="logining">登录</button>
 			</view>
 			<view class="forget_register">
@@ -305,7 +305,11 @@ export default {
 			width: 100%;
 		}
 	}
-
+	#id_btn_wrap{
+		width: 100vw;
+		display: flex;
+		justify-content: center;
+	}
 	.confirm-btn{
 		width: 630upx;
 		height: 76upx;

@@ -62,10 +62,7 @@
 		}
 	},
 	"mp-alipay": {
-		"usingComponents": true,
-		"setting": {
-			"urlCheck": true
-		}
+		"usingComponents": true
 	},
 	"h5": {
 		"devServer": {

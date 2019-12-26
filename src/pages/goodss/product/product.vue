@@ -270,7 +270,7 @@ export default {
             }).then(res => {
                 if (res.code === 200) {
                     let result = res.data;
-                    // 轮播图
+					// 轮播图
                     this.imgList = result.slider_img.map((item, index) => ({
                         src: item
                     }));

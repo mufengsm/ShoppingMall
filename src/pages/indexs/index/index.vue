@@ -4,7 +4,9 @@
 		<!-- #ifdef MP -->
 		<view class="mp-search-box" :style="{backgroundColor: isRed}">
 			<view class="location">定位<text class="iconfont icon-downarrow"></text></view>
-			<input @tap="searching" class="ser-input" type="text" value="输入关键字搜索" disabled />
+			<view @tap="searching">
+				<input class="ser-input" type="text" value="输入关键字搜索" disabled />
+			</view>
 			<view class="info_img">
 				<text class="info_icon iconfont icon-xiaoxi"></text>
 				<view class="black_info_txt">消息</view>
