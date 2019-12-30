@@ -14,6 +14,10 @@
 
 		<swiper :current="tabCurrentIndex" class="swiper-box" duration="300" @change="changeTab">
 			<swiper-item class="tab-content" v-for="(tabItem,tabIndex) in navList" :key="tabIndex">
+				<!-- 这里添加一层view是为了兼容支付宝小程序bug,不然无法显示内容 -->
+				<!--  #ifdef MP-ALIPAY -->
+				<view>
+				<!--  #endif -->
 				<scroll-view 
 					class="list-scroll-content" 
 					scroll-y
@@ -89,6 +93,9 @@
 					<uni-load-more :status="tabItem.loadingType"></uni-load-more>
 					
 				</scroll-view>
+				<!--  #ifdef MP-ALIPAY -->
+				</view>
+				<!--  #endif -->
 			</swiper-item>
 		</swiper>
 	</view>
