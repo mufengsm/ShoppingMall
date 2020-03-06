@@ -1,2 +1,0 @@
-page{width:100vw;height:100vh;background-image:url("https://meizi.manogue.com.cn/static/wap/images/huiyuan_bd.png");background-repeat:no-repeat;background-size:100% 100%}.wrap{position:absolute;top:40vh;left:10vw}.wrap button{width:60%;border-radius:10vw;color:#fb3a23;background-color:#ffd96b}.sq_ta{border:5px solid #f9d4cb;width:92%;margin:0 auto;border-radius:1vw;padding:5vw 3vw;background-color:#fff;margin-top:5vw}.sq_title{margin-bottom:3vw;font-size:4.5vw}.sq_title text{color:#ec6350;font-size:4vw}.sq_desc{font-size:3.2vw;color:#999999}.sq_desc text{color:#ec6350}
-

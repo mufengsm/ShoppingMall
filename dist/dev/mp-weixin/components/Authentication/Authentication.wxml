@@ -1,1 +1,0 @@
-<view><view data-event-opts="{{[['tap',[['toAuth',['$event']]]]]}}" class="icon" bindtap="__e"><image class="img" src="https://meizi.manogue.com.cn/static/wap/images/icon-authentication6.png"></image></view></view>

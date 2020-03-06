@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "店铺榜单",
-  "usingComponents": {
-    "uni-load-more": "/components/UniLoadMore/UniLoadMore"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "多多美商城",
-  "usingComponents": {
-    "commodity-museum": "/components/CommodityMuseum/CommodityMuseum"
-  }
-}
