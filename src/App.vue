@@ -140,4 +140,34 @@ export default {
 		/* 这里是修改原生input搜索框样式 */
 		margin: 4px;
 	}
+	// 本香样式
+	.font-ml{font-size: 3.7333vw;}
+	.font-l{font-size:3.2vw;}
+	.bg-white{background-color: #fff;}
+	.flex{display: flex;}
+	// 全屏宽高
+	.full-height {
+		height: 100%;
+	}
+	.full-width{
+		width: 100%;
+	}
+	.getmsmcodebtn {
+		margin-left: 5%;
+		width: 30%;
+		line-height: 8.8vw;
+		border-radius: 1.3333vw;
+		font-size: 3.2vw !important;
+		text-align: center;
+		background: linear-gradient(to right, #f9e6c4, #c9ad81);
+	}
+	.flex-alin-center{align-items: center;}
+	.btn{
+		color: #40392E;
+		text-align: center;
+		border-radius: 5.3333vw;
+		background: -webkit-gradient(linear, left top, right top, from(#F9E6C4), to(#C9AD81));
+		background: linear-gradient(to right, #F9E6C4, #C9AD81);
+	}
+	
 </style>
