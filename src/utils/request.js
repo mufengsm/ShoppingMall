@@ -57,7 +57,8 @@ export default {
 
     const [error, res] = await uni.request({
       header:{
-        'Token': uni.getStorageSync('access_token') ? uni.getStorageSync('access_token') : " ",
+		'Token': uni.getStorageSync('access_token') ? uni.getStorageSync('access_token') : " ",
+		'platformCode':"weixin"
       },
       url: dataObj.url,
       method: 'POST',

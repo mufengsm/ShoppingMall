@@ -26,11 +26,11 @@ page {
 			align-items: center;
 			background-color: #fff;
 			text {
-				width: 20%;
+				flex: 3;
 				letter-spacing: 0.8vw;
 			}
 			.phone_cubeinput {
-				width: 80%;
+				flex:7;
 				border: 0;
 				height: 100%;
 				padding: 0 1vw;
@@ -75,7 +75,7 @@ page {
 				.getmsmcodebtncount {
 					margin-left: 5%;
 					width: 30%;
-					line-height: 8.8vw;
+					text-align: center;
 					border-radius: 1.3333vw;
 					font-size: 3.2vw !important;
 					color: #40392e;
@@ -157,41 +157,5 @@ page {
 		letter-spacing: 1vw;
 		font-weight: 600;
 	}
-	.thirdplatform {
-		width: 40%;
-		height: auto;
-		bottom: 10%;
-		left: 30%;
-		text-align: center;
-		flex-direction: column;
-		background-color: red;
-	}
-	//   重置 cubeinput
-	/deep/ .cube-input :-moz-placeholder {
-		font-size: 3vw;
-	}
-	/deep/ .cube-input ::-moz-placeholder {
-		font-size: 3vw;
-	}
-	/deep/ .cube-input input:-ms-input-placeholder {
-		font-size: 3vw;
-	}
-	/deep/ .cube-input input::-webkit-input-placeholder {
-		font-size: 3vw;
-	}
-	/deep/ .cube-input:after {
-		border-color: #fff;
-	}
-	/deep/ .cube-input_active:after {
-		border-color: #fff;
-	}
-	.logintipsword {
-		padding-bottom: 3vw;
-		line-height: 6vw;
-	}
-	.logintips_litword {
-		margin-top: 3vw;
-		color: #999999;
-		padding-bottom: 5vw;
-	}
+
 }

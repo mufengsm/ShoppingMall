@@ -12,3 +12,5 @@ export const SORT_LIST = 'SORT_LIST';
 export const PRICE_CONTROL_INFO = 'PRICE_CONTROL_INFO';
 // 修改user页面显示
 export const changeWrapShow = 'changeWrapShow';
+// 本香获取登录Token
+export const BYPSW_TOkEN = "bypswToken";
