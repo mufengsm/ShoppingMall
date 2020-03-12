@@ -105,7 +105,7 @@
 			<!-- 确认收货流程有待修改 -->
 			<button
 			class="collected right" 
-			@tap='searchLogistics(address.order_id)'>>确认收货</button>
+			@tap='searchLogistics(address.order_id)'>确认收货</button>
 		</view>
 	</view>
 </template>
