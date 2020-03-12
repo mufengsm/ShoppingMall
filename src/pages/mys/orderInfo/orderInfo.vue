@@ -105,7 +105,7 @@
 			<!-- 确认收货流程有待修改 -->
 			<button
 			class="collected right" 
-			@tap='searchLogistics(address.order_id)'>确认收货</button>
+			@tap='receipt(address.order_id)'>确认收货</button>
 		</view>
 	</view>
 </template>
@@ -205,7 +205,7 @@ export default {
 				},
 			});			
 		},
-		// 确认收货
+		// 查看物流
 		searchLogistics(id){
 			this.$request.POST({
 				url:this.$api.apiUrl.POST_ORDER_LOGISTICS,
@@ -221,6 +221,26 @@ export default {
 				})
 			})
 		},
+		// 确认收货
+		receipt(orderId){
+			// 确认收货
+			uni.showModal({
+				title: '消息提示',
+				content: '确定已收到货了吗?',
+				success:(res)=> {
+					if (res.confirm) {
+						this.$request.POST({
+							url:this.$api.apiUrl.POST_ORDER_RECEIPT,
+							data:{
+								id:orderId
+							}
+						}).then(res=>{
+							// console.log(res);
+						})
+					} else if (res.cancel) {return false}
+				}
+			});
+		}
 	}
 }
 </script>
