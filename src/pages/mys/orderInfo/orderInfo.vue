@@ -102,9 +102,10 @@
 			<button
 			class="collected left" 
 			@tap='searchLogistics(address.order_id)'>查看物流</button>
+			<!-- 确认收货流程有待修改 -->
 			<button
 			class="collected right" 
-			@tap='payment'>确认收货</button>
+			@tap='searchLogistics(address.order_id)'>>确认收货</button>
 		</view>
 	</view>
 </template>
