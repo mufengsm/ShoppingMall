@@ -11,7 +11,7 @@
       <label>
         <radio :checked="isRadio" color="red" />
         <image src="https://meizi.manogue.com.cn/static/wap/images/cart_store_03.png"></image>
-        <text class="txt">美资自营</text>
+        <text class="txt">纷至自营</text>
       </label>
     </view>
     <!-- 购物车商品列表 -->

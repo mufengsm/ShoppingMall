@@ -4,7 +4,7 @@
 			<button @tap="navToPage">开启省钱模式</button>
 			<view class="sq_ta">
 				<view class="sq_title">
-					美妆好货 一手掌握 <text>多多美</text>
+					美妆好货 一手掌握 <text>纷至</text>
 				</view>
 				<view class="sq_desc">
 					<view>1.点击上方<text>开启省钱模式</text>按钮跳转到注册页面</view>

@@ -48,7 +48,7 @@
             <view class="c-row b-b" @tap="toggleSpec('service')">
                 <text class="tit">服务</text>
                 <view class="bz-list con">
-                    <text style="color: #df0e1d;">多多美优购</text>
+                    <text style="color: #df0e1d;">纷至优购</text>
                     <text>全程保障，购物无忧</text>
                 </view>
                 <text class="iconfont icon-youjiantou"></text>

@@ -66,7 +66,7 @@
 							</label>
 							<text class="toAgreement"
 							@tap="toAgreement"
-							>《多多美平台协议》</text>
+							>《纷至平台协议》</text>
 						</view>
 					</view>
 				</view>
@@ -167,7 +167,7 @@ export default {
 		},
 		isChecked(){this.cd = !this.cd;},
 		submit(){
-			if(!this.cd){this.$api.msg("请勾选已阅读,多多美平台协议");return false;}
+			if(!this.cd){this.$api.msg("请勾选已阅读,纷至平台协议");return false;}
 			this.$request.POST({
 				url:this.$api.apiUrl.POST_SMS_CHECK,
 				data:{

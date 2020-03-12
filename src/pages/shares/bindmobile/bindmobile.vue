@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view :class="{'crad_wrap':true,'isSalesman':isSalesman}">
-			<view class="title">成为多多美会员</view>
+			<view class="title">成为纷至会员</view>
 			<view class="phone">
 				<text>手机号：</text>
 				<input v-model="phone" type="text" placeholder="请输入手机号" maxlength="11">

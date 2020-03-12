@@ -32,7 +32,7 @@
 							<image 
 							class="img"
 							src="https://meizi.manogue.com.cn/static/wap/images/cart_store_03.png"></image>
-							<text class="time">美资自营</text>
+							<text class="time">纷至自营</text>
 							<text class="state" :style="{color: item.stateTipColor}">
 								{{item.stateTip}}
 								</text>

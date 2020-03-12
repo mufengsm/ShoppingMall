@@ -31,7 +31,7 @@ export default {
 	},
 	onShareAppMessage(res) {
 		return {
-			title:"选进囗品就上多多美",
+			title:"选进囗品就上纷至",
 			path:`/pages/shares/bindmobile/bindmobile?id=${this.userId}&invitationCode=${this.invitationCode}`,
 			success:(res)=>{
 				console.log(res);

@@ -37,7 +37,7 @@
 		<view class="commodity_card">
 			<view class="top">
 				<image src="https://meizi.manogue.com.cn/static/wap/images/cart_store_03.png"></image>
-       			<view class="txt">美资自营</view>
+       			<view class="txt">纷至自营</view>
 			</view>
 			<view class="card_wrap">
 				<view class="item_card" v-for="(item,index) in goods" :key="index">

@@ -4,7 +4,7 @@
 			"path": "pages/indexs/index/index",
 			"style": {
 				// #ifdef MP 
-				"navigationBarTitleText": "多多美商城",
+				"navigationBarTitleText": "纷至商城",
 				//"navigationStyle": "custom",
 				// #endif 
 				"app-plus": {
@@ -219,7 +219,7 @@
 		{
 			"path": "pages/indexs/useragreement/useragreement",
 			"style": {
-				"navigationBarTitleText": "多多美协议",
+				"navigationBarTitleText": "纷至协议",
 				"app-plus": {
 					"titleNView": {
 						"type": "transparent"
